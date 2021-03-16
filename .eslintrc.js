@@ -3,8 +3,11 @@ module.exports = {
   extends: ['@meteorlxy/prettier'],
   overrides: [
     {
-      files: ['*.ts', '*.tsx'],
+      files: ['*.ts'],
       extends: '@meteorlxy/prettier-typescript',
+      parserOptions: {
+        project: ['tsconfig.json'],
+      },
       rules: {
         'no-console': 'off',
       },
