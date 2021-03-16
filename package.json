@@ -48,7 +48,13 @@
   },
   "prettier": "@meteorlxy/prettier-config",
   "dependencies": {
-    "chalk": "^4.1.0"
+    "chalk": "^4.1.0",
+    "ejs": "^3.1.6",
+    "execa": "^5.0.0",
+    "fs-extra": "^9.1.0",
+    "lodash.merge": "^4.6.2",
+    "ora": "^5.3.0",
+    "sort-package-json": "^1.49.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^12.1.0",
@@ -56,6 +62,9 @@
     "@meteorlxy/eslint-config-prettier": "^2.0.0",
     "@meteorlxy/eslint-config-prettier-typescript": "^2.0.0",
     "@meteorlxy/prettier-config": "^2.0.0",
+    "@types/ejs": "^3.0.6",
+    "@types/fs-extra": "^9.0.8",
+    "@types/lodash.merge": "^4.6.6",
     "@types/node": "^14.14.34",
     "conventional-changelog-cli": "^2.1.1",
     "copyfiles": "^2.4.1",
