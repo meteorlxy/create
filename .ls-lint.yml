@@ -1,0 +1,4 @@
+ls:
+  src:
+    .js: kebab-case
+    .ts: kebab-case
