@@ -1,0 +1,12 @@
+ls:
+  <%- pattern %>:
+    .js: kebab-case
+    .jsx: kebab-case
+    <%_ if (typescript) { _%>
+    .ts: kebab-case
+    .tsx: kebab-case
+    .d.ts: kebab-case
+    <%_ } _%>
+    <%_ if (vue) { _%>
+    .vue: kebab-case
+    <%_ } _%>

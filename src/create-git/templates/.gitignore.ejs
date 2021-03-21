@@ -1,0 +1,32 @@
+# Dist files
+<%_ if (typescript) { _%>
+lib
+<%_ } else { _%>
+dist
+<%_ } _%>
+
+# Node modules
+node_modules/
+
+# MacOS Desktop Services Store
+.DS_Store
+
+# Log files
+<%_ if (packageManager === 'npm') { _%>
+npm-debug.log*
+<%_ } else if (packageManager === 'yarn') { _%>
+yarn-debug.log*
+yarn-error.log*
+<%_ } else { _%>
+*.log
+<%_ } _%>
+<%_ if (typescript) { _%>
+
+# Typescript build info
+*.tsbuildinfo
+<%_ } _%>
+<%_ if (coverage) { _%>
+
+# Coverage directory
+coverage/
+<%_ } _%>

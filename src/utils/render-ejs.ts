@@ -4,7 +4,8 @@ import { readFile, writeFile } from 'fs-extra';
 export const renderEjs = async (
   source: string,
   target: string,
-  data: Record<string, unknown>,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  data: Record<string, any>,
 ): Promise<void> => {
   const template = await readFile(source);
 

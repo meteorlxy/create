@@ -1,0 +1,31 @@
+const path = require('path');
+
+module.exports = {
+  rootDir: path.resolve(__dirname),
+
+  moduleFileExtensions: ['js', 'jsx', 'json'<% if (typescript) { %>, 'ts', 'tsx'<% } if (vue) { %>, 'vue'<% } %>],
+
+  moduleNameMapper: {
+    '^@/(.*)$': '<rootDir>/src/$1',<% if (vue) { %>
+    '\\.(css|styl|less|sass|scss|svg|png|jpg|ttf|woff|woff2)$':
+      'jest-transform-stub',<% } %>
+  },
+
+  testMatch: ['<rootDir>/test/**/*.(spec|test).(js|jsx<% if (typescript) { %>|ts|tsx<% } %>)'],
+<% if (vue) { %>
+  snapshotSerializers: ['jest-serializer-vue'],
+<% } if (typescript || vue) { %>
+  transform: {<% if (typescript) { %>
+    '^.+\\.tsx?$': 'ts-jest',<% } if (vue) { %>
+    '^.+\\.jsx?$': 'babel-jest',
+    '^.+\\.vue$': 'vue-jest',
+    '.+\\.(css|styl|less|sass|scss|svg|png|jpg|ttf|woff|woff2)$':
+      'jest-transform-stub',<% } %>
+  },
+
+  transformIgnorePatterns: ['/node_modules/'],
+<% } %>
+  // coverage config
+  collectCoverageFrom: ['<rootDir>/src/**/*.(js<% if (typescript) { %>|ts<% } if (vue) { %>|vue<% } %>)'],
+  coverageDirectory: 'coverage',
+};

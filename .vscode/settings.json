@@ -13,5 +13,15 @@
     "javascriptreact",
     "typescript",
     "typescriptreact"
+  ],
+  "cSpell.words": [
+    "commitlintrc",
+    "copyfiles",
+    "editorconfig",
+    "eslintignore",
+    "execa",
+    "gitattributes",
+    "multiselect",
+    "npmrc"
   ]
 }

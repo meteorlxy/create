@@ -6,19 +6,23 @@ import { create } from './create';
 const targetDir = process.argv[2] || '.';
 const targetPath = resolve(process.cwd(), targetDir);
 
-console.log('');
-console.log(`${chalk.cyan('INFO')} target path is '${targetPath}'`);
-console.log('');
+const printNotice = (notice: string): void => {
+  console.log('');
+  console.log(notice);
+  console.log('');
+};
+
+printNotice(`${chalk.cyan('INFO')} target path is '${targetPath}'`);
 
 create(targetPath)
-  .then(() => {
-    console.log('');
-    console.log(`${chalk.green('DONE')} succeed to create project!`);
-    console.log('');
+  .then((result) => {
+    printNotice(
+      result
+        ? `${chalk.green('DONE')} succeed to create project!`
+        : `${chalk.gray('SKIP')} the create process is skipped`,
+    );
   })
   .catch((err) => {
     console.error(err);
-    console.error('');
-    console.error(`${chalk.red('ERROR')} failed to create project!`);
-    console.error('');
+    printNotice(`${chalk.red('ERROR')} failed to create project!`);
   });
