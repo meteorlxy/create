@@ -20,7 +20,7 @@ export const createLerna = async (
     version: options.independent ? 'independent' : '0.0.0',
     command: {
       version: {
-        allowBranch: 'master',
+        allowBranch: 'main',
         conventionalCommits: options.changelog,
         exact: true,
         message: `build: ${options.independent ? 'publish' : 'version %v'}`,
