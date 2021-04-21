@@ -19,7 +19,7 @@ export const createHusky = async (
   const runCommand = options.packageManager === 'yarn' ? 'yarn' : 'npx';
 
   if (options.commitlint) {
-    hooks['commit-msg'] = `${runCommand} commitlint -E $1`;
+    hooks['commit-msg'] = `${runCommand} commitlint --edit $1`;
   }
 
   if (options.lintStaged) {
