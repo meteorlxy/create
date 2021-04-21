@@ -33,7 +33,7 @@
     "lint": "eslint --ext .js,.ts .",
     "prepare": "husky install",
     "prepublishOnly": "npm run clean && npm run build && npm run copy && npm run lint",
-    "publish": "git push origin master --tags",
+    "publish": "git push origin main --tags",
     "version": "conventional-changelog -p angular -i CHANGELOG.md -s -r 1 && git add CHANGELOG.md"
   },
   "commitlint": {

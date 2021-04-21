@@ -10,4 +10,4 @@ npm init @meteorlxy
 
 ## LICENSE
 
-[MIT](https://github.com/meteorlxy/create/blob/master/LICENSE) &copy; [@meteorlxy](https://github.com/meteorlxy)
+[MIT](https://github.com/meteorlxy/create/blob/main/LICENSE) &copy; [@meteorlxy](https://github.com/meteorlxy)
