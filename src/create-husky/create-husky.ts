@@ -1,4 +1,4 @@
-import { outputFile } from 'fs-extra';
+import { chmod, outputFile } from 'fs-extra';
 import { resolve } from 'path';
 import type { PackageManager } from '../types';
 import { extendJson, getPackagesVersion } from '../utils';
@@ -35,12 +35,14 @@ export const createHusky = async (
   }
 
   await Promise.all(
-    Object.entries(hooks).map(([hook, cmd]) =>
-      outputFile(
-        resolve(targetPath, '.husky', hook),
+    Object.entries(hooks).map(async ([hook, cmd]) => {
+      const hookFile = resolve(targetPath, '.husky', hook);
+      await outputFile(
+        hookFile,
         [`#!/bin/sh`, `. "$(dirname "$0")/_/husky.sh"`, '', cmd, ''].join('\n'),
-      ),
-    ),
+      );
+      await chmod(hookFile, '755');
+    }),
   );
 
   // add devDependencies
