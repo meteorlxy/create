@@ -8,6 +8,7 @@
     "checkJs": false,
     "composite": true,
     "declaration": true,
+    "declarationMap": false,
     "lib": ["es2018", "es2019"],
     "module": "commonjs",
     "moduleResolution": "node",
