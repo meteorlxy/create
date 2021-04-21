@@ -1,3 +1,9 @@
+## [0.2.1](https://github.com/meteorlxy/create/compare/v0.2.0...v0.2.1) (2021-04-21)
+
+### Bug Fixes
+
+- fix commitlint option in husky hook ([de92622](https://github.com/meteorlxy/create/commit/de9262275ec4be6bab61a6fcd4a750919fd81078))
+
 # [0.2.0](https://github.com/meteorlxy/create/compare/v0.1.0...v0.2.0) (2021-04-21)
 
 ### Bug Fixes
