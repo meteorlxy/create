@@ -27,7 +27,7 @@
   ],
   "scripts": {
     "build": "tsc -b",
-    "clean": "tsc -b --clean",
+    "clean": "rimraf lib *.tsbuildinfo",
     "copy": "copyfiles -a -u 1 \"src/**/templates/**/*\" lib",
     "dev": "tsc -b --watch",
     "lint": "eslint --ext .js,.ts .",
