@@ -1,5 +1,5 @@
-import { copy } from 'fs-extra';
 import { resolve } from 'path';
+import { copy } from 'fs-extra';
 import { renderEjs } from '../utils';
 
 export interface CreateGitOptions {

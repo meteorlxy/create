@@ -1,5 +1,5 @@
-import { chmod, outputFile } from 'fs-extra';
 import { resolve } from 'path';
+import { chmod, outputFile } from 'fs-extra';
 import type { PackageManager } from '../types';
 import { extendJson, getPackagesVersion } from '../utils';
 

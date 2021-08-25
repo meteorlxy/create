@@ -1,5 +1,5 @@
-import { writeFile } from 'fs-extra';
 import { resolve } from 'path';
+import { writeFile } from 'fs-extra';
 import { extendJson, getPackagesVersion } from '../utils';
 
 export interface CreateEslintOptions {

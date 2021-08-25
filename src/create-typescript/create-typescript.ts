@@ -1,5 +1,5 @@
-import { copy } from 'fs-extra';
 import { resolve } from 'path';
+import { copy } from 'fs-extra';
 import { extendJson, getPackagesVersion } from '../utils';
 
 export interface CreateTypescriptOptions {

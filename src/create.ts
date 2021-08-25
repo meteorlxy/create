@@ -1,7 +1,7 @@
-import * as execa from 'execa';
-import { ensureDir, pathExists } from 'fs-extra';
 import { resolve } from 'path';
 import * as chalk from 'chalk';
+import * as execa from 'execa';
+import { ensureDir, pathExists } from 'fs-extra';
 import { createCommitlint } from './create-commitlint';
 import { createConventionalChangelog } from './create-conventional-changelog';
 import { createEditorconfig } from './create-editorconfig';
