@@ -1,10 +1,8 @@
 import { copy } from 'fs-extra';
 import { resolve } from 'path';
-import type { PackageManager } from '../types';
 import { renderEjs } from '../utils';
 
 export interface CreateGitOptions {
-  packageManager: PackageManager;
   typescript: boolean;
   coverage: boolean;
 }

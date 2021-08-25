@@ -1,10 +1,8 @@
 import { writeFile } from 'fs-extra';
 import { resolve } from 'path';
-import type { PackageManager } from '../types';
 import { extendJson, getPackagesVersion } from '../utils';
 
 export interface CreateEslintOptions {
-  packageManager: PackageManager;
   monorepo: boolean;
   typescript: boolean;
   vue: boolean;

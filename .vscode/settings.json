@@ -22,6 +22,7 @@
     "execa",
     "gitattributes",
     "multiselect",
-    "npmrc"
+    "npmrc",
+    "pnpm"
   ]
 }

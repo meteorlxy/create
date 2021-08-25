@@ -1,6 +1,6 @@
 import { presets } from './presets';
 
-export type PackageManager = 'npm' | 'yarn';
+export type PackageManager = 'npm' | 'yarn' | 'pnpm';
 
 export type Registry = 'default' | 'npm' | 'yarn' | 'taobao';
 

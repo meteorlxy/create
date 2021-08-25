@@ -16,7 +16,8 @@ export const createHusky = async (
 ): Promise<void> => {
   const hooks: Record<string, string> = {};
 
-  const runCommand = options.packageManager === 'yarn' ? 'yarn' : 'npx';
+  const runCommand =
+    options.packageManager === 'npm' ? 'npx' : options.packageManager;
 
   if (options.commitlint) {
     hooks['commit-msg'] = `${runCommand} commitlint --edit $1`;

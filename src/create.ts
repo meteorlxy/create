@@ -1,6 +1,7 @@
 import * as execa from 'execa';
 import { ensureDir, pathExists } from 'fs-extra';
 import { resolve } from 'path';
+import * as chalk from 'chalk';
 import { createCommitlint } from './create-commitlint';
 import { createConventionalChangelog } from './create-conventional-changelog';
 import { createEditorconfig } from './create-editorconfig';
@@ -75,7 +76,6 @@ export const create = async (targetPath: string): Promise<boolean> => {
   if (options.git) {
     await withSpinner({ name: '.gitattributes & .gitignore' })(
       createGit(targetPath, {
-        packageManager: options.packageManager,
         typescript: options.typescript,
         coverage: options.jest,
       }),
@@ -135,7 +135,6 @@ export const create = async (targetPath: string): Promise<boolean> => {
   if (options.eslint) {
     await withSpinner({ name: 'eslint' })(
       createEslint(targetPath, {
-        packageManager: options.packageManager,
         monorepo: options.monorepo,
         typescript: options.typescript,
         vue: options.vue,
@@ -247,7 +246,9 @@ export const create = async (targetPath: string): Promise<boolean> => {
   // install dependencies
   await withSpinner({
     name: 'install',
-    start: 'installing dependencies',
+    start: `installing dependencies with ${chalk.magenta(
+      options.packageManager,
+    )}`,
     succeed: 'installed dependencies',
     fail: 'failed to install dependencies',
   })(

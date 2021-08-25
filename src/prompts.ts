@@ -62,6 +62,16 @@ export const prompt = async (
   const answers = await prompts([
     {
       type: 'select',
+      name: 'packageManager',
+      message: 'Select a package manager',
+      choices: [
+        { title: 'npm', value: 'npm' },
+        { title: 'yarn', value: 'yarn' },
+        { title: 'pnpm', value: 'pnpm' },
+      ],
+    },
+    {
+      type: 'select',
       name: 'monorepo',
       message: 'Use monorepo or not?',
       choices: [
@@ -70,21 +80,18 @@ export const prompt = async (
       ],
     },
     {
-      type: (monorepo) => (monorepo ? 'select' : null),
+      type: (_, { monorepo, packageManager }) =>
+        monorepo &&
+        // lerna is not compatible with pnpm yet
+        // @see https://github.com/lerna/lerna/issues/1818
+        packageManager !== 'pnpm'
+          ? 'select'
+          : null,
       name: 'lerna',
       message: 'Use lerna or not?',
       choices: [
         { title: 'yes', value: true },
         { title: 'no', value: false },
-      ],
-    },
-    {
-      type: 'select',
-      name: 'packageManager',
-      message: 'Select a package manager',
-      choices: [
-        { title: 'npm', value: 'npm' },
-        { title: 'yarn', value: 'yarn' },
       ],
     },
     {
