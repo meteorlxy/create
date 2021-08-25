@@ -1,3 +1,10 @@
+# [0.3.0](https://github.com/meteorlxy/create/compare/v0.2.1...v0.3.0) (2021-08-25)
+
+### Features
+
+- set noImplicitOverride in tsconfig ([e96f74d](https://github.com/meteorlxy/create/commit/e96f74d9bca6d14d33f0823e3e3b75b29a173514))
+- support pnpm ([aba0c0d](https://github.com/meteorlxy/create/commit/aba0c0d9bb14404eb6ff7a5e9311a0ed83b94747))
+
 ## [0.2.1](https://github.com/meteorlxy/create/compare/v0.2.0...v0.2.1) (2021-04-21)
 
 ### Bug Fixes
