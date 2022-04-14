@@ -1,4 +1,4 @@
-import { presets } from './presets';
+import type { presets } from './presets';
 
 export type PackageManager = 'npm' | 'yarn' | 'pnpm';
 

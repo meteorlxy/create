@@ -1,4 +1,4 @@
-import { pathExists, readJSON, outputJson } from 'fs-extra';
+import { outputJson, pathExists, readJSON } from 'fs-extra';
 import merge = require('lodash.merge');
 
 export const extendJson = async (
