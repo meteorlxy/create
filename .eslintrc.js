@@ -6,7 +6,7 @@ module.exports = {
       files: ['*.ts'],
       extends: '@meteorlxy/prettier-typescript',
       parserOptions: {
-        project: ['tsconfig.json'],
+        project: 'tsconfig.json',
       },
       rules: {
         'no-console': 'off',

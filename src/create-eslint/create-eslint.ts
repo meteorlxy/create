@@ -73,7 +73,7 @@ export const createEslint = async (
   if (options.typescript) {
     const commonConfig = {
       parserOptions: {
-        project: [options.monorepo ? 'tsconfig.eslint.json' : 'tsconfig.json'],
+        project: options.monorepo ? 'tsconfig.eslint.json' : 'tsconfig.json',
       },
     };
 
