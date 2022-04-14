@@ -48,6 +48,9 @@ export const createTypescript = async (
       clean: 'tsc -b --clean',
       dev: 'tsc -b --watch',
     },
-    devDependencies: await getPackagesVersion(['typescript']),
+    devDependencies: await getPackagesVersion([
+      '@meteorlxy/tsconfig',
+      'typescript',
+    ]),
   });
 };
