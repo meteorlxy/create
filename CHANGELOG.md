@@ -1,3 +1,16 @@
+# [0.5.0](https://github.com/meteorlxy/create/compare/v0.4.0...v0.5.0) (2022-04-15)
+
+### Bug Fixes
+
+- create vscode eslint config conditionally ([a7ad383](https://github.com/meteorlxy/create/commit/a7ad383a292dad28a33c741f073ed5291fd52b94))
+- use outputFile to write ejs rendered result ([f6ce039](https://github.com/meteorlxy/create/commit/f6ce039579721be0516db7dc86da716ce25d35c8))
+
+### Features
+
+- add github meta files ([f7b9fab](https://github.com/meteorlxy/create/commit/f7b9fab1ebe4314ba7b8c6adfee53a5fc41523bd))
+- remove vetur config ([10c1fcc](https://github.com/meteorlxy/create/commit/10c1fccf5b8e0087e7ad19a13d28518412469f2d))
+- update monorepo tsconfig structure ([a4f1b65](https://github.com/meteorlxy/create/commit/a4f1b658e6f692b8491e519dc5b58b5ba9a48043))
+
 # [0.4.0](https://github.com/meteorlxy/create/compare/v0.3.0...v0.4.0) (2022-04-15)
 
 ### Features
