@@ -18,6 +18,13 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+      <%_ if (packageManager === 'pnpm') { _%>
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 6
+      <%_ } _%>
 
       - name: Use Node.js ${{ matrix.node }}
         uses: actions/setup-node@v3
@@ -25,34 +32,15 @@ jobs:
           node-version: ${{ matrix.node }}
           cache: <%- packageManager %>
 
-      <%_ if (packageManager === 'npm') { _%>
       - name: Install dependencies
+        <%_ if (packageManager === 'npm') { _%>
         run: npm ci
+        <%_ } else if (packageManager === 'yarn' || packageManager === 'pnpm') { _%>
+        run: <%- packageManager %> install --frozen-lockfile
+        <%_ } _%>
 
       - name: Lint
-        run: npm run lint
+        run: <%- packageManager %> run lint
 
       - name: Build
-        run: npm run build
-      <%_ } else if (packageManager === 'yarn') { _%>
-      - name: Install dependencies
-        run: yarn --frozen-lockfile
-
-      - name: Lint
-        run: yarn lint
-
-      - name: Build
-        run: yarn build
-      <%_ } else if (packageManager === 'pnpm') { _%>
-      - name: Install pnpm and dependencies
-        uses: pnpm/action-setup@v2
-        with:
-          version: 6
-          run_install: true
-
-      - name: Lint
-        run: pnpm lint
-
-      - name: Build
-        run: pnpm build
-      <%_ } _%>
+        run: <%- packageManager %> run build
