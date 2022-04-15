@@ -1,3 +1,13 @@
+## [0.5.1](https://github.com/meteorlxy/create/compare/v0.5.0...v0.5.1) (2022-04-15)
+
+### Bug Fixes
+
+- use ejs ext for readme template ([01193c5](https://github.com/meteorlxy/create/commit/01193c55e7d7be4c1cfe3814a858b531a07a3031))
+
+### Performance Improvements
+
+- use Promise.all as possible ([5574f9a](https://github.com/meteorlxy/create/commit/5574f9a1e21c17fd7665943f404e302cf483d526))
+
 # [0.5.0](https://github.com/meteorlxy/create/compare/v0.4.0...v0.5.0) (2022-04-15)
 
 ### Bug Fixes
