@@ -26,7 +26,6 @@ export const createVscode = async (
       ...(options.typescript ? ['typescript', 'typescriptreact'] : []),
       ...(options.vue ? ['vue'] : []),
     ],
-    ...(options.vue ? { 'vetur.validation.template': false } : {}),
   };
 
   await extendJson(
