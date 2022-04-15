@@ -10,13 +10,6 @@ export const createJest = async (
   targetPath: string,
   options: CreateJestOptions,
 ): Promise<void> => {
-  // create config file
-  await renderEjs(
-    resolve(__dirname, 'templates/jest.config.ejs'),
-    resolve(targetPath, 'jest.config.js'),
-    options,
-  );
-
   const devDependencies = ['jest'];
 
   if (options.typescript) {
@@ -35,10 +28,20 @@ export const createJest = async (
     }
   }
 
-  await extendJson(resolve(targetPath, 'package.json'), {
-    scripts: {
-      test: 'jest',
-    },
-    devDependencies: await getPackagesVersion(devDependencies),
-  });
+  await Promise.all([
+    // create config file
+    renderEjs(
+      resolve(__dirname, 'templates/jest.config.ejs'),
+      resolve(targetPath, 'jest.config.js'),
+      options,
+    ),
+
+    // add devDependencies
+    extendJson(resolve(targetPath, 'package.json'), {
+      scripts: {
+        test: 'jest',
+      },
+      devDependencies: await getPackagesVersion(devDependencies),
+    }),
+  ]);
 };

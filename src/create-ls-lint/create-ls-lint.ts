@@ -18,21 +18,23 @@ export const createLsLint = async (
     pattern = `"{${pattern},test}"`;
   }
 
-  // create config file
-  await renderEjs(
-    resolve(__dirname, 'templates/.ls-lint.ejs'),
-    resolve(targetPath, '.ls-lint.yml'),
-    {
-      ...options,
-      pattern,
-    },
-  );
+  await Promise.all([
+    // create config file
+    renderEjs(
+      resolve(__dirname, 'templates/.ls-lint.ejs'),
+      resolve(targetPath, '.ls-lint.yml'),
+      {
+        ...options,
+        pattern,
+      },
+    ),
 
-  // add script and devDependencies
-  await extendJson(resolve(targetPath, 'package.json'), {
-    scripts: {
-      'ls-lint': 'ls-lint',
-    },
-    devDependencies: await getPackagesVersion(['@ls-lint/ls-lint']),
-  });
+    // add script and devDependencies
+    extendJson(resolve(targetPath, 'package.json'), {
+      scripts: {
+        'ls-lint': 'ls-lint',
+      },
+      devDependencies: await getPackagesVersion(['@ls-lint/ls-lint']),
+    }),
+  ]);
 };

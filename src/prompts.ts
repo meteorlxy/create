@@ -111,10 +111,10 @@ export const prompt = async (
       message: 'Select meta files you want to initialize',
       choices: [
         { title: 'Editor config', value: 'editorconfig', selected: true },
-        { title: 'Git meta files', value: 'git', selected: true },
-        { title: 'GitHub meta files', value: 'github', selected: true },
+        { title: 'Git files', value: 'git', selected: true },
+        { title: 'GitHub files', value: 'github', selected: true },
         { title: 'README.md', value: 'readme', selected: true },
-        { title: 'VSCode settings', value: 'vscode', selected: true },
+        { title: 'VSCode files', value: 'vscode', selected: true },
       ],
     },
     {

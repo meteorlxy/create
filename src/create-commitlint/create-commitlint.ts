@@ -20,27 +20,28 @@ export const createCommitlint = async (
     extendsConfig.push('@commitlint/config-lerna-scopes');
   }
 
-  // create config file or config field
-  if (useStandaloneConfigFile) {
-    await writeFile(
-      resolve(targetPath, '.commitlintrc.js'),
-      `module.exports = ${JSON.stringify(
-        {
-          extends: extendsConfig,
-        },
-        undefined,
-        '  ',
-      )}`,
-    );
-  } else {
-    await extendJson(resolve(targetPath, 'package.json'), {
-      commitlint: {
-        extends: extendsConfig,
-      },
-    });
-  }
-  // add devDependencies
-  await extendJson(resolve(targetPath, 'package.json'), {
-    devDependencies: await getPackagesVersion(devDependencies),
-  });
+  await Promise.all([
+    // create config file or config field
+    useStandaloneConfigFile
+      ? writeFile(
+          resolve(targetPath, '.commitlintrc.js'),
+          `module.exports = ${JSON.stringify(
+            {
+              extends: extendsConfig,
+            },
+            undefined,
+            '  ',
+          )}`,
+        )
+      : extendJson(resolve(targetPath, 'package.json'), {
+          commitlint: {
+            extends: extendsConfig,
+          },
+        }),
+
+    // add devDependencies
+    extendJson(resolve(targetPath, 'package.json'), {
+      devDependencies: await getPackagesVersion(devDependencies),
+    }),
+  ]);
 };

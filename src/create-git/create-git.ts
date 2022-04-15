@@ -12,14 +12,15 @@ export const createGit = async (
   options: CreateGitOptions,
 ): Promise<void> => {
   // copy template files
-  await copy(
-    resolve(__dirname, 'templates/.gitattributes'),
-    resolve(targetPath, '.gitattributes'),
-  );
-
-  await renderEjs(
-    resolve(__dirname, 'templates/.gitignore.ejs'),
-    resolve(targetPath, '.gitignore'),
-    options,
-  );
+  await Promise.all([
+    copy(
+      resolve(__dirname, 'templates/.gitattributes'),
+      resolve(targetPath, '.gitattributes'),
+    ),
+    renderEjs(
+      resolve(__dirname, 'templates/.gitignore.ejs'),
+      resolve(targetPath, '.gitignore'),
+      options,
+    ),
+  ]);
 };

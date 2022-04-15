@@ -35,8 +35,9 @@ export const createHusky = async (
     }
   }
 
-  await Promise.all(
-    Object.entries(hooks).map(async ([hook, cmd]) => {
+  await Promise.all([
+    // add hook scripts
+    ...Object.entries(hooks).map(async ([hook, cmd]) => {
       const hookFile = resolve(targetPath, '.husky', hook);
       await outputFile(
         hookFile,
@@ -44,13 +45,13 @@ export const createHusky = async (
       );
       await chmod(hookFile, '755');
     }),
-  );
 
-  // add devDependencies
-  await extendJson(resolve(targetPath, 'package.json'), {
-    scripts: {
-      prepare: 'husky install',
-    },
-    devDependencies: await getPackagesVersion(['husky']),
-  });
+    // add devDependencies
+    extendJson(resolve(targetPath, 'package.json'), {
+      scripts: {
+        prepare: 'husky install',
+      },
+      devDependencies: await getPackagesVersion(['husky']),
+    }),
+  ]);
 };

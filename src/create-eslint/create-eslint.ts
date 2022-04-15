@@ -173,28 +173,28 @@ export const createEslint = async (
   // Add scripts & devDependencies & .eslintrc.js & .eslintignore
   // ======================
 
-  await extendJson(resolve(targetPath, 'package.json'), {
-    scripts: {
-      lint: `eslint --ext ${lintExts.join(',')} ${lintPaths.join(' ')}`,
-    },
-    devDependencies: await getPackagesVersion(devDependencies),
-  });
-
-  await writeFile(
-    resolve(targetPath, '.eslintrc.js'),
-    `module.exports = ${JSON.stringify(
-      {
-        root: true,
-        extends: extendsConfig,
-        overrides,
+  await Promise.all([
+    extendJson(resolve(targetPath, 'package.json'), {
+      scripts: {
+        lint: `eslint --ext ${lintExts.join(',')} ${lintPaths.join(' ')}`,
       },
-      undefined,
-      '  ',
-    )}`,
-  );
-
-  await writeFile(
-    resolve(targetPath, '.eslintignore'),
-    `${ignorePaths.join('\n')}\n`,
-  );
+      devDependencies: await getPackagesVersion(devDependencies),
+    }),
+    writeFile(
+      resolve(targetPath, '.eslintrc.js'),
+      `module.exports = ${JSON.stringify(
+        {
+          root: true,
+          extends: extendsConfig,
+          overrides,
+        },
+        undefined,
+        '  ',
+      )}`,
+    ),
+    writeFile(
+      resolve(targetPath, '.eslintignore'),
+      `${ignorePaths.join('\n')}\n`,
+    ),
+  ]);
 };

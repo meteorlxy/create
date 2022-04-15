@@ -110,7 +110,7 @@ export const create = async (targetPath: string): Promise<boolean> => {
 
   // create vscode settings
   if (options.vscode) {
-    await withSpinner({ name: '.vscode/settings.json' })(
+    await withSpinner({ name: '.vscode' })(
       createVscode(targetPath, {
         eslint: options.eslint,
         typescript: options.typescript,
@@ -264,18 +264,11 @@ export const create = async (targetPath: string): Promise<boolean> => {
   );
 
   // install dependencies
-  await withSpinner({
-    name: 'install',
-    start: `installing dependencies with ${chalk.magenta(
-      options.packageManager,
-    )}`,
-    succeed: 'installed dependencies',
-    fail: 'failed to install dependencies',
-  })(
-    execa(options.packageManager, ['install'], {
-      cwd: targetPath,
-    }),
-  );
+  console.log(`$ ${chalk.magenta(`${options.packageManager} install`)}`);
+  await execa(options.packageManager, ['install'], {
+    cwd: targetPath,
+    stdio: 'inherit',
+  });
 
   // lint the generated code
   await withSpinner({
