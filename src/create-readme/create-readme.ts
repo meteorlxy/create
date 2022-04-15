@@ -14,7 +14,7 @@ export const createReadme = async (
 ): Promise<void> => {
   // copy template files
   await renderEjs(
-    resolve(__dirname, 'templates/README.md'),
+    resolve(__dirname, 'templates/README.ejs'),
     resolve(targetPath, 'README.md'),
     options,
   );
