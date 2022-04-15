@@ -60,6 +60,7 @@ export const create = async (targetPath: string): Promise<boolean> => {
   if (options.vscode) {
     await withSpinner({ name: '.vscode/settings.json' })(
       createVscode(targetPath, {
+        eslint: options.eslint,
         typescript: options.typescript,
         vue: options.vue,
       }),
