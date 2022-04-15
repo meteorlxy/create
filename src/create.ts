@@ -12,6 +12,7 @@ import { createJest } from './create-jest';
 import { createLerna } from './create-lerna';
 import { createLintStaged } from './create-lint-staged';
 import { createLsLint } from './create-ls-lint';
+import { createMonorepo } from './create-monorepo';
 import { createNpmrc } from './create-npmrc';
 import { createPrettier } from './create-prettier';
 import { createReadme } from './create-readme';
@@ -104,6 +105,15 @@ export const create = async (targetPath: string): Promise<boolean> => {
       createTypescript(targetPath, {
         monorepo: options.monorepo,
         eslint: options.eslint,
+      }),
+    );
+  }
+
+  // create monorepo
+  if (options.monorepo) {
+    await withSpinner({ name: 'monorepo' })(
+      createMonorepo(targetPath, {
+        packageManager: options.packageManager,
       }),
     );
   }
