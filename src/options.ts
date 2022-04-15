@@ -14,10 +14,11 @@ export const getOptionsFromAnswers = (
   react: ['react', 'typescript-react'].includes(preAnswers.template),
 
   // meta files
-  vscode: answers.meta.includes('vscode'),
   editorconfig: answers.meta.includes('editorconfig'),
   git: answers.meta.includes('git'),
+  github: answers.meta.includes('github'),
   readme: answers.meta.includes('readme'),
+  vscode: answers.meta.includes('vscode'),
 
   // development workflow
   monorepo: !!answers.monorepo,

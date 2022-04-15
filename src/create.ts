@@ -7,6 +7,7 @@ import { createConventionalChangelog } from './create-conventional-changelog';
 import { createEditorconfig } from './create-editorconfig';
 import { createEslint } from './create-eslint';
 import { createGit } from './create-git';
+import { createGithub } from './create-github';
 import { createHusky } from './create-husky';
 import { createJest } from './create-jest';
 import { createLerna } from './create-lerna';
@@ -56,17 +57,6 @@ export const create = async (targetPath: string): Promise<boolean> => {
     }),
   );
 
-  // create vscode settings
-  if (options.vscode) {
-    await withSpinner({ name: '.vscode/settings.json' })(
-      createVscode(targetPath, {
-        eslint: options.eslint,
-        typescript: options.typescript,
-        vue: options.vue,
-      }),
-    );
-  }
-
   // create editorconfig
   if (options.editorconfig) {
     await withSpinner({ name: '.editorconfig' })(
@@ -74,12 +64,23 @@ export const create = async (targetPath: string): Promise<boolean> => {
     );
   }
 
+  // TODO: license
+
   // create git meta files
   if (options.git) {
     await withSpinner({ name: '.gitattributes & .gitignore' })(
       createGit(targetPath, {
         typescript: options.typescript,
         coverage: options.jest,
+      }),
+    );
+  }
+
+  // create github meta files
+  if (options.github) {
+    await withSpinner({ name: '.github' })(
+      createGithub(targetPath, {
+        packageManager: options.packageManager,
       }),
     );
   }
@@ -97,15 +98,23 @@ export const create = async (targetPath: string): Promise<boolean> => {
     );
   }
 
-  // TODO: github issue templates
-  // TODO: github actions
-
   // create typescript template
   if (options.typescript) {
     await withSpinner({ name: 'typescript' })(
       createTypescript(targetPath, {
         monorepo: options.monorepo,
         eslint: options.eslint,
+      }),
+    );
+  }
+
+  // create vscode settings
+  if (options.vscode) {
+    await withSpinner({ name: '.vscode/settings.json' })(
+      createVscode(targetPath, {
+        eslint: options.eslint,
+        typescript: options.typescript,
+        vue: options.vue,
       }),
     );
   }

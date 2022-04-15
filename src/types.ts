@@ -12,7 +12,13 @@ export type Template =
   | 'react'
   | 'typescript-react';
 
-export type MetaFile = 'vscode' | 'editorconfig' | 'git' | 'license' | 'readme';
+export type MetaFile =
+  | 'editorconfig'
+  | 'git'
+  | 'github'
+  | 'license'
+  | 'readme'
+  | 'vscode';
 
 export type WorkflowTool =
   | 'commitlint'
@@ -55,10 +61,11 @@ export interface Options {
   react: boolean;
 
   // meta files
-  vscode: boolean;
   editorconfig: boolean;
   git: boolean;
+  github: boolean;
   readme: boolean;
+  vscode: boolean;
 
   // development workflow
   lerna: boolean;
