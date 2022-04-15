@@ -34,7 +34,7 @@
     "dev": "tsc -b --watch",
     "lint": "eslint --ext .js,.ts .",
     "prepare": "husky install",
-    "prepublishOnly": "npm run clean && npm run build && npm run copy && npm run lint",
+    "prepublishOnly": "pnpm run clean && pnpm run build && pnpm run copy && pnpm run lint",
     "publish": "git push origin main --tags",
     "version": "conventional-changelog -p angular -i CHANGELOG.md -s -r 1 && git add CHANGELOG.md"
   },
