@@ -1,3 +1,9 @@
+## [0.5.2](https://github.com/meteorlxy/create/compare/v0.5.1...v0.5.2) (2022-04-15)
+
+### Bug Fixes
+
+- set up pnpm before node in github workflow ([1cbc20e](https://github.com/meteorlxy/create/commit/1cbc20e3e1d1b4ab20f7f2179dc0914736c51987))
+
 ## [0.5.1](https://github.com/meteorlxy/create/compare/v0.5.0...v0.5.1) (2022-04-15)
 
 ### Bug Fixes
