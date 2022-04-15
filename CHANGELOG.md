@@ -1,3 +1,10 @@
+# [0.4.0](https://github.com/meteorlxy/create/compare/v0.3.0...v0.4.0) (2022-04-15)
+
+### Features
+
+- add monorepo workspace config ([21de340](https://github.com/meteorlxy/create/commit/21de340b61e98b64e940e957f7bcd97d850e99bd))
+- extend base tsconfig from package ([c8dba5c](https://github.com/meteorlxy/create/commit/c8dba5cca9bc74000f9a0f4b8158d648abc3745a))
+
 # [0.3.0](https://github.com/meteorlxy/create/compare/v0.2.1...v0.3.0) (2021-08-25)
 
 ### Features
