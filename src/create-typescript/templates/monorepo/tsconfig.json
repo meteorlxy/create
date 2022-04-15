@@ -1,5 +1,5 @@
 {
   "extends": "./tsconfig.base.json",
-  "references": [{ "path": "./packages/foo" }],
-  "files": []
+  "include": ["packages/**/*"],
+  "exclude": ["node_modules", "lib", "dist"]
 }
