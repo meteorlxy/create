@@ -9,7 +9,6 @@ export const extendJson = async (
   if (!isExisted) {
     await outputJson(file, {});
   }
-
   const json = await readJSON(file);
   await outputJson(file, merge(json, fields), {
     spaces: 2,

@@ -9,6 +9,5 @@ export const getPackagesVersion = async (
       return [pkg, `^${stdout}`];
     }),
   );
-
   return Object.fromEntries(resultEntries);
 };
