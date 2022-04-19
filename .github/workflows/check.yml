@@ -19,7 +19,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Install pnpm and dependencies
+      - name: Install pnpm
         uses: pnpm/action-setup@v2
         with:
           version: 6
