@@ -1,6 +1,6 @@
 import { resolve } from 'path';
 import type { PackageManager } from '../types';
-import { extendJson } from '../utils';
+import { extendJson, getPackagesVersion } from '../utils';
 
 export interface CreateLernaOptions {
   packageManager: PackageManager;
@@ -31,5 +31,16 @@ export const createLerna = async (
     },
   };
 
-  await extendJson(resolve(targetPath, 'lerna.json'), lernaConfig);
+  await Promise.all([
+    // create lerna.json
+    extendJson(resolve(targetPath, 'lerna.json'), lernaConfig),
+
+    // add devDependencies
+    extendJson(resolve(targetPath, 'package.json'), {
+      scripts: {
+        release: 'lerna publish',
+      },
+      devDependencies: await getPackagesVersion(['@lerna-lite/cli']),
+    }),
+  ]);
 };

@@ -80,13 +80,7 @@ export const prompt = async (
       ],
     },
     {
-      type: (_, { monorepo, packageManager }) =>
-        monorepo &&
-        // lerna is not compatible with pnpm yet
-        // @see https://github.com/lerna/lerna/issues/1818
-        packageManager !== 'pnpm'
-          ? 'select'
-          : null,
+      type: (monorepo) => (monorepo ? 'select' : null),
       name: 'lerna',
       message: 'Use lerna or not?',
       choices: [
