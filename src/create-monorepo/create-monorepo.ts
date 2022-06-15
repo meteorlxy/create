@@ -12,13 +12,18 @@ export const createMonorepo = async (
   { packageManager }: CreateMonorepoOptions,
 ): Promise<void> => {
   if (packageManager === 'pnpm') {
-    await writeFile(
-      resolve(targetPath, 'pnpm-workspace.yaml'),
-      `\
+    await Promise.all([
+      writeFile(
+        resolve(targetPath, 'pnpm-workspace.yaml'),
+        `\
 packages:
   - 'packages/*'
 `,
-    );
+      ),
+      extendJson(resolve(targetPath, 'package.json'), {
+        private: true,
+      }),
+    ]);
   } else {
     await extendJson(resolve(targetPath, 'package.json'), {
       private: true,
