@@ -1,3 +1,11 @@
+## [0.6.3](https://github.com/meteorlxy/create/compare/v0.6.2...v0.6.3) (2022-06-20)
+
+### Bug Fixes
+
+- omit empty registry in lerna config ([57e570b](https://github.com/meteorlxy/create/commit/57e570ba7d293bba969c5f279e88bb8e857a41f6))
+- remove lerna-scope commitlint config ([6bb10c2](https://github.com/meteorlxy/create/commit/6bb10c2ec93cf830c2477c83a4192559581fe026))
+- specify cjs and esm extensions ([2d9bd69](https://github.com/meteorlxy/create/commit/2d9bd69fee4998e3ecd6d996d615f358f268fa65))
+
 ## [0.6.2](https://github.com/meteorlxy/create/compare/v0.6.1...v0.6.2) (2022-06-20)
 
 ### Bug Fixes
