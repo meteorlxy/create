@@ -5,7 +5,7 @@
 ## Usage
 
 ```sh
-npm init @meteorlxy
+pnpm create @meteorlxy
 ```
 
 ## LICENSE
