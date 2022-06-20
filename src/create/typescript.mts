@@ -28,7 +28,7 @@ export const createTypescript = async (
             path.resolve(targetPath, 'tsconfig.build.json'),
           ),
           fs.copy(
-            templatePath('monorepo/packages/foo/tsconfig.build.json'),
+            templatePath('tsconfig/monorepo/packages/foo/tsconfig.build.json'),
             path.resolve(targetPath, 'packages/foo/tsconfig.build.json'),
           ),
         ]
