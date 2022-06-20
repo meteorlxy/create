@@ -34,8 +34,5 @@ jobs:
       - name: Build
         run: pnpm run build
 
-      - name: Copy
-        run: pnpm run copy
-
       - name: Lint
         run: pnpm run lint
