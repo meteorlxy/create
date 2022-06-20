@@ -23,6 +23,7 @@
     "gitattributes",
     "multiselect",
     "npmrc",
-    "pnpm"
+    "pnpm",
+    "taobao"
   ]
 }

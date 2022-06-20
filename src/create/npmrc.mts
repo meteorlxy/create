@@ -1,0 +1,17 @@
+import path from 'node:path';
+import fs from 'fs-extra';
+
+export type CreateNpmrcOptions = Record<string, string>;
+
+export const createNpmrc = async (
+  targetPath: string,
+  options: CreateNpmrcOptions,
+): Promise<void> => {
+  await fs.writeFile(
+    path.resolve(targetPath, '.npmrc'),
+    `${Object.entries(options)
+      .filter(([, value]) => value)
+      .map(([key, value]) => `${key}=${value}`)
+      .join('\n')}\n`,
+  );
+};

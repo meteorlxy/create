@@ -1,4 +1,4 @@
 ls:
   src:
     .js: kebab-case
-    .ts: kebab-case
+    .mts: kebab-case
