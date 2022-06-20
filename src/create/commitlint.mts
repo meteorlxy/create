@@ -18,7 +18,7 @@ export const createCommitlint = async (
     // create config file or config field
     useStandaloneConfigFile
       ? fs.writeFile(
-          path.resolve(targetPath, '.commitlintrc.js'),
+          path.resolve(targetPath, '.commitlintrc.cjs'),
           `module.exports = ${JSON.stringify(
             {
               extends: extendsConfig,

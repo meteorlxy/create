@@ -148,8 +148,8 @@ export const createEslint = async (
       overrides.push({
         files: [
           options.monorepo
-            ? 'packages/*/test/**/*.spec.ts'
-            : 'test/**/*.spec.ts',
+            ? 'packages/*/test/**/*.spec.mts'
+            : 'test/**/*.spec.mts',
         ],
         ...commonConfig,
         rules: {
@@ -160,8 +160,8 @@ export const createEslint = async (
       overrides.push({
         files: [
           options.monorepo
-            ? 'packages/*/test/**/*.spec.js'
-            : 'test/**/*.spec.js',
+            ? 'packages/*/test/**/*.spec.mjs'
+            : 'test/**/*.spec.mjs',
         ],
         ...commonConfig,
       });

@@ -37,7 +37,7 @@ export const createJest = async (
     // create config file
     renderEjs(
       templatePath('jest.config.ejs'),
-      path.resolve(targetPath, 'jest.config.js'),
+      path.resolve(targetPath, 'jest.config.cjs'),
       options,
     ),
 

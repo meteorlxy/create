@@ -15,7 +15,7 @@ export const createPrettier = async (
 
   if (options.standalone) {
     await fs.writeFile(
-      path.resolve(targetPath, '.prettierrc.js'),
+      path.resolve(targetPath, '.prettierrc.cjs'),
       `module.exports = ${JSON.stringify(config, undefined, '  ')}`,
     );
   } else {
