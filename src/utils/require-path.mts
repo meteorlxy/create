@@ -1,6 +1,7 @@
 import { createRequire } from 'node:module';
 
 const require = createRequire(import.meta.url);
+
 export const templatePath = (filename: string): string =>
   require.resolve(`#templates/${filename}`);
 
