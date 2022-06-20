@@ -1,3 +1,19 @@
+# [0.6.0](https://github.com/meteorlxy/create/compare/v0.5.2...v0.6.0) (2022-06-20)
+
+### Bug Fixes
+
+- add private field to pnpm monorepo root ([7cba724](https://github.com/meteorlxy/create/commit/7cba724849e5bb0423d116e08d3c511391d0cf3d))
+
+### Features
+
+- add more binary file extensions ([362a912](https://github.com/meteorlxy/create/commit/362a912754e83e6e1dd8f7a789dde61db2f4e93c))
+- add support for esm ([3de4b45](https://github.com/meteorlxy/create/commit/3de4b45016c2c8b3b1fc892b68a3d31609cb7eb3))
+- use lerna-lite fork ([423c287](https://github.com/meteorlxy/create/commit/423c287026bfbc73550e71b02fbcee1f489b61ff))
+
+### BREAKING CHANGES
+
+- migrate to pure esm module
+
 ## [0.5.2](https://github.com/meteorlxy/create/compare/v0.5.1...v0.5.2) (2022-04-15)
 
 ### Bug Fixes
