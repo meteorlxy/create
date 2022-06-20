@@ -25,9 +25,13 @@ export const createLerna = async (
         exact: true,
         message: `build: ${options.independent ? 'publish' : 'version %v'}`,
       },
-      publish: {
-        registry: options.registry,
-      },
+      ...(options.registry
+        ? {
+            publish: {
+              registry: options.registry,
+            },
+          }
+        : {}),
     },
   };
 
