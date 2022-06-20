@@ -1,3 +1,9 @@
+## [0.6.2](https://github.com/meteorlxy/create/compare/v0.6.1...v0.6.2) (2022-06-20)
+
+### Bug Fixes
+
+- fix ts monorepo template path ([5fada35](https://github.com/meteorlxy/create/commit/5fada354814505d24963697736a4a5839daece34))
+
 ## [0.6.1](https://github.com/meteorlxy/create/compare/v0.6.0...v0.6.1) (2022-06-20)
 
 ### Bug Fixes
