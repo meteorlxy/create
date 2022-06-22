@@ -16,7 +16,12 @@ export const createLerna = async (
 ): Promise<void> => {
   const lernaConfig = {
     npmClient: options.packageManager,
-    useWorkspaces: true,
+    // `useWorkspaces` is not compatible with pnpm workspaces
+    ...(options.packageManager !== 'pnpm'
+      ? {
+          useWorkspaces: true,
+        }
+      : {}),
     version: options.independent ? 'independent' : '0.0.0',
     command: {
       version: {
