@@ -17,5 +17,4 @@
 *.woff2 binary
 
 * -linguist-detectable
-bin/* linguist-detectable
 src/* linguist-detectable
