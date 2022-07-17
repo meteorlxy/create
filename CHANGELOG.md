@@ -1,3 +1,14 @@
+# [0.7.0](https://github.com/meteorlxy/create/compare/v0.6.3...v0.7.0) (2022-07-17)
+
+### Bug Fixes
+
+- remove useWorkspaces lerna config with pnpm ([9317b6f](https://github.com/meteorlxy/create/commit/9317b6f5c1dfe40349ac1b3c32e1df0681422b37))
+- update pnpm version in ci template ([6b18fe6](https://github.com/meteorlxy/create/commit/6b18fe65440969362daa4dac89ae0daae07d6cf0))
+
+### Features
+
+- create packageManager field ([6d91e71](https://github.com/meteorlxy/create/commit/6d91e71d33cea7e203e639f7f50abb7cf3ca3b3b))
+
 ## [0.6.3](https://github.com/meteorlxy/create/compare/v0.6.2...v0.6.3) (2022-06-20)
 
 ### Bug Fixes
