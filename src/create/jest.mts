@@ -1,7 +1,7 @@
 import path from 'node:path';
 import {
   extendJson,
-  getPackagesVersion,
+  getDependenciesVersion,
   renderEjs,
   templatePath,
 } from '../utils.mjs';
@@ -46,7 +46,7 @@ export const createJest = async (
       scripts: {
         test: 'jest',
       },
-      devDependencies: await getPackagesVersion(devDependencies),
+      devDependencies: await getDependenciesVersion(devDependencies),
     }),
   ]);
 };

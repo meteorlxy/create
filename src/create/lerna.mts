@@ -1,6 +1,6 @@
 import path from 'node:path';
 import type { PackageManager } from '../types.mjs';
-import { extendJson, getPackagesVersion } from '../utils.mjs';
+import { extendJson, getDependenciesVersion } from '../utils.mjs';
 
 export interface CreateLernaOptions {
   packageManager: PackageManager;
@@ -49,7 +49,7 @@ export const createLerna = async (
       scripts: {
         release: 'lerna publish',
       },
-      devDependencies: await getPackagesVersion(['@lerna-lite/cli']),
+      devDependencies: await getDependenciesVersion(['@lerna-lite/cli']),
     }),
   ]);
 };

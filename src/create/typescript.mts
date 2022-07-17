@@ -1,6 +1,6 @@
 import path from 'node:path';
 import fs from 'fs-extra';
-import { extendJson, getPackagesVersion, templatePath } from '../utils.mjs';
+import { extendJson, getDependenciesVersion, templatePath } from '../utils.mjs';
 
 export interface CreateTypescriptOptions {
   monorepo: boolean;
@@ -51,7 +51,7 @@ export const createTypescript = async (
         clean: 'tsc -b --clean tsconfig.build.json',
         dev: 'tsc -b --watch tsconfig.build.json',
       },
-      devDependencies: await getPackagesVersion([
+      devDependencies: await getDependenciesVersion([
         '@meteorlxy/tsconfig',
         'typescript',
       ]),

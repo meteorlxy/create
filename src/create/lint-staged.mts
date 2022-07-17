@@ -1,5 +1,5 @@
 import path from 'node:path';
-import { extendJson, getPackagesVersion } from '../utils.mjs';
+import { extendJson, getDependenciesVersion } from '../utils.mjs';
 
 export interface CreateLintStagedOptions {
   typescript: boolean;
@@ -54,6 +54,6 @@ export const createLintStaged = async (
 
   // add devDependencies
   await extendJson(path.resolve(targetPath, 'package.json'), {
-    devDependencies: await getPackagesVersion(['lint-staged']),
+    devDependencies: await getDependenciesVersion(['lint-staged']),
   });
 };

@@ -1,5 +1,5 @@
 import path from 'node:path';
-import { extendJson, getPackagesVersion } from '../utils.mjs';
+import { extendJson, getDependenciesVersion } from '../utils.mjs';
 
 export interface CreateConventionalChangelogOptions {
   preset:
@@ -23,6 +23,8 @@ export const createConventionalChangelog = async (
     scripts: {
       version: `conventional-changelog -p ${options.preset} -i CHANGELOG.md -s -r 1 && git add CHANGELOG.md`,
     },
-    devDependencies: await getPackagesVersion(['conventional-changelog-cli']),
+    devDependencies: await getDependenciesVersion([
+      'conventional-changelog-cli',
+    ]),
   });
 };

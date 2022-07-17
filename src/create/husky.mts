@@ -1,7 +1,7 @@
 import path from 'node:path';
 import fs from 'fs-extra';
 import type { PackageManager } from '../types.mjs';
-import { extendJson, getPackagesVersion } from '../utils.mjs';
+import { extendJson, getDependenciesVersion } from '../utils.mjs';
 
 export interface CreateHuskyOptions {
   packageManager: PackageManager;
@@ -51,7 +51,7 @@ export const createHusky = async (
       scripts: {
         prepare: 'husky install',
       },
-      devDependencies: await getPackagesVersion(['husky']),
+      devDependencies: await getDependenciesVersion(['husky']),
     }),
   ]);
 };

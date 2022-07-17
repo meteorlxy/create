@@ -1,6 +1,6 @@
 import path from 'node:path';
 import fs from 'fs-extra';
-import { extendJson, getPackagesVersion } from '../utils.mjs';
+import { extendJson, getDependenciesVersion } from '../utils.mjs';
 
 export interface CreateEslintOptions {
   monorepo: boolean;
@@ -177,7 +177,7 @@ export const createEslint = async (
       scripts: {
         lint: `eslint --ext ${lintExts.join(',')} ${lintPaths.join(' ')}`,
       },
-      devDependencies: await getPackagesVersion(devDependencies),
+      devDependencies: await getDependenciesVersion(devDependencies),
     }),
     fs.writeFile(
       path.resolve(targetPath, '.eslintrc.cjs'),

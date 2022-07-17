@@ -1,7 +1,7 @@
 import path from 'node:path';
 import {
   extendJson,
-  getPackagesVersion,
+  getDependenciesVersion,
   renderEjs,
   templatePath,
 } from '../utils.mjs';
@@ -39,7 +39,7 @@ export const createLsLint = async (
       scripts: {
         'ls-lint': 'ls-lint',
       },
-      devDependencies: await getPackagesVersion(['@ls-lint/ls-lint']),
+      devDependencies: await getDependenciesVersion(['@ls-lint/ls-lint']),
     }),
   ]);
 };

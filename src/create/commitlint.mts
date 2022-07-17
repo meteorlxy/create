@@ -1,6 +1,6 @@
 import path from 'node:path';
 import fs from 'fs-extra';
-import { extendJson, getPackagesVersion } from '../utils.mjs';
+import { extendJson, getDependenciesVersion } from '../utils.mjs';
 
 export interface CreateCommitlintOptions {
   useStandaloneConfigFile: boolean;
@@ -35,7 +35,7 @@ export const createCommitlint = async (
 
     // add devDependencies
     extendJson(path.resolve(targetPath, 'package.json'), {
-      devDependencies: await getPackagesVersion(devDependencies),
+      devDependencies: await getDependenciesVersion(devDependencies),
     }),
   ]);
 };

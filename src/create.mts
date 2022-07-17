@@ -15,6 +15,7 @@ import { createLintStaged } from './create/lint-staged.mjs';
 import { createLsLint } from './create/ls-lint.mjs';
 import { createMonorepo } from './create/monorepo.mjs';
 import { createNpmrc } from './create/npmrc.mjs';
+import { createPackageManager } from './create/package-manager.mjs';
 import { createPrettier } from './create/prettier.mjs';
 import { createReadme } from './create/readme.mjs';
 import { createSortPackageJson } from './create/sort-package-json.mjs';
@@ -56,6 +57,13 @@ export const create = async (targetPath: string): Promise<boolean> => {
       'message': options.lerna ? '' : 'build: version %s',
       'strict-peer-dependencies':
         options.packageManager === 'pnpm' ? 'false' : '',
+    }),
+  );
+
+  // create packageManager
+  await withSpinner({ name: 'packageManager' })(
+    createPackageManager(targetPath, {
+      packageManager: options.packageManager,
     }),
   );
 

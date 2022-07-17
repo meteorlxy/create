@@ -1,12 +1,12 @@
-import { execa } from 'execa';
+import { getPackageVersion } from './get-package-version.mjs';
 
-export const getPackagesVersion = async (
+export const getDependenciesVersion = async (
   packages: string[],
 ): Promise<Record<string, string>> => {
   const resultEntries = await Promise.all(
     packages.map(async (pkg) => {
-      const { stdout } = await execa('npm', ['show', pkg, 'version']);
-      return [pkg, `^${stdout}`];
+      const version = await getPackageVersion(pkg);
+      return [pkg, `^${version}`];
     }),
   );
   return Object.fromEntries(resultEntries);
