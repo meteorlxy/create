@@ -4,6 +4,7 @@ specifiers:
   '@commitlint/cli': ^17.0.3
   '@commitlint/config-conventional': ^17.0.3
   '@ls-lint/ls-lint': ^1.11.2
+  '@meteorlxy/create': link:./
   '@meteorlxy/eslint-config-prettier': ^2.16.0
   '@meteorlxy/eslint-config-prettier-typescript': ^2.16.0
   '@meteorlxy/prettier-config': ^2.11.0
@@ -43,6 +44,7 @@ devDependencies:
   '@commitlint/cli': 17.0.3
   '@commitlint/config-conventional': 17.0.3
   '@ls-lint/ls-lint': 1.11.2
+  '@meteorlxy/create': 'link:'
   '@meteorlxy/eslint-config-prettier': 2.16.0_vvfpqh5kol6rhqy7beehv5uezq
   '@meteorlxy/eslint-config-prettier-typescript': 2.16.0_7wmdnazylordkmmp5xylrck47q
   '@meteorlxy/prettier-config': 2.11.0

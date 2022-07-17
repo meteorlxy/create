@@ -1,6 +1,7 @@
 dev/
 lib/
 node_modules/
+.output/
 .DS_Store
 *.log
 *.tsbuildinfo

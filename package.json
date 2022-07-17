@@ -42,6 +42,7 @@
     "prepare": "husky install",
     "prepublishOnly": "pnpm run clean && pnpm run build && pnpm run lint",
     "publish": "git push origin main --tags",
+    "test": "create .output",
     "version": "conventional-changelog -p angular -i CHANGELOG.md -s -r 1 && git add CHANGELOG.md"
   },
   "commitlint": {
@@ -69,6 +70,7 @@
     "@commitlint/cli": "^17.0.3",
     "@commitlint/config-conventional": "^17.0.3",
     "@ls-lint/ls-lint": "^1.11.2",
+    "@meteorlxy/create": "link:./",
     "@meteorlxy/eslint-config-prettier": "^2.16.0",
     "@meteorlxy/eslint-config-prettier-typescript": "^2.16.0",
     "@meteorlxy/prettier-config": "^2.11.0",
