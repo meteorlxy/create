@@ -1,10 +1,21 @@
 * text eol=lf
 *.txt text eol=crlf
 
-*.png binary
-*.jpg binary
-*.jpeg binary
+*.avif binary
+*.bmp binary
+*.cr2 binary
+*.gif binary
 *.ico binary
-*.tff binary
+*.jpeg binary
+*.jpg binary
+*.png binary
+*.raw binary
+*.tif binary
+*.tiff binary
+*.webp binary
 *.woff binary
 *.woff2 binary
+
+* -linguist-detectable
+bin/* linguist-detectable
+src/* linguist-detectable
