@@ -42,7 +42,7 @@
     "prepare": "husky install",
     "prepublishOnly": "pnpm run clean && pnpm run build && pnpm run lint",
     "publish": "git push origin main --tags",
-    "test": "create .output",
+    "test": "rimraf .output && create .output",
     "version": "conventional-changelog -p angular -i CHANGELOG.md -s -r 1 && git add CHANGELOG.md"
   },
   "commitlint": {
