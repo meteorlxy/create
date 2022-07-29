@@ -29,6 +29,7 @@ export const createLerna = async (
         conventionalCommits: options.changelog,
         exact: true,
         message: `build: ${options.independent ? 'publish' : 'version %v'}`,
+        syncWorkspaceLock: true,
       },
       ...(options.registry
         ? {
