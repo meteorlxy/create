@@ -1,3 +1,10 @@
+# [0.8.0](https://github.com/meteorlxy/create/compare/v0.7.0...v0.8.0) (2023-02-20)
+
+### Features
+
+- enable syncWorkspaceLock lerna-lite option ([594af96](https://github.com/meteorlxy/create/commit/594af96ace9f46939d21dd0ec98273ca76611d94))
+- **github:** update github files template ([f09ba55](https://github.com/meteorlxy/create/commit/f09ba55bfe56381186b73808252c8bb19aee626b))
+
 # [0.7.0](https://github.com/meteorlxy/create/compare/v0.6.3...v0.7.0) (2022-07-17)
 
 ### Bug Fixes
