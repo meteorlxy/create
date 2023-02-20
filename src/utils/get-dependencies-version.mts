@@ -9,5 +9,5 @@ export const getDependenciesVersion = async (
       return [pkg, `^${version}`];
     }),
   );
-  return Object.fromEntries(resultEntries);
+  return Object.fromEntries(resultEntries) as Record<string, string>;
 };

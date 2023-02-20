@@ -6,14 +6,14 @@ import type { PromptAnswers, PromptPreAnswers } from './types.mjs';
  * Override files in target path or not
  */
 export const promptTargetPath = async (): Promise<boolean> => {
-  const { confirmed } = await prompts([
+  const { confirmed } = (await prompts([
     {
       type: 'confirm',
       name: 'confirmed',
       message: `Target path is already existed. Confirm to create project in this directory? (will override files with the same name)`,
       initial: false,
     },
-  ]);
+  ])) as { confirmed: boolean };
 
   return confirmed;
 };
