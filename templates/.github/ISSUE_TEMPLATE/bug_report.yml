@@ -18,7 +18,7 @@ body:
     id: reproduction
     attributes:
       label: Reproduction
-      description: Please provide a link via [TODO](TODO) or a link to a repo that can reproduce the problem you ran into. A [minimal reproduction](https://stackoverflow.com/help/minimal-reproducible-example) is required.
+      description: Please provide a link to a repo that can reproduce the problem you ran into. A [minimal reproduction](https://stackoverflow.com/help/minimal-reproducible-example) is required.
       placeholder: Reproduction
     validations:
       required: true
@@ -37,7 +37,7 @@ body:
     id: system-info
     attributes:
       label: System Info
-      description: Output of `npx envinfo --system --npmPackages TODO --binaries --browsers`
+      description: Output of `npx envinfo --system --binaries --browsers`
       render: shell
       placeholder: System, Binaries, Browsers
     validations:
