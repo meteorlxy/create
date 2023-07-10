@@ -10,6 +10,7 @@ module.exports = {
       },
       rules: {
         'no-console': 'off',
+        '@typescript-eslint/member-ordering': 'off',
       },
     },
   ],
