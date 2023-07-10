@@ -1,3 +1,15 @@
+# [1.1.0](https://github.com/meteorlxy/create/compare/v1.0.1...v1.1.0) (2023-07-10)
+
+### Bug Fixes
+
+- run lint after build in check workflow ([f803871](https://github.com/meteorlxy/create/commit/f80387128132fbd57d86fb28da74721b34b01d6e))
+- set up testing workflow correctly ([fd488cb](https://github.com/meteorlxy/create/commit/fd488cbd94aafe9211a62061e10faee8fd8dacb3))
+
+### Features
+
+- add coverage workflow ([0744c4a](https://github.com/meteorlxy/create/commit/0744c4abb2712489cb7803d4f7dd7cd6f759572f))
+- update node version matrix in github actions ([8eaed50](https://github.com/meteorlxy/create/commit/8eaed50dd44cf9430c2dc7c178f6e464689dac45))
+
 ## [1.0.1](https://github.com/meteorlxy/create/compare/v1.0.0...v1.0.1) (2023-07-10)
 
 ### Bug Fixes
