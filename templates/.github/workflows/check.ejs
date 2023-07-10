@@ -2,9 +2,11 @@ name: check
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
   pull_request:
-    branches: [main]
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
@@ -37,8 +39,8 @@ jobs:
         run: <%- packageManager %> install --frozen-lockfile
         <%_ } _%>
 
-      - name: Lint
-        run: <%- packageManager %> run lint
-
       - name: Build
         run: <%- packageManager %> run build
+
+      - name: Lint
+        run: <%- packageManager %> run lint
