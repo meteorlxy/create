@@ -258,7 +258,11 @@ export const create = async (targetPath: string): Promise<boolean> => {
   }
 
   // sort package.json file
-  const sortPkgJsonPath = packagePath('sort-package-json/package.json');
+  const sortPkgJsonPath = path.resolve(
+    packagePath('sort-package-json'),
+    '..',
+    'package.json',
+  );
   const sortPkgJsonBin = (fs.readJSONSync(sortPkgJsonPath) as { bin: string })
     .bin;
   await execa('node', [
