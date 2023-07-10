@@ -92,6 +92,7 @@ export const create = async (targetPath: string): Promise<boolean> => {
     await withSpinner({ name: '.github' })(
       createGithub(targetPath, {
         packageManager: options.packageManager,
+        test: options.jest || options.vitest,
       }),
     );
   }

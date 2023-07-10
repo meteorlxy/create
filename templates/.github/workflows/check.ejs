@@ -44,3 +44,8 @@ jobs:
 
       - name: Lint
         run: <%- packageManager %> run lint
+      <%_ if (packageManager === 'pnpm') { _%>
+
+      - name: Test
+        run: <%- packageManager %> run test
+      <%_ } _%>
