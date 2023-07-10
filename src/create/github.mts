@@ -31,6 +31,12 @@ export const createGithub = async (
       path.resolve(targetPath, '.github/workflows/check.yml'),
       options,
     ),
+    // workflows config
+    renderEjs(
+      templatePath('.github/workflows/coverage.ejs'),
+      path.resolve(targetPath, '.github/workflows/coverage.yml'),
+      options,
+    ),
     fs.copy(
       templatePath('.github/workflows/release.yml'),
       path.resolve(targetPath, '.github/workflows/release.yml'),
