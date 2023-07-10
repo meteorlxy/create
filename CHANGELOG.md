@@ -1,3 +1,14 @@
+# [1.0.0](https://github.com/meteorlxy/create/compare/v0.8.0...v1.0.0) (2023-07-10)
+
+### Bug Fixes
+
+- find sort-package-json file correctly ([d035dab](https://github.com/meteorlxy/create/commit/d035dabc6225def38a101b79ca316d950fc1c923))
+
+### Features
+
+- add vitest integration ([2368b22](https://github.com/meteorlxy/create/commit/2368b22338979cbe7deb37195655514296cc1e1f))
+- update prettier integration ([7dccbf2](https://github.com/meteorlxy/create/commit/7dccbf2dc4f38daff51e3e313fbd0c9d66cb84e9))
+
 # [0.8.0](https://github.com/meteorlxy/create/compare/v0.7.0...v0.8.0) (2023-02-20)
 
 ### Features
