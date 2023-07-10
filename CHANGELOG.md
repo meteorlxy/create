@@ -1,3 +1,9 @@
+## [1.0.1](https://github.com/meteorlxy/create/compare/v1.0.0...v1.0.1) (2023-07-10)
+
+### Bug Fixes
+
+- add prettier and ls-lint to lint command ([92b6640](https://github.com/meteorlxy/create/commit/92b664012afb7f5a91cbae6ca652e0922a5d36b8))
+
 # [1.0.0](https://github.com/meteorlxy/create/compare/v0.8.0...v1.0.0) (2023-07-10)
 
 ### Bug Fixes
