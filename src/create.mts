@@ -123,6 +123,7 @@ export const create = async (targetPath: string): Promise<boolean> => {
     await withSpinner({ name: '.vscode' })(
       createVscode(targetPath, {
         eslint: options.eslint,
+        prettier: options.prettier,
         typescript: options.typescript,
         vue: options.vue,
       }),
@@ -155,7 +156,7 @@ export const create = async (targetPath: string): Promise<boolean> => {
   if (options.commitlint) {
     await withSpinner({ name: 'commitlint' })(
       createCommitlint(targetPath, {
-        useStandaloneConfigFile: false,
+        standalone: false,
       }),
     );
   }
@@ -178,6 +179,7 @@ export const create = async (targetPath: string): Promise<boolean> => {
   if (options.prettier) {
     await withSpinner({ name: 'prettier' })(
       createPrettier(targetPath, {
+        packageManager: options.packageManager,
         standalone: false,
       }),
     );

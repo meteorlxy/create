@@ -3,12 +3,12 @@ import fs from 'fs-extra';
 import { extendJson, getDependenciesVersion } from '../utils.mjs';
 
 export interface CreateCommitlintOptions {
-  useStandaloneConfigFile: boolean;
+  standalone: boolean;
 }
 
 export const createCommitlint = async (
   targetPath: string,
-  { useStandaloneConfigFile = false }: CreateCommitlintOptions,
+  options: CreateCommitlintOptions,
 ): Promise<void> => {
   const config = '@commitlint/config-conventional';
   const devDependencies = ['@commitlint/cli', config];
@@ -16,7 +16,7 @@ export const createCommitlint = async (
 
   await Promise.all([
     // create config file or config field
-    useStandaloneConfigFile
+    options.standalone
       ? fs.writeFile(
           path.resolve(targetPath, '.commitlintrc.cjs'),
           `module.exports = ${JSON.stringify(

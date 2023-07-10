@@ -34,11 +34,9 @@ export const createLintStaged = async (
 
   // set prettier
   if (options.prettier) {
-    const prettierExtensions = ['json', 'md', 'yml'];
-
     await extendJson(path.resolve(targetPath, 'package.json'), {
       'lint-staged': {
-        [`*.{${prettierExtensions.join(',')}}`]: 'prettier --write',
+        '**/*': 'prettier --write --ignore-unknown',
       },
     });
   }

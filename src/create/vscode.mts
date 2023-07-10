@@ -3,6 +3,7 @@ import { extendJson } from '../utils.mjs';
 
 export interface CreateVscodeOptions {
   eslint: boolean;
+  prettier: boolean;
   typescript: boolean;
   vue: boolean;
 }
@@ -11,6 +12,7 @@ export const createVscode = async (
   targetPath: string,
   options: CreateVscodeOptions,
 ): Promise<void> => {
+  const vscodeExtensions: string[] = [];
   const vscodeSettings: Record<string, unknown> = {
     'editor.insertSpaces': true,
     'editor.tabSize': 2,
@@ -24,6 +26,7 @@ export const createVscode = async (
   };
 
   if (options.eslint) {
+    vscodeExtensions.push('dbaeumer.vscode-eslint');
     vscodeSettings['eslint.validate'] = [
       'javascript',
       'javascriptreact',
@@ -32,8 +35,20 @@ export const createVscode = async (
     ];
   }
 
-  await extendJson(
-    path.resolve(targetPath, '.vscode/settings.json'),
-    vscodeSettings,
-  );
+  if (options.prettier) {
+    vscodeExtensions.push('esbenp.prettier-vscode');
+    vscodeSettings['editor.defaultFormatter'] = 'esbenp.prettier-vscode';
+    vscodeSettings['editor.formatOnSave'] = true;
+  }
+
+  await Promise.all([
+    vscodeExtensions.length &&
+      extendJson(path.resolve(targetPath, '.vscode/extensions.json'), {
+        recommendations: vscodeExtensions,
+      }),
+    extendJson(
+      path.resolve(targetPath, '.vscode/settings.json'),
+      vscodeSettings,
+    ),
+  ]);
 };
