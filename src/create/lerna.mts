@@ -6,7 +6,6 @@ export interface CreateLernaOptions {
   packageManager: PackageManager;
   independent: boolean;
   changelog: boolean;
-  test: boolean;
   registry: string;
 }
 

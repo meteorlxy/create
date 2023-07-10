@@ -16,7 +16,7 @@ export const defaultPreset: PromptAnswersPreset = {
     'sort-package-json',
     'changelog',
   ],
-  test: [],
+  test: ['vitest'],
 };
 
 export const customPreset: PromptAnswersPreset = {};
@@ -37,7 +37,7 @@ export const monorepoPreset: PromptAnswersPreset = {
     'sort-package-json',
     'changelog',
   ],
-  test: [],
+  test: ['vitest'],
 };
 
 export const presets = {

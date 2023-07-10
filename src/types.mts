@@ -30,7 +30,7 @@ export type WorkflowTool =
   | 'sort-package-json'
   | 'changelog';
 
-export type TestTool = 'jest';
+export type TestTool = 'jest' | 'vitest';
 
 export interface PromptPreAnswers {
   template: Template;
@@ -80,4 +80,5 @@ export interface Options {
 
   // testing
   jest: boolean;
+  vitest: boolean;
 }

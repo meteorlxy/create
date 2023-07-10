@@ -131,10 +131,14 @@ export const prompt = async (
       ],
     },
     {
-      type: 'multiselect',
+      type: 'select',
       name: 'test',
       message: 'Select testing you want to initialize',
-      choices: [{ title: 'Jest', value: 'jest', selected: true }],
+      choices: [
+        { title: 'None', value: 'none' },
+        { title: 'Vitest', value: 'vitest' },
+        { title: 'Jest', value: 'jest' },
+      ],
     },
   ]);
 

@@ -20,6 +20,7 @@ import { createPrettier } from './create/prettier.mjs';
 import { createReadme } from './create/readme.mjs';
 import { createSortPackageJson } from './create/sort-package-json.mjs';
 import { createTypescript } from './create/typescript.mjs';
+import { createVitest } from './create/vitest.mjs';
 import { createVscode } from './create/vscode.mjs';
 import { getOptionsFromAnswers } from './options.mjs';
 import { prompt, promptPre, promptTargetPath } from './prompts.mjs';
@@ -81,7 +82,7 @@ export const create = async (targetPath: string): Promise<boolean> => {
     await withSpinner({ name: '.gitattributes & .gitignore' })(
       createGit(targetPath, {
         typescript: options.typescript,
-        coverage: options.jest,
+        coverage: options.jest || options.vitest,
       }),
     );
   }
@@ -146,7 +147,6 @@ export const create = async (targetPath: string): Promise<boolean> => {
         packageManager: options.packageManager,
         independent: false,
         changelog: options.changelog,
-        test: options.jest,
         registry: registryUrls[options.registry],
       }),
     );
@@ -192,7 +192,7 @@ export const create = async (targetPath: string): Promise<boolean> => {
         monorepo: options.monorepo,
         typescript: options.typescript,
         vue: options.vue,
-        test: options.jest,
+        test: options.jest || options.vitest,
       }),
     );
   }
@@ -244,6 +244,15 @@ export const create = async (targetPath: string): Promise<boolean> => {
       createJest(targetPath, {
         typescript: options.typescript,
         vue: options.vue,
+      }),
+    );
+  }
+
+  // create vitest
+  if (options.vitest) {
+    await withSpinner({ name: 'vitest' })(
+      createVitest(targetPath, {
+        coverage: 'istanbul',
       }),
     );
   }

@@ -34,4 +34,5 @@ export const getOptionsFromAnswers = (
 
   // testing
   jest: answers.test.includes('jest'),
+  vitest: answers.test.includes('vitest'),
 });
