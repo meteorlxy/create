@@ -8,6 +8,7 @@ export interface CreateEslintOptions {
   vue: boolean;
   react: boolean;
   prettier: boolean;
+  lsLint: boolean;
   jest: boolean;
 }
 
@@ -172,10 +173,19 @@ export const createEslint = async (
   // Add scripts & devDependencies & .eslintrc.cjs & .eslintignore
   // ======================
 
+  const lintPathsStr = lintPaths.join(' ');
+  const lintCommands = [`eslint --ext ${lintExts.join(',')} ${lintPathsStr}`];
+  if (options.prettier) {
+    lintCommands.push(`prettier --check ${lintPathsStr}`);
+  }
+  if (options.lsLint) {
+    lintCommands.push(`ls-lint`);
+  }
+
   await Promise.all([
     extendJson(path.resolve(targetPath, 'package.json'), {
       scripts: {
-        lint: `eslint --ext ${lintExts.join(',')} ${lintPaths.join(' ')}`,
+        lint: lintCommands.join(' && '),
       },
       devDependencies: await getDependenciesVersion(devDependencies),
     }),

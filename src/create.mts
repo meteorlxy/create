@@ -170,6 +170,7 @@ export const create = async (targetPath: string): Promise<boolean> => {
         vue: options.vue,
         react: options.react,
         prettier: options.prettier,
+        lsLint: options.lsLint,
         jest: options.jest,
       }),
     );
