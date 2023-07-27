@@ -1,3 +1,9 @@
+# [1.3.0](https://github.com/meteorlxy/create/compare/v1.2.0...v1.3.0) (2023-07-27)
+
+### Features
+
+- add project info ([257a2d5](https://github.com/meteorlxy/create/commit/257a2d590bebe5e87d73706df113d9b3ca33b121))
+
 # [1.2.0](https://github.com/meteorlxy/create/compare/v1.1.0...v1.2.0) (2023-07-27)
 
 ### Features
