@@ -61,6 +61,23 @@ export const prompt = async (
 
   const answers = await prompts([
     {
+      type: 'text',
+      name: 'organization',
+      message: 'Input organization name',
+      initial: 'meteorlxy',
+    },
+    {
+      type: 'text',
+      name: 'repository',
+      message: 'Input repository name',
+    },
+    {
+      type: 'text',
+      name: 'author',
+      message: 'Input author name',
+      initial: 'meteorlxy',
+    },
+    {
       type: 'select',
       name: 'packageManager',
       message: 'Select a package manager',

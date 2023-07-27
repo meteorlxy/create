@@ -5,6 +5,9 @@ export const getOptionsFromAnswers = (
   answers: PromptAnswers,
 ): Options => ({
   // project basic
+  organization: answers.organization,
+  repository: answers.repository,
+  author: answers.author,
   packageManager: answers.packageManager,
   registry: answers.registry,
 

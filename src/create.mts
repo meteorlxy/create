@@ -91,7 +91,9 @@ export const create = async (targetPath: string): Promise<boolean> => {
   if (options.github) {
     await withSpinner({ name: '.github' })(
       createGithub(targetPath, {
+        organization: options.organization,
         packageManager: options.packageManager,
+        repository: options.repository,
         test: options.jest || options.vitest,
       }),
     );
@@ -101,11 +103,11 @@ export const create = async (targetPath: string): Promise<boolean> => {
   if (options.readme) {
     await withSpinner({ name: 'README.md' })(
       createReadme(targetPath, {
-        // TODO
-        username: 'meteorlxy',
+        author: options.author,
+        description: options.repository,
+        organization: options.organization,
+        repository: options.repository,
         license: 'MIT',
-        projectName: 'project-name',
-        projectDesc: 'project-desc',
       }),
     );
   }

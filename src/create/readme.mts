@@ -2,9 +2,10 @@ import path from 'node:path';
 import { renderEjs, templatePath } from '../utils.mjs';
 
 export interface CreateReadmeOptions {
-  projectName: string;
-  projectDesc: string;
-  username: string;
+  author: string;
+  description: string;
+  organization: string;
+  repository: string;
   license: string;
 }
 

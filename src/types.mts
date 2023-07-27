@@ -38,6 +38,9 @@ export interface PromptPreAnswers {
 }
 
 export interface PromptAnswers {
+  organization: string;
+  repository: string;
+  author: string;
   monorepo: boolean;
   lerna: boolean;
   packageManager: PackageManager;
@@ -51,9 +54,11 @@ export type PromptAnswersPreset = Partial<PromptAnswers>;
 
 export interface Options {
   // project basic
+  organization: string;
+  repository: string;
+  author: string;
   packageManager: PackageManager;
   registry: Registry;
-  monorepo: boolean;
 
   // language / framework
   typescript: boolean;
@@ -68,6 +73,7 @@ export interface Options {
   vscode: boolean;
 
   // development workflow
+  monorepo: boolean;
   lerna: boolean;
   commitlint: boolean;
   eslint: boolean;

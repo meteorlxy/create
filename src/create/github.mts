@@ -4,7 +4,9 @@ import type { PackageManager } from '../types.mjs';
 import { renderEjs, templatePath } from '../utils.mjs';
 
 export interface CreateGithubOptions {
+  organization: string;
   packageManager: PackageManager;
+  repository: string;
   test: boolean;
 }
 
@@ -18,9 +20,10 @@ export const createGithub = async (
       templatePath('.github/ISSUE_TEMPLATE/bug_report.yml'),
       path.resolve(targetPath, '.github/ISSUE_TEMPLATE/bug_report.yml'),
     ),
-    fs.copy(
-      templatePath('.github/ISSUE_TEMPLATE/config.yml'),
+    renderEjs(
+      templatePath('.github/ISSUE_TEMPLATE/config.ejs'),
       path.resolve(targetPath, '.github/ISSUE_TEMPLATE/config.yml'),
+      options,
     ),
     fs.copy(
       templatePath('.github/ISSUE_TEMPLATE/feature_request.yml'),
