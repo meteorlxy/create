@@ -306,7 +306,7 @@ export const create = async (targetPath: string): Promise<boolean> => {
   })(
     (async () => {
       if (options.eslint) {
-        await execa('npm', ['run', 'lint', '--', '--fix'], {
+        await execa('npm', ['run', 'lint:fix'], {
           cwd: targetPath,
         });
       }

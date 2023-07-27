@@ -175,8 +175,12 @@ export const createEslint = async (
 
   const lintPathsStr = lintPaths.join(' ');
   const lintCommands = [`eslint --ext ${lintExts.join(',')} ${lintPathsStr}`];
+  const lintFixCommands = [
+    `eslint --ext ${lintExts.join(',')} ${lintPathsStr} --fix`,
+  ];
   if (options.prettier) {
     lintCommands.push(`prettier --check ${lintPathsStr}`);
+    lintFixCommands.push(`prettier --write ${lintPathsStr}`);
   }
   if (options.lsLint) {
     lintCommands.push(`ls-lint`);
@@ -185,7 +189,8 @@ export const createEslint = async (
   await Promise.all([
     extendJson(path.resolve(targetPath, 'package.json'), {
       scripts: {
-        lint: lintCommands.join(' && '),
+        'lint': lintCommands.join(' && '),
+        'lint:fix': lintFixCommands.join(' && '),
       },
       devDependencies: await getDependenciesVersion(devDependencies),
     }),
