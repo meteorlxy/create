@@ -1,3 +1,9 @@
+# [1.2.0](https://github.com/meteorlxy/create/compare/v1.1.0...v1.2.0) (2023-07-27)
+
+### Features
+
+- **eslint:** add lint:fix command ([62fa6a8](https://github.com/meteorlxy/create/commit/62fa6a891a5bd0563a00ee795aa90b21d51777fc))
+
 # [1.1.0](https://github.com/meteorlxy/create/compare/v1.0.1...v1.1.0) (2023-07-10)
 
 ### Bug Fixes
