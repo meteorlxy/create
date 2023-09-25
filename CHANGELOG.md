@@ -1,3 +1,13 @@
+# [2.0.0](https://github.com/meteorlxy/create/compare/v1.3.2...v2.0.0) (2023-09-25)
+
+### Features
+
+- drop node 16 support ([f4fd3d3](https://github.com/meteorlxy/create/commit/f4fd3d383e1f42d939201d98d03d9a42ce1e5851))
+
+### BREAKING CHANGES
+
+- drop node 16 support
+
 ## [1.3.2](https://github.com/meteorlxy/create/compare/v1.3.1...v1.3.2) (2023-08-24)
 
 ## [1.3.1](https://github.com/meteorlxy/create/compare/v1.3.0...v1.3.1) (2023-07-29)
