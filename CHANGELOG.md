@@ -1,3 +1,10 @@
+# [2.1.0](https://github.com/meteorlxy/create/compare/v2.0.0...v2.1.0) (2023-09-26)
+
+### Features
+
+- **github:** add a workflow job to collect check result ([f199976](https://github.com/meteorlxy/create/commit/f1999760532ca3061bcfd6c16d5c8344dd4e6a31))
+- **github:** remove node 16 from workflow matrix ([3168485](https://github.com/meteorlxy/create/commit/3168485c57782f6d501768cc11f1d7ebd8cc22f9))
+
 # [2.0.0](https://github.com/meteorlxy/create/compare/v1.3.2...v2.0.0) (2023-09-25)
 
 ### Features
