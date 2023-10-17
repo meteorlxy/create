@@ -1,3 +1,5 @@
+## [2.1.1](https://github.com/meteorlxy/create/compare/v2.1.0...v2.1.1) (2023-10-17)
+
 # [2.1.0](https://github.com/meteorlxy/create/compare/v2.0.0...v2.1.0) (2023-09-26)
 
 ### Features
