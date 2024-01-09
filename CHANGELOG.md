@@ -1,3 +1,9 @@
+## [2.1.2](https://github.com/meteorlxy/create/compare/v2.1.1...v2.1.2) (2024-01-09)
+
+### Bug Fixes
+
+- **lerna:** add @lerna-lite/publish package ([8572e06](https://github.com/meteorlxy/create/commit/8572e06bf44fce48a818c6753ba6327cdc7048da))
+
 ## [2.1.1](https://github.com/meteorlxy/create/compare/v2.1.0...v2.1.1) (2023-10-17)
 
 # [2.1.0](https://github.com/meteorlxy/create/compare/v2.0.0...v2.1.0) (2023-09-26)
