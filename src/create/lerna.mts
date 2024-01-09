@@ -49,7 +49,10 @@ export const createLerna = async (
       scripts: {
         release: 'lerna publish',
       },
-      devDependencies: await getDependenciesVersion(['@lerna-lite/cli']),
+      devDependencies: await getDependenciesVersion([
+        '@lerna-lite/cli',
+        '@lerna-lite/publish',
+      ]),
     }),
   ]);
 };
