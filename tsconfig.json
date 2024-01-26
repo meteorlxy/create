@@ -6,7 +6,7 @@
     "moduleResolution": "Node16",
     "rootDir": "./src",
     "target": "ES2022",
-    "outDir": "./lib"
+    "outDir": "./lib",
   },
-  "include": ["./src"]
+  "include": ["./src"],
 }
