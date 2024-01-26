@@ -41,7 +41,7 @@
     "format": "prettier --write .",
     "lint": "eslint --ext .cjs,.mjs,.mts . && prettier --check . && ls-lint",
     "lint:fix": "eslint --ext .cjs,.mjs,.mts . --fix && prettier --write .",
-    "prepare": "husky install",
+    "prepare": "husky",
     "prepublishOnly": "pnpm run clean && pnpm run build && pnpm run lint",
     "publish": "git push origin main --tags",
     "test": "rimraf .output && create .output",
@@ -69,8 +69,8 @@
     "sort-package-json": "^2.6.0"
   },
   "devDependencies": {
-    "@commitlint/cli": "^18.4.4",
-    "@commitlint/config-conventional": "^18.4.4",
+    "@commitlint/cli": "^18.6.0",
+    "@commitlint/config-conventional": "^18.6.0",
     "@ls-lint/ls-lint": "^2.2.2",
     "@meteorlxy/create": "link:",
     "@meteorlxy/eslint-config-prettier": "^2.27.3",
@@ -80,17 +80,17 @@
     "@types/ejs": "^3.1.5",
     "@types/fs-extra": "^11.0.4",
     "@types/lodash.merge": "^4.6.9",
-    "@types/node": "^20.10.7",
+    "@types/node": "^20.11.6",
     "@types/prompts": "^2.4.9",
     "conventional-changelog-cli": "^4.1.0",
     "eslint": "^8.56.0",
-    "husky": "^8.0.3",
+    "husky": "^9.0.6",
     "lint-staged": "^15.2.0",
-    "prettier": "^3.1.1",
+    "prettier": "^3.2.4",
     "rimraf": "^5.0.5",
     "typescript": "^5.3.3"
   },
-  "packageManager": "pnpm@8.14.0",
+  "packageManager": "pnpm@8.14.3",
   "engines": {
     "node": ">=18"
   },
