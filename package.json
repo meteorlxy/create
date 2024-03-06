@@ -37,7 +37,8 @@
   "scripts": {
     "build": "tsc -b",
     "clean": "rimraf lib *.tsbuildinfo",
-    "dev": "pnpm build && rimraf dev && node bin/create.mjs dev",
+    "dev": "pnpm build && pnpm dev:clean && node bin/create.mjs dev",
+    "dev:clean": "rimraf dev",
     "format": "prettier --write .",
     "lint": "eslint --ext .cjs,.mjs,.mts . && prettier --check . && ls-lint",
     "lint:fix": "eslint --ext .cjs,.mjs,.mts . --fix && prettier --write .",

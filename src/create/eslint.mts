@@ -18,9 +18,9 @@ export const createEslint = async (
 ): Promise<void> => {
   const devDependencies = ['eslint'];
 
-  const lintExts = ['.js', '.jsx', '.cjs', '.mjs'];
+  const lintExts = ['.js', '.cjs'];
   const lintPaths: string[] = ['.'];
-  const ignorePaths = ['!.*.js', '!.*.cjs', '!.*.mjs'];
+  const ignorePaths = ['!.*.js', '!.*.cjs'];
 
   const extendsConfig: string[] = [];
   const overrides: unknown[] = [];
@@ -40,10 +40,17 @@ export const createEslint = async (
   }
 
   if (options.typescript) {
-    lintExts.push('.ts', '.tsx', '.mts');
+    lintExts.push('.ts');
   }
   if (options.vue) {
     lintExts.push('.vue');
+  }
+  if (options.react) {
+    if (options.typescript) {
+      lintExts.push('.tsx');
+    } else {
+      lintExts.push('.jsx');
+    }
   }
 
   // ======================
@@ -85,7 +92,7 @@ export const createEslint = async (
           : '@meteorlxy/eslint-config-typescript-vue',
       );
       overrides.push({
-        files: ['*.ts', '*.tsx', '*.mts', '*.vue'],
+        files: ['*.ts', '*.vue'],
         extends: options.prettier
           ? '@meteorlxy/prettier-typescript-vue'
           : '@meteorlxy/typescript-vue',
@@ -99,7 +106,7 @@ export const createEslint = async (
           : '@meteorlxy/eslint-config-typescript-react',
       );
       overrides.push({
-        files: ['*.ts', '*.tsx', '*.mts'],
+        files: ['*.ts', '*.tsx'],
         extends: options.prettier
           ? '@meteorlxy/prettier-typescript-react'
           : '@meteorlxy/typescript-react',
@@ -113,7 +120,7 @@ export const createEslint = async (
           : '@meteorlxy/eslint-config-typescript',
       );
       overrides.push({
-        files: ['*.ts', '*.tsx', '*.mts'],
+        files: ['*.ts'],
         extends: options.prettier
           ? '@meteorlxy/prettier-typescript'
           : '@meteorlxy/typescript',

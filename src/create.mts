@@ -219,6 +219,7 @@ export const create = async (targetPath: string): Promise<boolean> => {
       createLintStaged(targetPath, {
         typescript: options.typescript,
         vue: options.vue,
+        react: options.react,
         eslint: options.eslint,
         prettier: options.prettier,
         sortPackageJson: options.sortPackageJson,

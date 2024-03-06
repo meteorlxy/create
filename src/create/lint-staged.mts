@@ -4,6 +4,7 @@ import { extendJson, getDependenciesVersion } from '../utils.mjs';
 export interface CreateLintStagedOptions {
   typescript: boolean;
   vue: boolean;
+  react: boolean;
   eslint: boolean;
   prettier: boolean;
   sortPackageJson: boolean;
@@ -14,20 +15,29 @@ export const createLintStaged = async (
   options: CreateLintStagedOptions,
 ): Promise<void> => {
   // set eslint
+  const eslintExtensions = ['js', 'cjs'];
   if (options.eslint) {
-    const eslintExtensions = ['js', 'jsx', 'cjs', 'mjs'];
-
     if (options.typescript) {
-      eslintExtensions.push('ts', 'tsx', 'mts');
+      eslintExtensions.push('ts');
     }
 
     if (options.vue) {
       eslintExtensions.push('vue');
     }
 
+    if (options.react) {
+      if (options.typescript) {
+        eslintExtensions.push('tsx');
+      } else {
+        eslintExtensions.push('jsx');
+      }
+    }
+
     await extendJson(path.resolve(targetPath, 'package.json'), {
       'lint-staged': {
-        [`*.{${eslintExtensions.join(',')}}`]: 'eslint --fix',
+        [`*.(${eslintExtensions.join('|')})`]: options.prettier
+          ? ['eslint --fix', 'prettier --write']
+          : 'eslint --fix',
       },
     });
   }
@@ -36,7 +46,8 @@ export const createLintStaged = async (
   if (options.prettier) {
     await extendJson(path.resolve(targetPath, 'package.json'), {
       'lint-staged': {
-        '**/*': 'prettier --write --ignore-unknown',
+        [options.eslint ? `*.!(${eslintExtensions.join('|')})` : '*']:
+          'prettier --write --ignore-unknown',
       },
     });
   }
