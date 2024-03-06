@@ -1,3 +1,9 @@
+# [2.2.0](https://github.com/meteorlxy/create/compare/v2.1.2...v2.2.0) (2024-03-06)
+
+### Features
+
+- improve lint settings ([da2b2f4](https://github.com/meteorlxy/create/commit/da2b2f4a599f08730e2ea7db0ff59230aecdc118))
+
 ## [2.1.2](https://github.com/meteorlxy/create/compare/v2.1.1...v2.1.2) (2024-01-09)
 
 ### Bug Fixes
