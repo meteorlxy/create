@@ -1,16 +1,16 @@
 import type { presets } from './presets.mjs';
 
-export type PackageManager = 'npm' | 'yarn' | 'pnpm';
+export type PackageManager = 'npm' | 'pnpm' | 'yarn';
 
-export type Registry = 'default' | 'npm' | 'yarn' | 'taobao';
+export type Registry = 'default' | 'npm' | 'taobao' | 'yarn';
 
 export type Template =
   | 'javascript'
-  | 'typescript'
-  | 'vue'
-  | 'typescript-vue'
   | 'react'
-  | 'typescript-react';
+  | 'typescript-react'
+  | 'typescript-vue'
+  | 'typescript'
+  | 'vue';
 
 export type MetaFile =
   | 'editorconfig'
@@ -21,14 +21,14 @@ export type MetaFile =
   | 'vscode';
 
 export type WorkflowTool =
+  | 'changelog'
   | 'commitlint'
   | 'eslint'
-  | 'ls-lint'
-  | 'prettier'
   | 'husky'
   | 'lint-staged'
-  | 'sort-package-json'
-  | 'changelog';
+  | 'ls-lint'
+  | 'prettier'
+  | 'sort-package-json';
 
 export type TestTool = 'jest' | 'vitest';
 

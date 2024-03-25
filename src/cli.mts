@@ -22,7 +22,7 @@ create(targetPath)
         : `${chalk.gray('SKIP')} the create process is skipped`,
     );
   })
-  .catch((err) => {
+  .catch((err: unknown) => {
     console.error(err);
     printNotice(`${chalk.red('ERROR')} failed to create project!`);
   });
