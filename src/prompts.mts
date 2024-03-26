@@ -70,6 +70,7 @@ export const prompt = async (
       type: 'text',
       name: 'repository',
       message: 'Input repository name',
+      initial: 'new-project',
     },
     {
       type: 'text',

@@ -1,12 +1,13 @@
 import { meteorlxy } from '@meteorlxy/eslint-config';
 
 export default meteorlxy({
-  ignores: ['dev/', 'lib/'],
+<%_ if (react) { _%>
+  react: true,
+<%_ } _%>
   typescript: {
-    files: ['**/*.mts'],
     tsconfigPath: './tsconfig.json',
-    overrides: {
-      'no-console': 'off',
-    },
   },
+<%_ if (vue) { _%>
+  vue: true,
+<%_ } _%>
 });

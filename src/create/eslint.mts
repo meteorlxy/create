@@ -1,193 +1,49 @@
 import path from 'node:path';
-import fs from 'fs-extra';
-import { extendJson, getDependenciesVersion } from '../utils.mjs';
+import {
+  extendJson,
+  getDependenciesVersion,
+  renderEjs,
+  templatePath,
+} from '../utils.mjs';
 
 export interface CreateEslintOptions {
-  monorepo: boolean;
-  typescript: boolean;
   vue: boolean;
   react: boolean;
   prettier: boolean;
   lsLint: boolean;
-  jest: boolean;
 }
 
 export const createEslint = async (
   targetPath: string,
   options: CreateEslintOptions,
 ): Promise<void> => {
-  const devDependencies = ['eslint'];
-
-  const lintExts = ['.js', '.cjs'];
-  const lintPaths: string[] = ['.'];
-  const ignorePaths = ['!.*.js', '!.*.cjs'];
-
-  const extendsConfig: string[] = [];
-  const overrides: unknown[] = [];
-
-  // ======================
-  // Lint extensions and dirs
-  // ======================
-
-  const distDir = options.typescript ? 'lib' : 'dist';
-
-  if (options.monorepo) {
-    // ignore `node_modules` in packages dir
-    ignorePaths.push('node_modules/');
-    ignorePaths.push(`packages/*/${distDir}`);
-  } else {
-    ignorePaths.push(distDir);
-  }
-
-  if (options.typescript) {
-    lintExts.push('.ts');
-  }
-  if (options.vue) {
-    lintExts.push('.vue');
-  }
-  if (options.react) {
-    if (options.typescript) {
-      lintExts.push('.tsx');
-    } else {
-      lintExts.push('.jsx');
-    }
-  }
+  const devDependencies = ['@meteorlxy/eslint-config', 'eslint'];
 
   // ======================
   // Set eslint config
   // ======================
 
   if (options.react) {
-    if (options.prettier) {
-      // prettier + react
-      devDependencies.push('@meteorlxy/eslint-config-prettier-react');
-      extendsConfig.push('@meteorlxy/prettier-react');
-    } else {
-      // react
-      devDependencies.push('@meteorlxy/eslint-config-react');
-      extendsConfig.push('@meteorlxy/react');
-    }
-  } else if (options.prettier) {
-    // prettier + js
-    devDependencies.push('@meteorlxy/eslint-config-prettier');
-    extendsConfig.push('@meteorlxy/prettier');
-  } else {
-    // js
-    devDependencies.push('@meteorlxy/eslint-config');
-    extendsConfig.push('@meteorlxy');
-  }
-
-  if (options.typescript) {
-    const commonConfig = {
-      parserOptions: {
-        project: 'tsconfig.json',
-      },
-    };
-
-    if (options.vue) {
-      // typescript + vue
-      devDependencies.push(
-        options.prettier
-          ? '@meteorlxy/eslint-config-prettier-typescript-vue'
-          : '@meteorlxy/eslint-config-typescript-vue',
-      );
-      overrides.push({
-        files: ['*.ts', '*.vue'],
-        extends: options.prettier
-          ? '@meteorlxy/prettier-typescript-vue'
-          : '@meteorlxy/typescript-vue',
-        ...commonConfig,
-      });
-    } else if (options.react) {
-      // typescript + react
-      devDependencies.push(
-        options.prettier
-          ? '@meteorlxy/eslint-config-prettier-typescript-react'
-          : '@meteorlxy/eslint-config-typescript-react',
-      );
-      overrides.push({
-        files: ['*.ts', '*.tsx'],
-        extends: options.prettier
-          ? '@meteorlxy/prettier-typescript-react'
-          : '@meteorlxy/typescript-react',
-        ...commonConfig,
-      });
-    } else {
-      // typescript
-      devDependencies.push(
-        options.prettier
-          ? '@meteorlxy/eslint-config-prettier-typescript'
-          : '@meteorlxy/eslint-config-typescript',
-      );
-      overrides.push({
-        files: ['*.ts'],
-        extends: options.prettier
-          ? '@meteorlxy/prettier-typescript'
-          : '@meteorlxy/typescript',
-        ...commonConfig,
-      });
-    }
-  } else if (options.vue) {
-    // vue
     devDependencies.push(
-      options.prettier
-        ? '@meteorlxy/eslint-config-prettier-vue'
-        : '@meteorlxy/eslint-config-vue',
+      'eslint-plugin-react',
+      'eslint-plugin-react-hooks',
+      'eslint-plugin-react-refresh',
     );
-    overrides.push({
-      files: ['*.vue'],
-      extends: options.prettier ? '@meteorlxy/prettier-vue' : '@meteorlxy/vue',
-    });
   }
 
-  // ======================
-  // Use jest or not
-  // ======================
-
-  if (options.jest) {
-    devDependencies.push('eslint-plugin-jest');
-
-    const commonConfig = {
-      env: { jest: true },
-      extends: ['plugin:jest/recommended', 'plugin:jest/style'],
-    };
-
-    if (options.typescript) {
-      overrides.push({
-        files: [
-          options.monorepo
-            ? 'packages/*/test/**/*.spec.mts'
-            : 'test/**/*.spec.mts',
-        ],
-        ...commonConfig,
-        rules: {
-          '@typescript-eslint/explicit-function-return-type': 'off',
-        },
-      });
-    } else {
-      overrides.push({
-        files: [
-          options.monorepo
-            ? 'packages/*/test/**/*.spec.mjs'
-            : 'test/**/*.spec.mjs',
-        ],
-        ...commonConfig,
-      });
-    }
+  if (options.vue) {
+    devDependencies.push('eslint-plugin-vue', 'vue-eslint-parser');
   }
 
   // ======================
   // Add scripts & devDependencies & .eslintrc.cjs & .eslintignore
   // ======================
 
-  const lintPathsStr = lintPaths.join(' ');
-  const lintCommands = [`eslint --ext ${lintExts.join(',')} ${lintPathsStr}`];
-  const lintFixCommands = [
-    `eslint --ext ${lintExts.join(',')} ${lintPathsStr} --fix`,
-  ];
+  const lintCommands = [`eslint .`];
+  const lintFixCommands = [`eslint --fix .`];
   if (options.prettier) {
-    lintCommands.push(`prettier --check ${lintPathsStr}`);
-    lintFixCommands.push(`prettier --write ${lintPathsStr}`);
+    lintCommands.push(`prettier --check .`);
+    lintFixCommands.push(`prettier --write .`);
   }
   if (options.lsLint) {
     lintCommands.push(`ls-lint`);
@@ -201,21 +57,10 @@ export const createEslint = async (
       },
       devDependencies: await getDependenciesVersion(devDependencies),
     }),
-    fs.writeFile(
-      path.resolve(targetPath, '.eslintrc.cjs'),
-      `module.exports = ${JSON.stringify(
-        {
-          root: true,
-          extends: extendsConfig,
-          overrides,
-        },
-        undefined,
-        '  ',
-      )}`,
-    ),
-    fs.writeFile(
-      path.resolve(targetPath, '.eslintignore'),
-      `${ignorePaths.join('\n')}\n`,
+    renderEjs(
+      templatePath('eslint.config.ejs'),
+      path.resolve(targetPath, 'eslint.config.js'),
+      options,
     ),
   ]);
 };

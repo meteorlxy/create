@@ -15,7 +15,7 @@ import { createLintStaged } from './create/lint-staged.mjs';
 import { createLsLint } from './create/ls-lint.mjs';
 import { createMonorepo } from './create/monorepo.mjs';
 import { createNpmrc } from './create/npmrc.mjs';
-import { createPackageManager } from './create/package-manager.mjs';
+import { createPackageJson } from './create/package-json.mjs';
 import { createPrettier } from './create/prettier.mjs';
 import { createReadme } from './create/readme.mjs';
 import { createSortPackageJson } from './create/sort-package-json.mjs';
@@ -61,10 +61,13 @@ export const create = async (targetPath: string): Promise<boolean> => {
     }),
   );
 
-  // create packageManager
-  await withSpinner({ name: 'packageManager' })(
-    createPackageManager(targetPath, {
+  // create package.json
+  await withSpinner({ name: 'package.json' })(
+    createPackageJson(targetPath, {
+      author: options.author,
+      monorepo: options.monorepo,
       packageManager: options.packageManager,
+      repository: options.repository,
     }),
   );
 
@@ -168,13 +171,10 @@ export const create = async (targetPath: string): Promise<boolean> => {
   if (options.eslint) {
     await withSpinner({ name: 'eslint' })(
       createEslint(targetPath, {
-        monorepo: options.monorepo,
-        typescript: options.typescript,
         vue: options.vue,
         react: options.react,
         prettier: options.prettier,
         lsLint: options.lsLint,
-        jest: options.jest,
       }),
     );
   }
