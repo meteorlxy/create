@@ -40,28 +40,19 @@ export const createPackageJson = async (
   { author, monorepo, packageManager, repository }: CreatePackageJsonOptions,
 ): Promise<void> => {
   const packageManagerVersion = await getPackageVersion(packageManager);
-  const packageManagerField = `${packageManager}@${packageManagerVersion}`;
 
-  if (monorepo) {
-    await Promise.all([
-      extendJson(path.resolve(targetPath, 'package.json'), {
-        ...FIELDS_MONOREPO_ROOT,
-        name: `@${repository}/monorepo`,
-        author,
-        packageManager: packageManagerField,
-      }),
+  await Promise.all([
+    extendJson(path.resolve(targetPath, 'package.json'), {
+      ...(monorepo ? FIELDS_MONOREPO_ROOT : FIELDS_PACKAGE),
+      name: monorepo ? `@${repository}/monorepo` : repository,
+      author,
+      packageManager: `${packageManager}@${packageManagerVersion}`,
+    }),
+    monorepo &&
       extendJson(path.resolve(targetPath, 'packages/foo/package.json'), {
         ...FIELDS_PACKAGE,
-        author,
         name: `@${repository}/foo`,
+        author,
       }),
-    ]);
-  } else {
-    await extendJson(path.resolve(targetPath, 'package.json'), {
-      ...FIELDS_PACKAGE,
-      name: repository,
-      author,
-      packageManager: packageManagerField,
-    });
-  }
+  ]);
 };

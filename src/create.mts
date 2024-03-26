@@ -279,6 +279,7 @@ export const create = async (targetPath: string): Promise<boolean> => {
         : sortPkgJsonBin['sort-package-json'],
     ),
     path.resolve(targetPath, 'package.json'),
+    options.monorepo ? path.resolve(targetPath, 'packages/*/package.json') : '',
   ]);
 
   // init git repo
