@@ -162,7 +162,7 @@ export const create = async (targetPath: string): Promise<boolean> => {
   if (options.commitlint) {
     await withSpinner({ name: 'commitlint' })(
       createCommitlint(targetPath, {
-        standalone: false,
+        monorepo: options.monorepo,
       }),
     );
   }

@@ -3,7 +3,7 @@ import fs from 'fs-extra';
 import { extendJson, getDependenciesVersion } from '../utils.mjs';
 
 export interface CreateCommitlintOptions {
-  standalone: boolean;
+  monorepo: boolean;
 }
 
 export const createCommitlint = async (
@@ -16,10 +16,10 @@ export const createCommitlint = async (
 
   await Promise.all([
     // create config file or config field
-    options.standalone
+    options.monorepo
       ? fs.writeFile(
-          path.resolve(targetPath, '.commitlintrc.cjs'),
-          `module.exports = ${JSON.stringify(
+          path.resolve(targetPath, 'commitlint.config.js'),
+          `export default ${JSON.stringify(
             {
               extends: extendsConfig,
             },
