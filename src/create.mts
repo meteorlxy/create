@@ -13,7 +13,6 @@ import { createJest } from './create/jest.mjs';
 import { createLerna } from './create/lerna.mjs';
 import { createLintStaged } from './create/lint-staged.mjs';
 import { createLsLint } from './create/ls-lint.mjs';
-import { createMonorepo } from './create/monorepo.mjs';
 import { createNpmrc } from './create/npmrc.mjs';
 import { createPackageJson } from './create/package-json.mjs';
 import { createPrettier } from './create/prettier.mjs';
@@ -24,15 +23,7 @@ import { createVitest } from './create/vitest.mjs';
 import { createVscode } from './create/vscode.mjs';
 import { getOptionsFromAnswers } from './options.mjs';
 import { prompt, promptPre, promptTargetPath } from './prompts.mjs';
-import type { Registry } from './types.mjs';
 import { packagePath, withSpinner } from './utils.mjs';
-
-const registryUrls: Record<Registry, string> = {
-  default: '',
-  npm: 'https://registry.npmjs.org',
-  yarn: 'https://registry.yarnpkg.com',
-  taobao: 'https://registry.npm.taobao.org',
-};
 
 export const create = async (targetPath: string): Promise<boolean> => {
   // check if targetPath exists
@@ -54,10 +45,8 @@ export const create = async (targetPath: string): Promise<boolean> => {
   // so create .npmrc first
   await withSpinner({ name: '.npmrc' })(
     createNpmrc(targetPath, {
-      'registry': registryUrls[options.registry],
       'message': options.lerna ? '' : 'build: version %s',
-      'strict-peer-dependencies':
-        options.packageManager === 'pnpm' ? 'false' : '',
+      'strict-peer-dependencies': 'false',
     }),
   );
 
@@ -67,7 +56,6 @@ export const create = async (targetPath: string): Promise<boolean> => {
       author: options.author,
       monorepo: options.monorepo,
       organization: options.organization,
-      packageManager: options.packageManager,
       repository: options.repository,
     }),
   );
@@ -96,7 +84,6 @@ export const create = async (targetPath: string): Promise<boolean> => {
     await withSpinner({ name: '.github' })(
       createGithub(targetPath, {
         organization: options.organization,
-        packageManager: options.packageManager,
         repository: options.repository,
         test: options.jest || options.vitest,
       }),
@@ -137,23 +124,12 @@ export const create = async (targetPath: string): Promise<boolean> => {
     );
   }
 
-  // create monorepo
-  if (options.monorepo) {
-    await withSpinner({ name: 'monorepo' })(
-      createMonorepo(targetPath, {
-        packageManager: options.packageManager,
-      }),
-    );
-  }
-
   // create lerna
   if (options.lerna) {
     await withSpinner({ name: 'lerna' })(
       createLerna(targetPath, {
-        packageManager: options.packageManager,
         independent: false,
         changelog: options.changelog,
-        registry: registryUrls[options.registry],
       }),
     );
   }
@@ -183,7 +159,6 @@ export const create = async (targetPath: string): Promise<boolean> => {
   if (options.prettier) {
     await withSpinner({ name: 'prettier' })(
       createPrettier(targetPath, {
-        packageManager: options.packageManager,
         standalone: false,
       }),
     );
@@ -205,7 +180,6 @@ export const create = async (targetPath: string): Promise<boolean> => {
   if (options.husky) {
     await withSpinner({ name: 'husky' })(
       createHusky(targetPath, {
-        packageManager: options.packageManager,
         commitlint: options.commitlint,
         lintStaged: options.lintStaged,
         lsLint: options.lsLint,
@@ -279,7 +253,9 @@ export const create = async (targetPath: string): Promise<boolean> => {
         : sortPkgJsonBin['sort-package-json'],
     ),
     path.resolve(targetPath, 'package.json'),
-    options.monorepo ? path.resolve(targetPath, 'packages/*/package.json') : '',
+    ...(options.monorepo
+      ? [path.resolve(targetPath, 'packages/*/package.json')]
+      : []),
   ]);
 
   // init git repo
@@ -295,8 +271,8 @@ export const create = async (targetPath: string): Promise<boolean> => {
   );
 
   // install dependencies
-  console.log(`$ ${chalk.magenta(`${options.packageManager} install`)}`);
-  await execa(options.packageManager, ['install'], {
+  console.log(`$ ${chalk.magenta(`pnpm install`)}`);
+  await execa('pnpm', ['install'], {
     cwd: targetPath,
     stdio: 'inherit',
   });

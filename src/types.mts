@@ -1,9 +1,5 @@
 import type { presets } from './presets.mjs';
 
-export type PackageManager = 'npm' | 'pnpm' | 'yarn';
-
-export type Registry = 'default' | 'npm' | 'taobao' | 'yarn';
-
 export type Template =
   | 'javascript'
   | 'react'
@@ -37,8 +33,6 @@ export interface PromptAnswers {
   author: string;
   monorepo: boolean;
   lerna: boolean;
-  packageManager: PackageManager;
-  registry: Registry;
   meta: MetaFile[];
   workflow: WorkflowTool[];
   test: TestTool[];
@@ -51,8 +45,6 @@ export interface Options {
   organization: string;
   repository: string;
   author: string;
-  packageManager: PackageManager;
-  registry: Registry;
 
   // language / framework
   typescript: boolean;

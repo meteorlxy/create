@@ -1,12 +1,9 @@
 import path from 'node:path';
-import type { PackageManager } from '../types.mjs';
 import { extendJson, getDependenciesVersion } from '../utils.mjs';
 
 export interface CreateLernaOptions {
-  packageManager: PackageManager;
   independent: boolean;
   changelog: boolean;
-  registry: string;
 }
 
 export const createLerna = async (
@@ -14,13 +11,7 @@ export const createLerna = async (
   options: CreateLernaOptions,
 ): Promise<void> => {
   const lernaConfig = {
-    npmClient: options.packageManager,
-    // `useWorkspaces` is not compatible with pnpm workspaces
-    ...(options.packageManager !== 'pnpm'
-      ? {
-          useWorkspaces: true,
-        }
-      : {}),
+    npmClient: 'pnpm',
     version: options.independent ? 'independent' : '0.0.0',
     command: {
       version: {
@@ -30,13 +21,6 @@ export const createLerna = async (
         message: `build: ${options.independent ? 'publish' : 'version %v'}`,
         syncWorkspaceLock: true,
       },
-      ...(options.registry
-        ? {
-            publish: {
-              registry: options.registry,
-            },
-          }
-        : {}),
     },
   };
 

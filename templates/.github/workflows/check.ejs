@@ -20,35 +20,27 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      <%_ if (packageManager === 'pnpm') { _%>
 
       - name: Install pnpm
         uses: pnpm/action-setup@v2
-      <%_ } _%>
 
       - name: Use Node.js ${{ matrix.node }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
-          cache: <%- packageManager %>
+          cache: pnpm
 
       - name: Install dependencies
-        <%_ if (packageManager === 'npm') { _%>
-        run: npm ci
-        <%_ } else if (packageManager === 'yarn' || packageManager === 'pnpm') { _%>
-        run: <%- packageManager %> install --frozen-lockfile
-        <%_ } _%>
+        run: pnpm install --frozen-lockfile
 
       - name: Build
-        run: <%- packageManager %> run build
+        run: pnpm run build
 
       - name: Lint
-        run: <%- packageManager %> run lint
-      <%_ if (packageManager === 'pnpm') { _%>
+        run: pnpm run lint
 
       - name: Test
-        run: <%- packageManager %> run test
-      <%_ } _%>
+        run: pnpm run test
 
   check-result:
     if: ${{ always() }}

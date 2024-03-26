@@ -1,10 +1,8 @@
 import path from 'node:path';
 import fs from 'fs-extra';
-import type { PackageManager } from '../types.mjs';
 import { extendJson, getDependenciesVersion } from '../utils.mjs';
 
 export interface CreateHuskyOptions {
-  packageManager: PackageManager;
   commitlint: boolean;
   lintStaged: boolean;
   lsLint: boolean;
@@ -16,22 +14,19 @@ export const createHusky = async (
 ): Promise<void> => {
   const hooks: Record<string, string> = {};
 
-  const runCommand =
-    options.packageManager === 'npm' ? 'npx' : options.packageManager;
-
   if (options.commitlint) {
-    hooks['commit-msg'] = `${runCommand} commitlint --edit $1`;
+    hooks['commit-msg'] = `pnpm commitlint --edit $1`;
   }
 
   if (options.lintStaged) {
-    hooks['pre-commit'] = `${runCommand} lint-staged`;
+    hooks['pre-commit'] = `pnpm lint-staged`;
   }
 
   if (options.lsLint) {
     if (hooks['pre-commit']) {
-      hooks['pre-commit'] += ` && ${runCommand} ls-lint`;
+      hooks['pre-commit'] += ` && pnpm ls-lint`;
     } else {
-      hooks['pre-commit'] = `${runCommand} ls-lint`;
+      hooks['pre-commit'] = `pnpm ls-lint`;
     }
   }
 

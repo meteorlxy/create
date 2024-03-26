@@ -1,10 +1,8 @@
 import path from 'node:path';
 import fs from 'fs-extra';
-import type { PackageManager } from '../types.mjs';
 import { extendJson, getDependenciesVersion } from '../utils.mjs';
 
 export interface CreatePrettierOptions {
-  packageManager: PackageManager;
   standalone: boolean;
 }
 
@@ -14,15 +12,7 @@ export const createPrettier = async (
 ): Promise<void> => {
   const config = '@meteorlxy/prettier-config';
   const devDependencies = ['prettier', config];
-  const ignorePaths: string[] = [];
-
-  if (options.packageManager === 'pnpm') {
-    ignorePaths.push('pnpm-lock.yaml');
-  } else if (options.packageManager === 'yarn') {
-    ignorePaths.push('yarn.lock');
-  } else {
-    ignorePaths.push('package-lock.json');
-  }
+  const ignorePaths: string[] = ['pnpm-lock.yaml'];
 
   if (options.standalone) {
     await fs.writeFile(

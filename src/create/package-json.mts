@@ -1,10 +1,14 @@
 import path from 'node:path';
-import type { PackageManager } from '../types.mjs';
+import fs from 'fs-extra';
 import { extendJson, getPackageVersion } from '../utils.mjs';
 
 const FIELDS_COMMON = {
   type: 'module',
   license: 'MIT',
+  scripts: {
+    build: 'pnpm -r --stream build',
+    clean: 'pnpm -r --stream clean',
+  },
 };
 
 const FIELDS_MONOREPO_ROOT = {
@@ -32,6 +36,10 @@ const FIELDS_PACKAGE = {
   module: './dist/index.mjs',
   types: './dist/index.d.ts',
   files: ['./dist'],
+  scripts: {
+    build: 'unbuild',
+    clean: 'rimraf dist',
+  },
   publishConfig: {
     access: 'public',
   },
@@ -41,21 +49,14 @@ export interface CreatePackageJsonOptions {
   author: string;
   monorepo: boolean;
   organization: string;
-  packageManager: PackageManager;
   repository: string;
 }
 
 export const createPackageJson = async (
   targetPath: string,
-  {
-    author,
-    monorepo,
-    organization,
-    packageManager,
-    repository,
-  }: CreatePackageJsonOptions,
+  { author, monorepo, organization, repository }: CreatePackageJsonOptions,
 ): Promise<void> => {
-  const packageManagerVersion = await getPackageVersion(packageManager);
+  const packageManager = `pnpm@${await getPackageVersion('pnpm')}`;
 
   const fieldsPackage = {
     ...FIELDS_PACKAGE,
@@ -75,7 +76,7 @@ export const createPackageJson = async (
       ...FIELDS_COMMON,
       ...(monorepo ? FIELDS_MONOREPO_ROOT : fieldsPackage),
       name: monorepo ? `@${repository}/monorepo` : repository,
-      packageManager: `${packageManager}@${packageManagerVersion}`,
+      packageManager,
     }),
     monorepo &&
       extendJson(path.resolve(targetPath, 'packages/foo/package.json'), {
@@ -83,5 +84,13 @@ export const createPackageJson = async (
         ...fieldsPackage,
         name: `@${repository}/foo`,
       }),
+    monorepo &&
+      fs.writeFile(
+        path.resolve(targetPath, 'pnpm-workspace.yaml'),
+        `\
+packages:
+  - 'packages/*'
+`,
+      ),
   ]);
 };

@@ -20,11 +20,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      <%_ if (packageManager === 'pnpm') { _%>
 
       - name: Install pnpm
         uses: pnpm/action-setup@v2
-      <%_ } _%>
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
@@ -33,17 +31,13 @@ jobs:
           cache: pnpm
 
       - name: Install dependencies
-        <%_ if (packageManager === 'npm') { _%>
-        run: npm ci
-        <%_ } else if (packageManager === 'yarn' || packageManager === 'pnpm') { _%>
-        run: <%- packageManager %> install --frozen-lockfile
-        <%_ } _%>
+        run: pnpm install --frozen-lockfile
 
       - name: Build source code
-        run: <%- packageManager %> run build
+        run: pnpm run build
 
       - name: Test coverage
-        run: <%- packageManager %> run test --coverage
+        run: pnpm run test --coverage
 
       - name: Coveralls
         uses: coverallsapp/github-action@master

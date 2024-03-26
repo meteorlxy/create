@@ -8,8 +8,6 @@ export const getOptionsFromAnswers = (
   organization: answers.organization,
   repository: answers.repository,
   author: answers.author,
-  packageManager: answers.packageManager,
-  registry: answers.registry,
 
   // presets
   typescript: ['typescript', 'typescript-vue'].includes(preAnswers.template),

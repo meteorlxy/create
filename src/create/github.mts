@@ -1,11 +1,9 @@
 import path from 'node:path';
 import fs from 'fs-extra';
-import type { PackageManager } from '../types.mjs';
 import { renderEjs, templatePath } from '../utils.mjs';
 
 export interface CreateGithubOptions {
   organization: string;
-  packageManager: PackageManager;
   repository: string;
   test: boolean;
 }

@@ -80,16 +80,6 @@ export const prompt = async (
     },
     {
       type: 'select',
-      name: 'packageManager',
-      message: 'Select a package manager',
-      choices: [
-        { title: 'npm', value: 'npm' },
-        { title: 'yarn', value: 'yarn' },
-        { title: 'pnpm', value: 'pnpm' },
-      ],
-    },
-    {
-      type: 'select',
       name: 'monorepo',
       message: 'Use monorepo or not?',
       choices: [
@@ -104,17 +94,6 @@ export const prompt = async (
       choices: [
         { title: 'yes', value: true },
         { title: 'no', value: false },
-      ],
-    },
-    {
-      type: 'select',
-      name: 'registry',
-      message: 'Select a registry to use',
-      choices: [
-        { title: 'default', value: 'default' },
-        { title: 'npm', value: 'npm' },
-        { title: 'yarn', value: 'yarn' },
-        { title: 'taobao', value: 'taobao' },
       ],
     },
     {
