@@ -12,13 +12,7 @@ export type Template =
   | 'typescript'
   | 'vue';
 
-export type MetaFile =
-  | 'editorconfig'
-  | 'git'
-  | 'github'
-  | 'license'
-  | 'readme'
-  | 'vscode';
+export type MetaFile = 'editorconfig' | 'git' | 'github' | 'readme' | 'vscode';
 
 export type WorkflowTool =
   | 'changelog'

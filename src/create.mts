@@ -66,10 +66,13 @@ export const create = async (targetPath: string): Promise<boolean> => {
     createPackageJson(targetPath, {
       author: options.author,
       monorepo: options.monorepo,
+      organization: options.organization,
       packageManager: options.packageManager,
       repository: options.repository,
     }),
   );
+
+  // TODO: create license
 
   // create editorconfig
   if (options.editorconfig) {
@@ -77,8 +80,6 @@ export const create = async (targetPath: string): Promise<boolean> => {
       createEditorconfig(targetPath),
     );
   }
-
-  // TODO: license
 
   // create git meta files
   if (options.git) {
@@ -110,7 +111,6 @@ export const create = async (targetPath: string): Promise<boolean> => {
         description: options.repository,
         organization: options.organization,
         repository: options.repository,
-        license: 'MIT',
       }),
     );
   }

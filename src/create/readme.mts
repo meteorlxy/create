@@ -6,7 +6,6 @@ export interface CreateReadmeOptions {
   description: string;
   organization: string;
   repository: string;
-  license: string;
 }
 
 export const createReadme = async (

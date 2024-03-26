@@ -5,7 +5,7 @@ export const defaultPreset: PromptAnswersPreset = {
   lerna: false,
   packageManager: 'pnpm',
   registry: 'default',
-  meta: ['editorconfig', 'git', 'github', 'license', 'readme', 'vscode'],
+  meta: ['editorconfig', 'git', 'github', 'readme', 'vscode'],
   workflow: [
     'commitlint',
     'eslint',
@@ -26,7 +26,7 @@ export const monorepoPreset: PromptAnswersPreset = {
   lerna: true,
   packageManager: 'pnpm',
   registry: 'default',
-  meta: ['editorconfig', 'git', 'github', 'license', 'readme', 'vscode'],
+  meta: ['editorconfig', 'git', 'github', 'readme', 'vscode'],
   workflow: [
     'commitlint',
     'eslint',
