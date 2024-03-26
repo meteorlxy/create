@@ -39,17 +39,14 @@ export const createHusky = async (
     // add hook scripts
     ...Object.entries(hooks).map(async ([hook, cmd]) => {
       const hookFile = path.resolve(targetPath, '.husky', hook);
-      await fs.outputFile(
-        hookFile,
-        [`#!/bin/sh`, `. "$(dirname "$0")/_/husky.sh"`, '', cmd, ''].join('\n'),
-      );
+      await fs.outputFile(hookFile, `${cmd}\n`);
       await fs.chmod(hookFile, '755');
     }),
 
     // add devDependencies
     extendJson(path.resolve(targetPath, 'package.json'), {
       scripts: {
-        prepare: 'husky install',
+        prepare: 'husky',
       },
       devDependencies: await getDependenciesVersion(['husky']),
     }),
