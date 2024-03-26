@@ -12,43 +12,42 @@ export const createVscode = async (
   targetPath: string,
   options: CreateVscodeOptions,
 ): Promise<void> => {
-  const vscodeExtensions: string[] = [];
-  const vscodeSettings: Record<string, unknown> = {
-    'editor.insertSpaces': true,
-    'editor.tabSize': 2,
-    'files.encoding': 'utf8',
-    'files.eol': '\n',
-    'files.trimFinalNewlines': true,
-    'files.trimTrailingWhitespace': true,
-    '[markdown]': {
-      'files.trimTrailingWhitespace': false,
-    },
-  };
-
-  if (options.eslint) {
-    vscodeExtensions.push('dbaeumer.vscode-eslint');
-    vscodeSettings['eslint.validate'] = [
-      'javascript',
-      'javascriptreact',
-      ...(options.typescript ? ['typescript', 'typescriptreact'] : []),
-      ...(options.vue ? ['vue'] : []),
-    ];
-  }
-
-  if (options.prettier) {
-    vscodeExtensions.push('esbenp.prettier-vscode');
-    vscodeSettings['editor.defaultFormatter'] = 'esbenp.prettier-vscode';
-    vscodeSettings['editor.formatOnSave'] = true;
-  }
-
   await Promise.all([
-    vscodeExtensions.length &&
-      extendJson(path.resolve(targetPath, '.vscode/extensions.json'), {
-        recommendations: vscodeExtensions,
-      }),
-    extendJson(
-      path.resolve(targetPath, '.vscode/settings.json'),
-      vscodeSettings,
-    ),
+    extendJson(path.resolve(targetPath, '.vscode/extensions.json'), {
+      recommendations: [
+        ...(options.eslint ? ['dbaeumer.vscode-eslint'] : []),
+        ...(options.prettier ? ['esbenp.prettier-vscode'] : []),
+      ],
+    }),
+    extendJson(path.resolve(targetPath, '.vscode/settings.json'), {
+      ...(options.prettier
+        ? {
+            'editor.defaultFormatter': 'esbenp.prettier-vscode',
+            'editor.formatOnSave': true,
+          }
+        : {}),
+      'editor.insertSpaces': true,
+      'editor.tabSize': 2,
+      'files.encoding': 'utf8',
+      'files.eol': '\n',
+      'files.trimFinalNewlines': true,
+      'files.trimTrailingWhitespace': true,
+      '[markdown]': {
+        'files.trimTrailingWhitespace': false,
+      },
+      ...(options.eslint
+        ? {
+            'eslint.experimental.useFlatConfig': true,
+            'eslint.validate': [
+              'javascript',
+              'javascriptreact',
+              'markdown',
+              'typescript',
+              'typescriptreact',
+              ...(options.vue ? ['vue'] : []),
+            ],
+          }
+        : {}),
+    }),
   ]);
 };
