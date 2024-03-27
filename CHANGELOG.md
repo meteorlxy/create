@@ -1,3 +1,15 @@
+# [3.0.0](https://github.com/meteorlxy/create/compare/v2.2.0...v3.0.0) (2024-03-27)
+
+### Features
+
+- improve monorepo package.json ([f350150](https://github.com/meteorlxy/create/commit/f350150f439ef9906d04a53fcd729bdedce07cd7))
+- improve package.json ([e7bb4f7](https://github.com/meteorlxy/create/commit/e7bb4f73c532348ec7e54228a88b6bd07e6edd73))
+- improve typescript setup ([d82784c](https://github.com/meteorlxy/create/commit/d82784cadd7053cc01dbf79b55fec6542f580e62))
+- update commitlint standalone config file ([7d6b6ae](https://github.com/meteorlxy/create/commit/7d6b6aecc6ef59a34ccd24820c6b459b8c66b6dd))
+- upgrade eslint to flat config ([cb047dc](https://github.com/meteorlxy/create/commit/cb047dceb156d1949779911d89a57c87d5de157c))
+- upgrade husky config to v9 ([b2a58af](https://github.com/meteorlxy/create/commit/b2a58afd7582ff8de8abc04cd2bacfc793a4c234))
+- upgrade vscode settings ([672a166](https://github.com/meteorlxy/create/commit/672a166fa55aab605816c52a23a92485d41952cb))
+
 # [2.2.0](https://github.com/meteorlxy/create/compare/v2.1.2...v2.2.0) (2024-03-06)
 
 ### Features
