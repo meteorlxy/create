@@ -1,10 +1,14 @@
 import path from 'node:path';
-import fs from 'fs-extra';
-import { extendJson, getDependenciesVersion, templatePath } from '../utils.mjs';
+import {
+  extendJson,
+  getDependenciesVersion,
+  renderEjs,
+  templatePath,
+} from '../utils.mjs';
 
 export interface CreateTypescriptOptions {
   monorepo: boolean;
-  eslint: boolean;
+  vue: boolean;
 }
 
 export const createTypescript = async (
@@ -12,48 +16,24 @@ export const createTypescript = async (
   options: CreateTypescriptOptions,
 ): Promise<void> => {
   await Promise.all([
-    fs.copy(
-      templatePath('tsconfig/tsconfig.base.json'),
-      path.resolve(targetPath, 'tsconfig.base.json'),
+    renderEjs(
+      templatePath('tsconfig.ejs'),
+      path.resolve(targetPath, 'tsconfig.json'),
+      options,
     ),
-    ...(options.monorepo
-      ? // monorepo
-        [
-          fs.copy(
-            templatePath('tsconfig/monorepo/tsconfig.json'),
-            path.resolve(targetPath, 'tsconfig.json'),
-          ),
-          fs.copy(
-            templatePath('tsconfig/monorepo/tsconfig.build.json'),
-            path.resolve(targetPath, 'tsconfig.build.json'),
-          ),
-          fs.copy(
-            templatePath('tsconfig/monorepo/packages/foo/tsconfig.build.json'),
-            path.resolve(targetPath, 'packages/foo/tsconfig.build.json'),
-          ),
-        ]
-      : // non-monorepo
-        [
-          fs.copy(
-            templatePath('tsconfig/tsconfig.json'),
-            path.resolve(targetPath, 'tsconfig.json'),
-          ),
-          fs.copy(
-            templatePath('tsconfig/tsconfig.build.json'),
-            path.resolve(targetPath, 'tsconfig.build.json'),
-          ),
-        ]),
-
-    // add scripts & dependencies to package.json
+    renderEjs(
+      templatePath('build.config.ejs'),
+      path.resolve(
+        targetPath,
+        options.monorepo ? 'packages/foo/build.config.ts' : 'build.config.ts',
+      ),
+      options,
+    ),
     extendJson(path.resolve(targetPath, 'package.json'), {
-      scripts: {
-        build: 'tsc -b tsconfig.build.json',
-        clean: 'tsc -b --clean tsconfig.build.json',
-        dev: 'tsc -b --watch tsconfig.build.json',
-      },
       devDependencies: await getDependenciesVersion([
         '@meteorlxy/tsconfig',
         'typescript',
+        'unbuild',
       ]),
     }),
   ]);

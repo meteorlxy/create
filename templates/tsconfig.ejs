@@ -1,0 +1,24 @@
+{
+  "extends": "@meteorlxy/tsconfig/base.json",
+  "compilerOptions": {
+    "lib": ["ES2022"],
+    "module": "ES2022",
+    "moduleResolution": "Bundler",
+    "target": "ES2022"
+  },
+  "include": [
+<%_ if (monorepo) { _%>
+    "packages/**/*",
+<%_ if (vue) { _%>
+    "packages/**/*.vue"
+<%_ } _%>
+<%_ } else { _%>
+    "src/**/*",
+<%_ if (vue) { _%>
+    "src/**/*.vue",
+<%_ } _%>
+    "build.config.ts"
+<%_ } _%>
+  ],
+  "exclude": ["**/node_modules/**", "**/dist/**"]
+}
