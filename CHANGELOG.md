@@ -1,3 +1,9 @@
+## [3.0.1](https://github.com/meteorlxy/create/compare/v3.0.0...v3.0.1) (2024-05-22)
+
+### Bug Fixes
+
+- always ignore dist dir ([147b6a5](https://github.com/meteorlxy/create/commit/147b6a574499ad3ed2a71380382b8e56034739be))
+
 # [3.0.0](https://github.com/meteorlxy/create/compare/v2.2.0...v3.0.0) (2024-03-27)
 
 ### Features
