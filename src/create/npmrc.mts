@@ -7,11 +7,14 @@ export const createNpmrc = async (
   targetPath: string,
   options: CreateNpmrcOptions,
 ): Promise<void> => {
+  const lines = Object.entries(options)
+    .filter(([, value]) => value)
+    .map(([key, value]) => `${key}=${value}`);
+
+  if (!lines.length) return;
+
   await fs.writeFile(
     path.resolve(targetPath, '.npmrc'),
-    `${Object.entries(options)
-      .filter(([, value]) => value)
-      .map(([key, value]) => `${key}=${value}`)
-      .join('\n')}\n`,
+    `${lines.join('\n')}\n`,
   );
 };

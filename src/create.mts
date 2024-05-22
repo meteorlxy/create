@@ -45,8 +45,7 @@ export const create = async (targetPath: string): Promise<boolean> => {
   // so create .npmrc first
   await withSpinner({ name: '.npmrc' })(
     createNpmrc(targetPath, {
-      'message': options.lerna ? '' : 'build: version %s',
-      'strict-peer-dependencies': 'false',
+      message: options.lerna ? '' : 'build: version %s',
     }),
   );
 
