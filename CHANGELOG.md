@@ -1,3 +1,9 @@
+## [3.0.2](https://github.com/meteorlxy/create/compare/v3.0.1...v3.0.2) (2024-05-22)
+
+### Bug Fixes
+
+- remove strict-peer-dependencies config ([3498f30](https://github.com/meteorlxy/create/commit/3498f30472ef26eab693fd96bb5cb94bc656f236))
+
 ## [3.0.1](https://github.com/meteorlxy/create/compare/v3.0.0...v3.0.1) (2024-05-22)
 
 ### Bug Fixes
