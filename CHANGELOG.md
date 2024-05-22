@@ -1,3 +1,10 @@
+# [3.1.0](https://github.com/meteorlxy/create/compare/v3.0.2...v3.1.0) (2024-05-22)
+
+### Features
+
+- add node 22 to matrix ([6c978df](https://github.com/meteorlxy/create/commit/6c978dfa1acd05df2bf319803c5787ed7658bbf1))
+- bump github actions version ([61bbe49](https://github.com/meteorlxy/create/commit/61bbe49b5d53a1b7ec0c7805a8398332b6e0e61b))
+
 ## [3.0.2](https://github.com/meteorlxy/create/compare/v3.0.1...v3.0.2) (2024-05-22)
 
 ### Bug Fixes
