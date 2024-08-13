@@ -73,27 +73,27 @@
     "sort-package-json": "^2.10.0"
   },
   "devDependencies": {
-    "@commitlint/cli": "^19.3.0",
+    "@commitlint/cli": "^19.4.0",
     "@commitlint/config-conventional": "^19.2.2",
     "@ls-lint/ls-lint": "^2.2.3",
     "@meteorlxy/create": "link:",
-    "@meteorlxy/eslint-config": "^3.8.0",
-    "@meteorlxy/prettier-config": "^3.8.0",
-    "@meteorlxy/tsconfig": "^3.8.0",
+    "@meteorlxy/eslint-config": "^4.0.0",
+    "@meteorlxy/prettier-config": "^4.0.0",
+    "@meteorlxy/tsconfig": "^4.0.0",
     "@types/ejs": "^3.1.5",
     "@types/fs-extra": "^11.0.4",
     "@types/lodash.merge": "^4.6.9",
-    "@types/node": "^20.14.10",
+    "@types/node": "^22.2.0",
     "@types/prompts": "^2.4.9",
     "conventional-changelog-cli": "^5.0.0",
-    "eslint": "^8.57.0",
-    "husky": "^9.0.11",
-    "lint-staged": "^15.2.7",
+    "eslint": "^9.9.0",
+    "husky": "^9.1.4",
+    "lint-staged": "^15.2.9",
     "prettier": "^3.3.3",
     "rimraf": "^6.0.1",
-    "typescript": "^5.5.3"
+    "typescript": "^5.5.4"
   },
-  "packageManager": "pnpm@9.5.0",
+  "packageManager": "pnpm@9.7.0",
   "engines": {
     "node": ">=20.12.2"
   },
