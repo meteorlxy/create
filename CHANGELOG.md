@@ -1,3 +1,13 @@
+# [3.2.0](https://github.com/meteorlxy/create/compare/v3.1.0...v3.2.0) (2024-08-13)
+
+### Bug Fixes
+
+- remove mts from ls-lint config ([711a6f4](https://github.com/meteorlxy/create/commit/711a6f4be24836876609b616d43376922a86984c))
+
+### Features
+
+- remove tsconfigPath from eslint config ([f2aa8fe](https://github.com/meteorlxy/create/commit/f2aa8fe0ab6a1306f4ce3b87d28f079ae61c97ce))
+
 # [3.1.0](https://github.com/meteorlxy/create/compare/v3.0.2...v3.1.0) (2024-05-22)
 
 ### Features
