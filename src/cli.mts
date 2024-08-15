@@ -3,8 +3,8 @@ import chalk from 'chalk';
 import { create } from './create.mjs';
 
 // get target path according to params and cwd
-const targetDir = process.argv[2] || '.';
-const targetPath = path.resolve(process.cwd(), targetDir);
+const TARGET_DIR = process.argv[2] || '.';
+const TARGET_PATH = path.resolve(process.cwd(), TARGET_DIR);
 
 const printNotice = (notice: string): void => {
   console.log('');
@@ -12,9 +12,9 @@ const printNotice = (notice: string): void => {
   console.log('');
 };
 
-printNotice(`${chalk.cyan('INFO')} target path is '${targetPath}'`);
+printNotice(`${chalk.cyan('INFO')} target path is '${TARGET_PATH}'`);
 
-create(targetPath)
+create(TARGET_PATH)
   .then((result) => {
     printNotice(
       result
