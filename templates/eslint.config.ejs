@@ -1,5 +1,6 @@
 import { meteorlxy } from '@meteorlxy/eslint-config';
 
+<%_ if (react || vue) { _%>
 export default meteorlxy({
 <%_ if (react) { _%>
   react: true,
@@ -8,3 +9,6 @@ export default meteorlxy({
   vue: true,
 <%_ } _%>
 });
+<%_ } else { _%>
+export default meteorlxy();
+<%_ } _%>
