@@ -33,6 +33,7 @@ export const createTypescript = async (
     extendJson(path.resolve(targetPath, 'package.json'), {
       devDependencies: await getDependenciesVersion([
         '@meteorlxy/tsconfig',
+        'rimraf',
         'typescript',
         'unbuild',
       ]),
