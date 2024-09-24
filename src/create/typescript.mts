@@ -8,6 +8,7 @@ import {
 
 export interface CreateTypescriptOptions {
   monorepo: boolean;
+  test: boolean;
   vue: boolean;
 }
 

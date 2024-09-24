@@ -106,6 +106,7 @@ export const create = async (targetPath: string): Promise<boolean> => {
     await withSpinner({ name: 'typescript' })(
       createTypescript(targetPath, {
         monorepo: options.monorepo,
+        test: options.jest || options.vitest,
         vue: options.vue,
       }),
     );
