@@ -1,3 +1,14 @@
+# [3.4.0](https://github.com/meteorlxy/create/compare/v3.3.1...v3.4.0) (2024-09-24)
+
+### Bug Fixes
+
+- include config files in monorepo tsconfig ([c67ed49](https://github.com/meteorlxy/create/commit/c67ed49e3d2be13657d2abfa36747cdeaa626c03))
+- match all config files in ts ([97b3bf9](https://github.com/meteorlxy/create/commit/97b3bf944908ed52b223c7dd268a6b970c47b5e6))
+
+### Features
+
+- add vitest config file ([d3df100](https://github.com/meteorlxy/create/commit/d3df100ec51ed7d03bc7be727e0b3ebbc953b96e))
+
 ## [3.3.1](https://github.com/meteorlxy/create/compare/v3.3.0...v3.3.1) (2024-09-24)
 
 ### Bug Fixes
