@@ -37,7 +37,6 @@ export const createVscode = async (
       },
       ...(options.eslint
         ? {
-            'eslint.experimental.useFlatConfig': true,
             'eslint.validate': [
               'javascript',
               'javascriptreact',
