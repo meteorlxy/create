@@ -1,3 +1,9 @@
+## [3.4.1](https://github.com/meteorlxy/create/compare/v3.4.0...v3.4.1) (2024-09-24)
+
+### Bug Fixes
+
+- add rimraf to dev-deps ([4eceb1c](https://github.com/meteorlxy/create/commit/4eceb1c4aa1964c1fd0d0ddf6efe63dccf38d1a3))
+
 # [3.4.0](https://github.com/meteorlxy/create/compare/v3.3.1...v3.4.0) (2024-09-24)
 
 ### Bug Fixes
