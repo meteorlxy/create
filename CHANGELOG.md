@@ -1,3 +1,14 @@
+# [3.3.0](https://github.com/meteorlxy/create/compare/v3.2.0...v3.3.0) (2024-09-24)
+
+### Bug Fixes
+
+- remove eslint experimental flag ([b398d57](https://github.com/meteorlxy/create/commit/b398d5717cd83c4635cd7da83ddcf6cbbf7d6bf5))
+- update eslint config template ([20fe890](https://github.com/meteorlxy/create/commit/20fe890b514c51e75847f9b04de211d00e9e4ed5))
+
+### Features
+
+- add badges in readme template ([2b7886c](https://github.com/meteorlxy/create/commit/2b7886c8312d8dcd0df00447404a895bfd6d6214))
+
 # [3.2.0](https://github.com/meteorlxy/create/compare/v3.1.0...v3.2.0) (2024-08-13)
 
 ### Bug Fixes
