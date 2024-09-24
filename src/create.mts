@@ -232,6 +232,7 @@ export const create = async (targetPath: string): Promise<boolean> => {
     await withSpinner({ name: 'vitest' })(
       createVitest(targetPath, {
         coverage: 'istanbul',
+        monorepo: options.monorepo,
       }),
     );
   }

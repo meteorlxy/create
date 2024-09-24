@@ -1,8 +1,14 @@
 import path from 'node:path';
-import { extendJson, getDependenciesVersion } from '../utils.mjs';
+import {
+  extendJson,
+  getDependenciesVersion,
+  renderEjs,
+  templatePath,
+} from '../utils.mjs';
 
 export interface CreateVitestOptions {
   coverage: 'istanbul' | 'v8' | null;
+  monorepo: boolean;
 }
 
 export const createVitest = async (
@@ -16,6 +22,11 @@ export const createVitest = async (
   }
 
   await Promise.all([
+    renderEjs(
+      templatePath('vitest.config.ejs'),
+      path.resolve(targetPath, 'vitest.config.ts'),
+      options,
+    ),
     extendJson(path.resolve(targetPath, 'package.json'), {
       scripts: {
         test: 'vitest run',

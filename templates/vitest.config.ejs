@@ -1,0 +1,23 @@
+import { defineConfig } from 'vitest/config';
+
+export default defineConfig({
+  test: {
+    <%_ if (coverage) { _%>
+    coverage: {
+      all: true,
+      <%_ if (monorepo) { _%>
+      include: ['packages/*/src/**'],
+      <%_ } else { _%>
+      include: ['src/**'],
+      <%_ } _%>
+      provider: '<%- coverage %>',
+      reporter: ['clover', 'json', 'lcov', 'text'],
+    },
+    <%_ } _%>
+    <%_ if (monorepo) { _%>
+    include: ['packages/*/tests/**/*.spec.ts'],
+    <%_ } else { _%>
+    include: ['tests/**/*.spec.ts'],
+    <%_ } _%>
+  },
+});
