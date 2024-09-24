@@ -1,3 +1,9 @@
+## [3.3.1](https://github.com/meteorlxy/create/compare/v3.3.0...v3.3.1) (2024-09-24)
+
+### Bug Fixes
+
+- include test files in tsconfig ([df6f220](https://github.com/meteorlxy/create/commit/df6f220597524fe6db7c39f50726463f3247936d))
+
 # [3.3.0](https://github.com/meteorlxy/create/compare/v3.2.0...v3.3.0) (2024-09-24)
 
 ### Bug Fixes
