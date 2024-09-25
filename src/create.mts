@@ -16,6 +16,7 @@ import { createLsLint } from './create/ls-lint.mjs';
 import { createPackageJson } from './create/package-json.mjs';
 import { createPrettier } from './create/prettier.mjs';
 import { createReadme } from './create/readme.mjs';
+import { createRelease } from './create/release.mjs';
 import { createSortPackageJson } from './create/sort-package-json.mjs';
 import { createTypescript } from './create/typescript.mjs';
 import { createUnbuild } from './create/unbuild.mjs';
@@ -216,6 +217,17 @@ export const create = async (targetPath: string): Promise<boolean> => {
       }),
     );
   }
+
+  // create release scripts
+  await withSpinner({ name: 'release' })(
+    createRelease(targetPath, {
+      changelog: options.changelog,
+      eslint: options.eslint,
+      lerna: options.lerna,
+      test: options.jest || options.vitest,
+      typescript: options.typescript,
+    }),
+  );
 
   // create jest
   if (options.jest) {

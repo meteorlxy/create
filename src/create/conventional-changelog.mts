@@ -21,7 +21,7 @@ export const createConventionalChangelog = async (
   // add devDependencies
   await extendJson(path.resolve(targetPath, 'package.json'), {
     scripts: {
-      version: `conventional-changelog -p ${options.preset} -i CHANGELOG.md -s -r 1 && git add CHANGELOG.md`,
+      'release:changelog': `conventional-changelog -p ${options.preset} -i CHANGELOG.md -s`,
     },
     devDependencies: await getDependenciesVersion([
       'conventional-changelog-cli',

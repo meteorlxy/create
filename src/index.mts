@@ -11,6 +11,7 @@ export * from './create/lint-staged.mjs';
 export * from './create/ls-lint.mjs';
 export * from './create/prettier.mjs';
 export * from './create/readme.mjs';
+export * from './create/release.mjs';
 export * from './create/sort-package-json.mjs';
 export * from './create/typescript.mjs';
 export * from './create/unbuild.mjs';

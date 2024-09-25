@@ -30,9 +30,6 @@ export const createLerna = async (
 
     // add devDependencies
     extendJson(path.resolve(targetPath, 'package.json'), {
-      scripts: {
-        release: 'lerna publish',
-      },
       devDependencies: await getDependenciesVersion([
         '@lerna-lite/cli',
         '@lerna-lite/publish',
