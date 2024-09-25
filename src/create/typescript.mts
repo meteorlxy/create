@@ -31,11 +31,12 @@ export const createTypescript = async (
       options,
     ),
     extendJson(path.resolve(targetPath, 'package.json'), {
+      scripts: {
+        'check-types': 'tsc --noEmit --skipLibCheck',
+      },
       devDependencies: await getDependenciesVersion([
         '@meteorlxy/tsconfig',
-        'rimraf',
         'typescript',
-        'unbuild',
       ]),
     }),
   ]);

@@ -1,18 +1,22 @@
 import path from 'node:path';
 import fs from 'fs-extra';
-import { extendJson, getPackageVersion } from '../utils.mjs';
+import {
+  extendJson,
+  getDependenciesVersion,
+  getPackageVersion,
+} from '../utils.mjs';
 
 const FIELDS_COMMON = {
   type: 'module',
   license: 'MIT',
-  scripts: {
-    build: 'pnpm -r --stream build',
-    clean: 'pnpm -r --stream clean',
-  },
 };
 
 const FIELDS_MONOREPO_ROOT = {
   private: true,
+  scripts: {
+    build: 'pnpm -r --stream build',
+    clean: 'pnpm -r --stream clean',
+  },
 };
 
 const FIELDS_PACKAGE = {
@@ -56,8 +60,6 @@ export const createPackageJson = async (
   targetPath: string,
   { author, monorepo, organization, repository }: CreatePackageJsonOptions,
 ): Promise<void> => {
-  const packageManager = `pnpm@${await getPackageVersion('pnpm')}`;
-
   const fieldsPackage = {
     ...FIELDS_PACKAGE,
     homepage: `https://github.com/${organization}/${repository}#readme`,
@@ -71,19 +73,27 @@ export const createPackageJson = async (
     author,
   };
 
+  const fieldsRoot = {
+    ...FIELDS_COMMON,
+    ...(monorepo ? FIELDS_MONOREPO_ROOT : fieldsPackage),
+    name: monorepo ? `@${repository}/monorepo` : repository,
+    packageManager: `pnpm@${await getPackageVersion('pnpm')}`,
+    devDependencies: await getDependenciesVersion(['rimraf', 'unbuild']),
+  };
+
   await Promise.all([
-    extendJson(path.resolve(targetPath, 'package.json'), {
-      ...FIELDS_COMMON,
-      ...(monorepo ? FIELDS_MONOREPO_ROOT : fieldsPackage),
-      name: monorepo ? `@${repository}/monorepo` : repository,
-      packageManager,
-    }),
+    // root package.json
+    extendJson(path.resolve(targetPath, 'package.json'), fieldsRoot),
+
+    // monorepo packages/foo/package.json
     monorepo &&
       extendJson(path.resolve(targetPath, 'packages/foo/package.json'), {
         ...FIELDS_COMMON,
         ...fieldsPackage,
         name: `@${repository}/foo`,
       }),
+
+    // monorepo pnpm-workspace.yaml
     monorepo &&
       fs.writeFile(
         path.resolve(targetPath, 'pnpm-workspace.yaml'),
