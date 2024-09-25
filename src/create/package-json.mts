@@ -1,10 +1,6 @@
 import path from 'node:path';
 import fs from 'fs-extra';
-import {
-  extendJson,
-  getDependenciesVersion,
-  getPackageVersion,
-} from '../utils.mjs';
+import { extendJson, getPackageVersion } from '../utils.mjs';
 
 const FIELDS_COMMON = {
   type: 'module',
@@ -13,10 +9,6 @@ const FIELDS_COMMON = {
 
 const FIELDS_MONOREPO_ROOT = {
   private: true,
-  scripts: {
-    build: 'pnpm -r --stream build',
-    clean: 'pnpm -r --stream clean',
-  },
 };
 
 const FIELDS_PACKAGE = {
@@ -78,7 +70,6 @@ export const createPackageJson = async (
     ...(monorepo ? FIELDS_MONOREPO_ROOT : fieldsPackage),
     name: monorepo ? `@${repository}/monorepo` : repository,
     packageManager: `pnpm@${await getPackageVersion('pnpm')}`,
-    devDependencies: await getDependenciesVersion(['rimraf', 'unbuild']),
   };
 
   await Promise.all([

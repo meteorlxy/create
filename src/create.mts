@@ -18,6 +18,7 @@ import { createPrettier } from './create/prettier.mjs';
 import { createReadme } from './create/readme.mjs';
 import { createSortPackageJson } from './create/sort-package-json.mjs';
 import { createTypescript } from './create/typescript.mjs';
+import { createUnbuild } from './create/unbuild.mjs';
 import { createVitest } from './create/vitest.mjs';
 import { createVscode } from './create/vscode.mjs';
 import { getOptionsFromAnswers } from './options.mjs';
@@ -98,6 +99,12 @@ export const create = async (targetPath: string): Promise<boolean> => {
         monorepo: options.monorepo,
         test: options.jest || options.vitest,
         vue: options.vue,
+      }),
+    );
+
+    await withSpinner({ name: 'unbuild' })(
+      createUnbuild(targetPath, {
+        monorepo: options.monorepo,
       }),
     );
   }
