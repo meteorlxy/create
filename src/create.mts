@@ -102,11 +102,14 @@ export const create = async (targetPath: string): Promise<boolean> => {
       }),
     );
 
-    await withSpinner({ name: 'unbuild' })(
-      createUnbuild(targetPath, {
-        monorepo: options.monorepo,
-      }),
-    );
+    // create unbuild if not using framework
+    if (!options.vue && !options.react) {
+      await withSpinner({ name: 'unbuild' })(
+        createUnbuild(targetPath, {
+          monorepo: options.monorepo,
+        }),
+      );
+    }
   }
 
   // create vscode settings
