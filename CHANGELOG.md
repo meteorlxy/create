@@ -1,3 +1,15 @@
+# [3.5.0](https://github.com/meteorlxy/create/compare/v3.4.1...v3.5.0) (2024-09-25)
+
+### Bug Fixes
+
+- skip unbuild when using frameworks ([d74553a](https://github.com/meteorlxy/create/commit/d74553a09a16c436020f7f3cf86a489d65db2251))
+
+### Features
+
+- add check-types script ([d9e7cdf](https://github.com/meteorlxy/create/commit/d9e7cdf47bd90239598b96855b61f73fb0bc870a))
+- add create-release ([2c1fbe5](https://github.com/meteorlxy/create/commit/2c1fbe522c579b2cb7584288ec559349eb5d19b4))
+- remove npmrc ([bdb6b92](https://github.com/meteorlxy/create/commit/bdb6b9234904c00c4d99cd9e7c3613e0c49aab6f))
+
 ## [3.4.1](https://github.com/meteorlxy/create/compare/v3.4.0...v3.4.1) (2024-09-24)
 
 ### Bug Fixes
