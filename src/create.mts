@@ -13,7 +13,6 @@ import { createJest } from './create/jest.mjs';
 import { createLerna } from './create/lerna.mjs';
 import { createLintStaged } from './create/lint-staged.mjs';
 import { createLsLint } from './create/ls-lint.mjs';
-import { createNpmrc } from './create/npmrc.mjs';
 import { createPackageJson } from './create/package-json.mjs';
 import { createPrettier } from './create/prettier.mjs';
 import { createReadme } from './create/readme.mjs';
@@ -39,15 +38,6 @@ export const create = async (targetPath: string): Promise<boolean> => {
   const preAnswers = await promptPre();
   const answers = await prompt(preAnswers);
   const options = getOptionsFromAnswers(preAnswers, answers);
-
-  // create .npmrc file
-  // we need to get package info from registry
-  // so create .npmrc first
-  await withSpinner({ name: '.npmrc' })(
-    createNpmrc(targetPath, {
-      message: options.lerna ? '' : 'build: version %s',
-    }),
-  );
 
   // create package.json
   await withSpinner({ name: 'package.json' })(

@@ -8,7 +8,6 @@ export * from './create/jest.mjs';
 export * from './create/lerna.mjs';
 export * from './create/lint-staged.mjs';
 export * from './create/ls-lint.mjs';
-export * from './create/npmrc.mjs';
 export * from './create/prettier.mjs';
 export * from './create/readme.mjs';
 export * from './create/sort-package-json.mjs';
