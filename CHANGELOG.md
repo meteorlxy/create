@@ -1,3 +1,9 @@
+# [3.7.0](https://github.com/meteorlxy/create/compare/v3.6.0...v3.7.0) (2024-09-27)
+
+### Features
+
+- use node lts in workflows by default ([701e874](https://github.com/meteorlxy/create/commit/701e8743d370b1cebeda48ab752b2a41cfe080bf))
+
 # [3.6.0](https://github.com/meteorlxy/create/compare/v3.5.0...v3.6.0) (2024-09-27)
 
 ### Bug Fixes
