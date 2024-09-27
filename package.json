@@ -43,10 +43,12 @@
     "lint": "eslint . && prettier --check . && ls-lint",
     "lint:fix": "eslint . --fix && prettier --write .",
     "prepare": "husky",
-    "prepublishOnly": "pnpm run clean && pnpm run build && pnpm run lint",
     "publish": "git push origin main --tags",
-    "test": "rimraf .output && create .output",
-    "version": "conventional-changelog -p angular -i CHANGELOG.md -s -r 1 && git add CHANGELOG.md"
+    "release": "pnpm release:check && pnpm release:version && pnpm release:publish",
+    "release:changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
+    "release:check": "pnpm clean && pnpm build && pnpm lint",
+    "release:publish": "pnpm publish",
+    "release:version": "bumpp --execute=\"pnpm release:changelog\" --commit \"build: publish v%s\" --all"
   },
   "commitlint": {
     "extends": [
@@ -85,6 +87,7 @@
     "@types/lodash.merge": "^4.6.9",
     "@types/node": "^22.6.1",
     "@types/prompts": "^2.4.9",
+    "bumpp": "^9.5.2",
     "conventional-changelog-cli": "^5.0.0",
     "eslint": "^9.11.1",
     "husky": "^9.1.6",
