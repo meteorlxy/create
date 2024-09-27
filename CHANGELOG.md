@@ -1,3 +1,13 @@
+# [3.6.0](https://github.com/meteorlxy/create/compare/v3.5.0...v3.6.0) (2024-09-27)
+
+### Bug Fixes
+
+- only add -r flag in monorepo ([039a9c2](https://github.com/meteorlxy/create/commit/039a9c2db1210637046bba1a48f98ea02b6a1c71))
+
+### Features
+
+- update release workflow template ([4b6162e](https://github.com/meteorlxy/create/commit/4b6162e318c85ab5c75f08f0996bf16a73adc33b))
+
 # [3.5.0](https://github.com/meteorlxy/create/compare/v3.4.1...v3.5.0) (2024-09-25)
 
 ### Bug Fixes
