@@ -5,13 +5,21 @@ export interface CreateReleaseOptions {
   changelog: boolean;
   eslint: boolean;
   lerna: boolean;
+  monorepo: boolean;
   test: boolean;
   typescript: boolean;
 }
 
 export const createRelease = async (
   targetPath: string,
-  { changelog, eslint, lerna, test, typescript }: CreateReleaseOptions,
+  {
+    changelog,
+    eslint,
+    lerna,
+    monorepo,
+    test,
+    typescript,
+  }: CreateReleaseOptions,
 ): Promise<void> => {
   const releaseScripts = ['pnpm release:check'];
   if (!lerna) {
@@ -34,7 +42,7 @@ export const createRelease = async (
 
   const releaseVersionScript = lerna
     ? null
-    : `bumpp -r${changelog ? ` --execute="pnpm release:changelog"` : ''} --commit "build: publish v%s" --all`;
+    : `bumpp${monorepo ? ' -r' : ''}${changelog ? ` --execute="pnpm release:changelog"` : ''} --commit "build: publish v%s" --all`;
 
   await Promise.all([
     // add devDependencies

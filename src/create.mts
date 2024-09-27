@@ -224,6 +224,7 @@ export const create = async (targetPath: string): Promise<boolean> => {
       changelog: options.changelog,
       eslint: options.eslint,
       lerna: options.lerna,
+      monorepo: options.monorepo,
       test: options.jest || options.vitest,
       typescript: options.typescript,
     }),
