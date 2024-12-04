@@ -1,3 +1,9 @@
+## [3.7.1](https://github.com/meteorlxy/create/compare/v3.7.0...v3.7.1) (2024-12-04)
+
+### Bug Fixes
+
+- enable eslint.useFlatConfig in vscode settings ([20b3480](https://github.com/meteorlxy/create/commit/20b34807fd61f6cf2666220d86723355c9f11dea))
+
 # [3.7.0](https://github.com/meteorlxy/create/compare/v3.6.0...v3.7.0) (2024-09-27)
 
 ### Features
