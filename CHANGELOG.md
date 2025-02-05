@@ -1,3 +1,5 @@
+## [3.7.2](https://github.com/meteorlxy/create/compare/v3.7.1...v3.7.2) (2025-02-05)
+
 ## [3.7.1](https://github.com/meteorlxy/create/compare/v3.7.0...v3.7.1) (2024-12-04)
 
 ### Bug Fixes
