@@ -1,3 +1,13 @@
+# [4.0.0](https://github.com/meteorlxy/create/compare/v3.7.3...v4.0.0) (2025-05-08)
+
+### Build System
+
+- update tsconfig lib and target to ES2023 ([a73d7a1](https://github.com/meteorlxy/create/commit/a73d7a13aa6a26f5c3e7753036a8b94728e56704))
+
+### BREAKING CHANGES
+
+- drop node 18
+
 ## [3.7.3](https://github.com/meteorlxy/create/compare/v3.7.2...v3.7.3) (2025-04-09)
 
 ## [3.7.2](https://github.com/meteorlxy/create/compare/v3.7.1...v3.7.2) (2025-02-05)
