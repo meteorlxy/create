@@ -31,8 +31,8 @@ export interface PromptAnswers {
   organization: string;
   repository: string;
   author: string;
-  monorepo: boolean;
-  lerna: boolean;
+  monorepo: boolean | undefined;
+  lerna: boolean | undefined;
   meta: MetaFile[];
   workflow: WorkflowTool[];
   test: TestTool[];
