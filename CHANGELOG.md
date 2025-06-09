@@ -1,3 +1,5 @@
+## [4.0.1](https://github.com/meteorlxy/create/compare/v4.0.0...v4.0.1) (2025-06-09)
+
 # [4.0.0](https://github.com/meteorlxy/create/compare/v3.7.3...v4.0.0) (2025-05-08)
 
 ### Build System
