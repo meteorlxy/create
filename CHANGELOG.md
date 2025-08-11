@@ -1,3 +1,9 @@
+# [4.2.0](https://github.com/meteorlxy/create/compare/v4.1.1...v4.2.0) (2025-08-11)
+
+### Features
+
+- update vscode eslint config ([67b1bc5](https://github.com/meteorlxy/create/commit/67b1bc5ab8be8ac155d3ebaaed9d06d6ec871f7a))
+
 ## [4.1.1](https://github.com/meteorlxy/create/compare/v4.1.0...v4.1.1) (2025-08-11)
 
 ### Bug Fixes
