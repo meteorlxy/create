@@ -1,3 +1,9 @@
+# [4.1.0](https://github.com/meteorlxy/create/compare/v4.0.1...v4.1.0) (2025-08-11)
+
+### Features
+
+- add tsdown support and set it as defaults ([960d7b0](https://github.com/meteorlxy/create/commit/960d7b04f90406f603a0be9043a1da05dc5f7c27))
+
 ## [4.0.1](https://github.com/meteorlxy/create/compare/v4.0.0...v4.0.1) (2025-06-09)
 
 # [4.0.0](https://github.com/meteorlxy/create/compare/v3.7.3...v4.0.0) (2025-05-08)
