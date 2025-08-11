@@ -20,6 +20,8 @@ export type WorkflowTool =
   | 'prettier'
   | 'sort-package-json';
 
+export type BundlerTool = 'tsdown' | 'unbuild';
+
 export type TestTool = 'jest' | 'vitest';
 
 export interface PromptPreAnswers {
@@ -35,6 +37,7 @@ export interface PromptAnswers {
   lerna: boolean | undefined;
   meta: MetaFile[];
   workflow: WorkflowTool[];
+  bundler: BundlerTool[];
   test: TestTool[];
 }
 
@@ -69,6 +72,10 @@ export interface Options {
   lintStaged: boolean;
   sortPackageJson: boolean;
   changelog: boolean;
+
+  // bundling
+  tsdown: boolean;
+  unbuild: boolean;
 
   // testing
   jest: boolean;

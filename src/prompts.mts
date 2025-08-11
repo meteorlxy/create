@@ -129,6 +129,16 @@ export const prompt = async (
     },
     {
       type: 'select',
+      name: 'bundler',
+      message: 'Select bundler you want to initialize',
+      choices: [
+        { title: 'None', value: 'none' },
+        { title: 'Tsdown', value: 'tsdown' },
+        { title: 'Unbuild', value: 'unbuild' },
+      ],
+    },
+    {
+      type: 'select',
       name: 'test',
       message: 'Select testing you want to initialize',
       choices: [

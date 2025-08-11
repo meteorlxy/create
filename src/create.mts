@@ -18,6 +18,7 @@ import { createPrettier } from './create/prettier.mjs';
 import { createReadme } from './create/readme.mjs';
 import { createRelease } from './create/release.mjs';
 import { createSortPackageJson } from './create/sort-package-json.mjs';
+import { createTsdown } from './create/tsdown.mjs';
 import { createTypescript } from './create/typescript.mjs';
 import { createUnbuild } from './create/unbuild.mjs';
 import { createVitest } from './create/vitest.mjs';
@@ -102,15 +103,6 @@ export const create = async (targetPath: string): Promise<boolean> => {
         vue: options.vue,
       }),
     );
-
-    // create unbuild if not using framework
-    if (!options.vue && !options.react) {
-      await withSpinner({ name: 'unbuild' })(
-        createUnbuild(targetPath, {
-          monorepo: options.monorepo,
-        }),
-      );
-    }
   }
 
   // create vscode settings
@@ -229,6 +221,24 @@ export const create = async (targetPath: string): Promise<boolean> => {
       typescript: options.typescript,
     }),
   );
+
+  // create tsdown
+  if (options.tsdown) {
+    await withSpinner({ name: 'tsdown' })(
+      createTsdown(targetPath, {
+        monorepo: options.monorepo,
+      }),
+    );
+  }
+
+  // create unbuild
+  if (options.unbuild) {
+    await withSpinner({ name: 'unbuild' })(
+      createUnbuild(targetPath, {
+        monorepo: options.monorepo,
+      }),
+    );
+  }
 
   // create jest
   if (options.jest) {

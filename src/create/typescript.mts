@@ -22,14 +22,6 @@ export const createTypescript = async (
       path.resolve(targetPath, 'tsconfig.json'),
       options,
     ),
-    renderEjs(
-      templatePath('build.config.ejs'),
-      path.resolve(
-        targetPath,
-        options.monorepo ? 'packages/foo/build.config.ts' : 'build.config.ts',
-      ),
-      options,
-    ),
     extendJson(path.resolve(targetPath, 'package.json'), {
       scripts: {
         'check-types': 'tsc --noEmit --skipLibCheck',

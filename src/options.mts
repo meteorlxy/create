@@ -33,6 +33,10 @@ export const getOptionsFromAnswers = (
   sortPackageJson: answers.workflow.includes('sort-package-json'),
   changelog: answers.workflow.includes('changelog'),
 
+  // bundling
+  tsdown: answers.bundler.includes('tsdown'),
+  unbuild: answers.bundler.includes('unbuild'),
+
   // testing
   jest: answers.test.includes('jest'),
   vitest: answers.test.includes('vitest'),

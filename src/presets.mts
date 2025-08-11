@@ -14,6 +14,7 @@ export const defaultPreset: PromptAnswersPreset = {
     'sort-package-json',
     'changelog',
   ],
+  bundler: ['tsdown'],
   test: ['vitest'],
 };
 
@@ -33,6 +34,7 @@ export const monorepoPreset: PromptAnswersPreset = {
     'sort-package-json',
     'changelog',
   ],
+  bundler: ['tsdown'],
   test: ['vitest'],
 };
 
