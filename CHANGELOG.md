@@ -1,3 +1,9 @@
+## [4.1.1](https://github.com/meteorlxy/create/compare/v4.1.0...v4.1.1) (2025-08-11)
+
+### Bug Fixes
+
+- remove tsdown default platform config ([1933017](https://github.com/meteorlxy/create/commit/1933017572927796716be299deb50e472540bc68))
+
 # [4.1.0](https://github.com/meteorlxy/create/compare/v4.0.1...v4.1.0) (2025-08-11)
 
 ### Features
