@@ -1,3 +1,5 @@
+## [4.2.3](https://github.com/meteorlxy/create/compare/v4.2.2...v4.2.3) (2026-02-09)
+
 ## [4.2.2](https://github.com/meteorlxy/create/compare/v4.2.1...v4.2.2) (2025-11-19)
 
 ## [4.2.1](https://github.com/meteorlxy/create/compare/v4.2.0...v4.2.1) (2025-11-19)
