@@ -46,8 +46,8 @@ importers:
         specifier: 'link:'
         version: 'link:'
       '@meteorlxy/eslint-config':
-        specifier: ^6.10.0
-        version: 6.10.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3)
+        specifier: ^6.11.0
+        version: 6.11.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3)
       '@meteorlxy/prettier-config':
         specifier: ^6.10.0
         version: 6.10.0
@@ -76,7 +76,7 @@ importers:
         specifier: ^5.0.0
         version: 5.0.0(conventional-commits-filter@5.0.0)
       eslint:
-        specifier: ^9.39.1
+        specifier: ^9.39.2
         version: 9.39.2(jiti@2.6.1)
       husky:
         specifier: ^9.1.7
@@ -279,8 +279,8 @@ packages:
     os: [darwin, linux, win32]
     hasBin: true
 
-  '@meteorlxy/eslint-config@6.10.0':
-    resolution: {integrity: sha512-fDUirQSM39FFCkF/5DQF2yL+89LaOTxSDdVmZKq8vQuXCtaY3M3I5QZ0QF5DPEl54KxHK5BabycPQimqW54mQw==}
+  '@meteorlxy/eslint-config@6.11.0':
+    resolution: {integrity: sha512-rjIF1DvjBd/QqE95SI8XKBv4o9w+LuuioZinXrNKgGiKu7gZKHThKfBWd3PvLT3plDkNOWqyAtUS2NxJgGFqxw==}
     engines: {node: '>=20.0.0'}
     peerDependencies:
       eslint-plugin-react: ^7.37.5
@@ -2141,7 +2141,7 @@ snapshots:
 
   '@ls-lint/ls-lint@2.3.1': {}
 
-  '@meteorlxy/eslint-config@6.10.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3)':
+  '@meteorlxy/eslint-config@6.11.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3)':
     dependencies:
       '@eslint/markdown': 7.5.1
       '@typescript-eslint/eslint-plugin': 8.54.0(@typescript-eslint/parser@8.54.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3)
