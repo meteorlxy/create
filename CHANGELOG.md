@@ -1,3 +1,13 @@
+## [4.2.4](https://github.com/meteorlxy/create/compare/v4.2.3...v4.2.4) (2026-03-04)
+
+### Bug Fixes
+
+- fix ejs usage ([05fcdb0](https://github.com/meteorlxy/create/commit/05fcdb06eef40dcb7f373d9d204157b96a77cef1))
+
+### Features
+
+- migrate conventional-changelog-cli to conventional-changelog ([a9c0676](https://github.com/meteorlxy/create/commit/a9c0676d9e48e73b943d8a6a7014e9912ba991ed))
+
 ## [4.2.3](https://github.com/meteorlxy/create/compare/v4.2.2...v4.2.3) (2026-02-09)
 
 ## [4.2.2](https://github.com/meteorlxy/create/compare/v4.2.1...v4.2.2) (2025-11-19)
