@@ -23,8 +23,6 @@ export const createConventionalChangelog = async (
     scripts: {
       'release:changelog': `conventional-changelog -p ${options.preset} -i CHANGELOG.md -s`,
     },
-    devDependencies: await getDependenciesVersion([
-      'conventional-changelog-cli',
-    ]),
+    devDependencies: await getDependenciesVersion(['conventional-changelog']),
   });
 };
