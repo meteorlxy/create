@@ -10,6 +10,8 @@ export type Template =
 
 export type MetaFile = 'editorconfig' | 'git' | 'github' | 'readme' | 'vscode';
 
+export type FormatterTool = 'oxfmt' | 'prettier';
+
 export type WorkflowTool =
   | 'changelog'
   | 'commitlint'
@@ -17,7 +19,6 @@ export type WorkflowTool =
   | 'husky'
   | 'lint-staged'
   | 'ls-lint'
-  | 'prettier'
   | 'sort-package-json';
 
 export type BundlerTool = 'tsdown' | 'unbuild';
@@ -37,6 +38,7 @@ export interface PromptAnswers {
   lerna: boolean | undefined;
   meta: MetaFile[];
   workflow: WorkflowTool[];
+  formatter: FormatterTool[];
   bundler: BundlerTool[];
   test: TestTool[];
 }
@@ -66,6 +68,7 @@ export interface Options {
   lerna: boolean;
   commitlint: boolean;
   eslint: boolean;
+  oxfmt: boolean;
   prettier: boolean;
   lsLint: boolean;
   husky: boolean;

@@ -26,12 +26,15 @@ export const getOptionsFromAnswers = (
   lerna: !!answers.lerna,
   commitlint: answers.workflow.includes('commitlint'),
   eslint: answers.workflow.includes('eslint'),
-  prettier: answers.workflow.includes('prettier'),
   lsLint: answers.workflow.includes('ls-lint'),
   husky: answers.workflow.includes('husky'),
   lintStaged: answers.workflow.includes('lint-staged'),
   sortPackageJson: answers.workflow.includes('sort-package-json'),
   changelog: answers.workflow.includes('changelog'),
+
+  // formatting
+  oxfmt: answers.formatter.includes('oxfmt'),
+  prettier: answers.formatter.includes('prettier'),
 
   // bundling
   tsdown: answers.bundler.includes('tsdown'),

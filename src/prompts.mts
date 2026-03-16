@@ -116,16 +116,25 @@ export const prompt = async (
       choices: [
         { title: 'CommitLint', value: 'commitlint', selected: true },
         { title: 'ESLint', value: 'eslint', selected: true },
-        { title: 'Prettier', value: 'prettier', selected: true },
         { title: 'Filename lint (ls-lint)', value: 'ls-lint', selected: true },
         { title: 'Husky', value: 'husky', selected: true },
         { title: 'Lint staged', value: 'lint-staged', selected: true },
         {
           title: 'Sort package.json',
           value: 'sort-package-json',
-          selected: true,
+          selected: false,
         },
         { title: 'Changelog', value: 'changelog', selected: true },
+      ],
+    },
+    {
+      type: 'select',
+      name: 'formatter',
+      message: 'Select formatter you want to initialize',
+      choices: [
+        { title: 'Oxfmt', value: 'oxfmt' },
+        { title: 'Prettier', value: 'prettier' },
+        { title: 'None', value: 'none' },
       ],
     },
     {

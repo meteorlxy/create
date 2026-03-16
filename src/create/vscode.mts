@@ -4,6 +4,7 @@ import { extendJson } from '../utils.mjs';
 
 export interface CreateVscodeOptions {
   eslint: boolean;
+  oxfmt: boolean;
   prettier: boolean;
   typescript: boolean;
   vue: boolean;
@@ -17,16 +18,22 @@ export const createVscode = async (
     extendJson(path.resolve(targetPath, '.vscode/extensions.json'), {
       recommendations: [
         ...(options.eslint ? ['dbaeumer.vscode-eslint'] : []),
+        ...(options.oxfmt ? ['oxc.oxc-vscode'] : []),
         ...(options.prettier ? ['esbenp.prettier-vscode'] : []),
       ],
     }),
     extendJson(path.resolve(targetPath, '.vscode/settings.json'), {
-      ...(options.prettier
+      ...(options.oxfmt
         ? {
-            'editor.defaultFormatter': 'esbenp.prettier-vscode',
+            'editor.defaultFormatter': 'oxc.oxc-vscode',
             'editor.formatOnSave': true,
           }
-        : {}),
+        : options.prettier
+          ? {
+              'editor.defaultFormatter': 'esbenp.prettier-vscode',
+              'editor.formatOnSave': true,
+            }
+          : {}),
       'editor.insertSpaces': true,
       'editor.tabSize': 2,
       'files.encoding': 'utf8',

@@ -43,7 +43,7 @@
     "dev": "pnpm build && pnpm dev:clean && node bin/create.mjs dev",
     "dev:clean": "rimraf dev",
     "format": "oxfmt",
-    "lint": "eslint . && oxfmt --check . && ls-lint",
+    "lint": "eslint . && oxfmt --check && ls-lint",
     "lint:fix": "eslint . --fix && oxfmt",
     "prepare": "husky",
     "release": "pnpm release:check && pnpm release:version",
@@ -86,9 +86,9 @@
   "lint-staged": {
     "*.(js|mjs|mts)": [
       "eslint --fix",
-      "oxfmt"
+      "oxfmt --no-error-on-unmatched-pattern"
     ],
-    "*.!(js|mjs|mts)": "oxfmt"
+    "*.!(js|mjs|mts)": "oxfmt --no-error-on-unmatched-pattern"
   },
   "commitlint": {
     "extends": [

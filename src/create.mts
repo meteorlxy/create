@@ -15,6 +15,7 @@ import { createJest } from './create/jest.mjs';
 import { createLerna } from './create/lerna.mjs';
 import { createLintStaged } from './create/lint-staged.mjs';
 import { createLsLint } from './create/ls-lint.mjs';
+import { createOxfmt } from './create/oxfmt.mjs';
 import { createPackageJson } from './create/package-json.mjs';
 import { createPrettier } from './create/prettier.mjs';
 import { createReadme } from './create/readme.mjs';
@@ -112,6 +113,7 @@ export const create = async (targetPath: string): Promise<boolean> => {
     await withSpinner({ name: '.vscode' })(
       createVscode(targetPath, {
         eslint: options.eslint,
+        oxfmt: options.oxfmt,
         prettier: options.prettier,
         typescript: options.typescript,
         vue: options.vue,
@@ -144,6 +146,7 @@ export const create = async (targetPath: string): Promise<boolean> => {
       createEslint(targetPath, {
         vue: options.vue,
         react: options.react,
+        oxfmt: options.oxfmt,
         prettier: options.prettier,
         lsLint: options.lsLint,
       }),
@@ -157,6 +160,11 @@ export const create = async (targetPath: string): Promise<boolean> => {
         standalone: false,
       }),
     );
+  }
+
+  // create oxfmt
+  if (options.oxfmt) {
+    await withSpinner({ name: 'oxfmt' })(createOxfmt(targetPath));
   }
 
   // create ls-lint
@@ -190,6 +198,7 @@ export const create = async (targetPath: string): Promise<boolean> => {
         vue: options.vue,
         react: options.react,
         eslint: options.eslint,
+        oxfmt: options.oxfmt,
         prettier: options.prettier,
         sortPackageJson: options.sortPackageJson,
       }),
@@ -312,7 +321,16 @@ export const create = async (targetPath: string): Promise<boolean> => {
   })(
     (async () => {
       if (options.eslint) {
-        await execa('npm', ['run', 'lint:fix'], {
+        await execa('npx', ['eslint', targetPath, '--fix'], {
+          cwd: targetPath,
+        });
+      }
+      if (options.oxfmt) {
+        await execa('npx', ['oxfmt', targetPath], {
+          cwd: targetPath,
+        });
+      } else if (options.prettier) {
+        await execa('npx', ['prettier', '--write', targetPath], {
           cwd: targetPath,
         });
       }

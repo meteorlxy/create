@@ -10,6 +10,7 @@ import {
 export interface CreateEslintOptions {
   vue: boolean;
   react: boolean;
+  oxfmt: boolean;
   prettier: boolean;
   lsLint: boolean;
 }
@@ -42,7 +43,10 @@ export const createEslint = async (
 
   const lintCommands = [`eslint .`];
   const lintFixCommands = [`eslint --fix .`];
-  if (options.prettier) {
+  if (options.oxfmt) {
+    lintCommands.push(`oxfmt --check`);
+    lintFixCommands.push(`oxfmt`);
+  } else if (options.prettier) {
     lintCommands.push(`prettier --check .`);
     lintFixCommands.push(`prettier --write .`);
   }

@@ -7,6 +7,7 @@ export interface CreateLintStagedOptions {
   vue: boolean;
   react: boolean;
   eslint: boolean;
+  oxfmt: boolean;
   prettier: boolean;
   sortPackageJson: boolean;
 }
@@ -16,7 +17,7 @@ export const createLintStaged = async (
   options: CreateLintStagedOptions,
 ): Promise<void> => {
   // set eslint
-  const eslintExtensions = ['js', 'cjs'];
+  const eslintExtensions = ['js', 'json', 'md'];
   if (options.eslint) {
     if (options.typescript) {
       eslintExtensions.push('ts');
@@ -36,15 +37,25 @@ export const createLintStaged = async (
 
     await extendJson(path.resolve(targetPath, 'package.json'), {
       'lint-staged': {
-        [`*.(${eslintExtensions.join('|')})`]: options.prettier
-          ? ['eslint --fix', 'prettier --write']
-          : 'eslint --fix',
+        [`*.(${eslintExtensions.join('|')})`]: options.oxfmt
+          ? ['eslint --fix', 'oxfmt --no-error-on-unmatched-pattern']
+          : options.prettier
+            ? ['eslint --fix', 'prettier --write']
+            : 'eslint --fix',
       },
     });
   }
 
-  // set prettier
-  if (options.prettier) {
+  // set oxfmt
+  if (options.oxfmt) {
+    await extendJson(path.resolve(targetPath, 'package.json'), {
+      'lint-staged': {
+        [options.eslint ? `*.!(${eslintExtensions.join('|')})` : '*']:
+          'oxfmt --no-error-on-unmatched-pattern',
+      },
+    });
+  } else if (options.prettier) {
+    // set prettier
     await extendJson(path.resolve(targetPath, 'package.json'), {
       'lint-staged': {
         [options.eslint ? `*.!(${eslintExtensions.join('|')})` : '*']:
@@ -53,8 +64,8 @@ export const createLintStaged = async (
     });
   }
 
-  // set sort-package-json
-  if (options.sortPackageJson) {
+  // set sort-package-json (not needed when oxfmt is used)
+  if (options.sortPackageJson && !options.oxfmt) {
     await extendJson(path.resolve(targetPath, 'package.json'), {
       'lint-staged': {
         'package.json': 'sort-package-json',
