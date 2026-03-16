@@ -1,3 +1,9 @@
+# [4.3.0](https://github.com/meteorlxy/create/compare/v4.2.4...v4.3.0) (2026-03-16)
+
+### Features
+
+- add oxfmt support and set it as defaults ([6b8e74c](https://github.com/meteorlxy/create/commit/6b8e74c044776bab3772a0f8f10c49a0a6451db0))
+
 ## [4.2.4](https://github.com/meteorlxy/create/compare/v4.2.3...v4.2.4) (2026-03-04)
 
 ### Bug Fixes
