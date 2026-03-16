@@ -1,5 +1,7 @@
 import path from 'node:path';
+
 import fs from 'fs-extra';
+
 import { extendJson, getDependenciesVersion } from '../utils.mjs';
 
 export interface CreateHuskyOptions {

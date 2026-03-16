@@ -1,4 +1,5 @@
 import path from 'node:path';
+
 import { renderEjs, templatePath } from '../utils.mjs';
 
 export interface CreateReadmeOptions {

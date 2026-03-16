@@ -1,4 +1,5 @@
 import path from 'node:path';
+
 import { extendJson, getDependenciesVersion } from '../utils.mjs';
 
 export interface CreateConventionalChangelogOptions {

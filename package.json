@@ -10,22 +10,12 @@
   "bugs": {
     "url": "https://github.com/meteorlxy/create/issues"
   },
+  "license": "MIT",
+  "author": "meteorlxy",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/meteorlxy/create.git"
   },
-  "license": "MIT",
-  "author": "meteorlxy",
-  "type": "module",
-  "imports": {
-    "#templates/*": "./templates/*"
-  },
-  "exports": {
-    ".": "./lib/index.mjs",
-    "./package.json": "./package.json"
-  },
-  "main": "./lib/index.mjs",
-  "types": "./lib/index.d.mts",
   "bin": {
     "create": "./bin/create.mjs"
   },
@@ -34,34 +24,33 @@
     "lib",
     "templates"
   ],
+  "type": "module",
+  "main": "./lib/index.mjs",
+  "types": "./lib/index.d.mts",
+  "imports": {
+    "#templates/*": "./templates/*"
+  },
+  "exports": {
+    ".": "./lib/index.mjs",
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "tsc -b",
     "clean": "rimraf lib *.tsbuildinfo",
     "dev": "pnpm build && pnpm dev:clean && node bin/create.mjs dev",
     "dev:clean": "rimraf dev",
-    "format": "prettier --write .",
-    "lint": "eslint . && prettier --check . && ls-lint",
-    "lint:fix": "eslint . --fix && prettier --write .",
+    "format": "oxfmt",
+    "lint": "eslint . && oxfmt --check . && ls-lint",
+    "lint:fix": "eslint . --fix && oxfmt",
     "prepare": "husky",
     "release": "pnpm release:check && pnpm release:version",
     "release:changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
     "release:check": "pnpm clean && pnpm build && pnpm lint",
     "release:version": "bumpp --execute=\"pnpm release:changelog\" --commit \"build: publish v%s\" --all"
   },
-  "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ]
-  },
-  "lint-staged": {
-    "*.!(js|mjs|mts)": "prettier --write --ignore-unknown",
-    "*.(js|mjs|mts)": [
-      "eslint --fix",
-      "prettier --write"
-    ],
-    "package.json": "sort-package-json"
-  },
-  "prettier": "@meteorlxy/prettier-config",
   "dependencies": {
     "chalk": "^5.6.2",
     "ejs": "^5.0.1",
@@ -77,8 +66,8 @@
     "@commitlint/config-conventional": "^20.5.0",
     "@ls-lint/ls-lint": "^2.3.1",
     "@meteorlxy/create": "link:",
-    "@meteorlxy/eslint-config": "^7.0.0",
-    "@meteorlxy/prettier-config": "^6.10.0",
+    "@meteorlxy/eslint-config": "^7.1.0",
+    "@meteorlxy/oxfmt-config": "^7.1.0",
     "@meteorlxy/tsconfig": "^6.8.5",
     "@types/ejs": "^3.1.5",
     "@types/fs-extra": "^11.0.4",
@@ -90,15 +79,24 @@
     "eslint": "^9.39.4",
     "husky": "^9.1.7",
     "lint-staged": "^16.4.0",
-    "prettier": "^3.8.1",
+    "oxfmt": "^0.40.0",
     "rimraf": "^6.1.3",
     "typescript": "^5.9.3"
   },
-  "packageManager": "pnpm@10.32.1",
+  "lint-staged": {
+    "*.(js|mjs|mts)": [
+      "eslint --fix",
+      "oxfmt"
+    ],
+    "*.!(js|mjs|mts)": "oxfmt"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
   "engines": {
     "node": ">=20.19.0"
   },
-  "publishConfig": {
-    "access": "public"
-  }
+  "packageManager": "pnpm@10.32.1"
 }

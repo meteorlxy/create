@@ -1,4 +1,5 @@
 import prompts from 'prompts';
+
 import { presets } from './presets.mjs';
 import type { PromptAnswers, PromptPreAnswers } from './types.mjs';
 

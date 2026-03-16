@@ -1,5 +1,7 @@
 import path from 'node:path';
+
 import fs from 'fs-extra';
+
 import { extendJson, getPackageVersion } from '../utils.mjs';
 
 const FIELDS_COMMON = {

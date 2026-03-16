@@ -1,4 +1,5 @@
 import path from 'node:path';
+
 import { extendJson } from '../utils.mjs';
 
 export interface CreateVscodeOptions {
