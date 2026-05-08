@@ -14,8 +14,7 @@ export const withSpinner =
     succeed = `created ${name}`,
     fail = `failed to create ${name}`,
   }: WithSpinnerOptions) =>
-  // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-constraint
-  async <T extends unknown>(target: Promise<T>): Promise<T> => {
+  async <T,>(target: Promise<T>): Promise<T> => {
     const spinner = ora();
     try {
       spinner.start(start);
