@@ -7,6 +7,7 @@ export interface CreateLintStagedOptions {
   vue: boolean;
   react: boolean;
   eslint: boolean;
+  oxlint?: boolean;
   oxfmt: boolean;
   prettier: boolean;
   sortPackageJson: boolean;
@@ -16,32 +17,40 @@ export const createLintStaged = async (
   targetPath: string,
   options: CreateLintStagedOptions,
 ): Promise<void> => {
-  // set eslint
-  const eslintExtensions = ['js', 'json', 'md'];
-  if (options.eslint) {
-    if (options.typescript) {
-      eslintExtensions.push('ts');
+  if (options.eslint && options.oxlint) {
+    throw new Error('ESLint and Oxlint cannot be enabled together');
+  }
+
+  const linter = options.oxlint ? 'oxlint' : options.eslint ? 'eslint' : null;
+  const linterExtensions = options.oxlint
+    ? ['js', 'cjs', 'mjs', 'ts', 'cts', 'mts']
+    : ['js', 'json', 'md'];
+
+  if (linter) {
+    if (options.eslint && options.typescript) {
+      linterExtensions.push('ts');
     }
 
     if (options.vue) {
-      eslintExtensions.push('vue');
+      linterExtensions.push('vue');
     }
 
     if (options.react) {
       if (options.typescript) {
-        eslintExtensions.push('tsx');
+        linterExtensions.push('tsx');
       } else {
-        eslintExtensions.push('jsx');
+        linterExtensions.push('jsx');
       }
     }
 
+    const linterFixCommand = `${linter} --fix`;
     await extendJson(path.resolve(targetPath, 'package.json'), {
       'lint-staged': {
-        [`*.(${eslintExtensions.join('|')})`]: options.oxfmt
-          ? ['eslint --fix', 'oxfmt --no-error-on-unmatched-pattern']
+        [`*.(${linterExtensions.join('|')})`]: options.oxfmt
+          ? [linterFixCommand, 'oxfmt --no-error-on-unmatched-pattern']
           : options.prettier
-            ? ['eslint --fix', 'prettier --write']
-            : 'eslint --fix',
+            ? [linterFixCommand, 'prettier --write']
+            : linterFixCommand,
       },
     });
   }
@@ -50,7 +59,7 @@ export const createLintStaged = async (
   if (options.oxfmt) {
     await extendJson(path.resolve(targetPath, 'package.json'), {
       'lint-staged': {
-        [options.eslint ? `*.!(${eslintExtensions.join('|')})` : '*']:
+        [linter ? `*.!(${linterExtensions.join('|')})` : '*']:
           'oxfmt --no-error-on-unmatched-pattern',
       },
     });
@@ -58,7 +67,7 @@ export const createLintStaged = async (
     // set prettier
     await extendJson(path.resolve(targetPath, 'package.json'), {
       'lint-staged': {
-        [options.eslint ? `*.!(${eslintExtensions.join('|')})` : '*']:
+        [linter ? `*.!(${linterExtensions.join('|')})` : '*']:
           'prettier --write --ignore-unknown',
       },
     });

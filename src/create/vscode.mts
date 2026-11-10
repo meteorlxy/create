@@ -4,6 +4,7 @@ import { extendJson } from '../utils.mjs';
 
 export interface CreateVscodeOptions {
   eslint: boolean;
+  oxlint?: boolean;
   oxfmt: boolean;
   prettier: boolean;
   typescript: boolean;
@@ -18,7 +19,7 @@ export const createVscode = async (
     extendJson(path.resolve(targetPath, '.vscode/extensions.json'), {
       recommendations: [
         ...(options.eslint ? ['dbaeumer.vscode-eslint'] : []),
-        ...(options.oxfmt ? ['oxc.oxc-vscode'] : []),
+        ...(options.oxlint || options.oxfmt ? ['oxc.oxc-vscode'] : []),
         ...(options.prettier ? ['esbenp.prettier-vscode'] : []),
       ],
     }),

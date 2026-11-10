@@ -7,6 +7,7 @@ import { renderEjs, templatePath } from '../utils.mjs';
 export interface CreateGithubOptions {
   organization: string;
   repository: string;
+  lint?: boolean;
   test: boolean;
 }
 
@@ -14,6 +15,8 @@ export const createGithub = async (
   targetPath: string,
   options: CreateGithubOptions,
 ): Promise<void> => {
+  const templateOptions = { lint: true, ...options };
+
   await Promise.all([
     // issue templates
     fs.copy(
@@ -33,7 +36,7 @@ export const createGithub = async (
     renderEjs(
       templatePath('.github/workflows/check.ejs'),
       path.resolve(targetPath, '.github/workflows/check.yml'),
-      options,
+      templateOptions,
     ),
     options.test &&
       renderEjs(

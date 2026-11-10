@@ -2,7 +2,16 @@ import path from 'node:path';
 
 import fs from 'fs-extra';
 
-import { extendJson, getPackageVersion } from '../utils.mjs';
+import { extendJson, getPackageVersion, packagePath } from '../utils.mjs';
+
+interface PackageMetadata {
+  devEngines: {
+    runtime: {
+      name: string;
+      version: string;
+    };
+  };
+}
 
 const FIELDS_COMMON = {
   type: 'module',
@@ -54,6 +63,10 @@ export const createPackageJson = async (
   targetPath: string,
   { author, monorepo, organization, repository }: CreatePackageJsonOptions,
 ): Promise<void> => {
+  const { devEngines } = (await fs.readJSON(
+    packagePath('@meteorlxy/create/package.json'),
+  )) as PackageMetadata;
+
   const fieldsPackage = {
     ...FIELDS_PACKAGE,
     homepage: `https://github.com/${organization}/${repository}#readme`,
@@ -71,9 +84,14 @@ export const createPackageJson = async (
     ...FIELDS_COMMON,
     ...(monorepo ? FIELDS_MONOREPO_ROOT : fieldsPackage),
     name: monorepo ? `@${repository}/monorepo` : repository,
-    packageManager: `pnpm@${await getPackageVersion('pnpm')}`,
+    devEngines: {
+      packageManager: {
+        name: 'pnpm',
+        version: await getPackageVersion('pnpm'),
+      },
+      runtime: devEngines.runtime,
+    },
   };
-
   await Promise.all([
     // root package.json
     extendJson(path.resolve(targetPath, 'package.json'), fieldsRoot),
@@ -86,14 +104,11 @@ export const createPackageJson = async (
         name: `@${repository}/foo`,
       }),
 
-    // monorepo pnpm-workspace.yaml
+    // monorepo workspace
     monorepo &&
       fs.writeFile(
         path.resolve(targetPath, 'pnpm-workspace.yaml'),
-        `\
-packages:
-  - 'packages/*'
-`,
+        `packages:\n  - 'packages/*'\n`,
       ),
   ]);
 };

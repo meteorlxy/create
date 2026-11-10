@@ -7,13 +7,26 @@ import {
   templatePath,
 } from '../utils.mjs';
 
-export const createOxfmt = async (targetPath: string): Promise<void> => {
+export interface CreateOxfmtOptions {
+  lint?: boolean;
+}
+
+export const createOxfmt = async (
+  targetPath: string,
+  options: CreateOxfmtOptions = {},
+): Promise<void> => {
   const devDependencies = ['oxfmt', '@meteorlxy/oxfmt-config'];
 
   await Promise.all([
     extendJson(path.resolve(targetPath, 'package.json'), {
       scripts: {
         format: 'oxfmt',
+        ...(options.lint
+          ? {
+              'lint': 'oxfmt --check',
+              'lint:fix': 'oxfmt',
+            }
+          : {}),
       },
       devDependencies: await getDependenciesVersion(devDependencies),
     }),

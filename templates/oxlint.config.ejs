@@ -1,0 +1,32 @@
+<%_ if (react || vue) { _%>
+import { config, meteorlxy } from '@meteorlxy/oxlint-config';
+<%_ } else { _%>
+import { meteorlxy } from '@meteorlxy/oxlint-config';
+<%_ } _%>
+
+export default meteorlxy({
+  ignorePatterns: [
+    '**/coverage/**',
+    '**/dist/**',
+    '**/node_modules/**',
+  ],
+<%_ if (typescript) { _%>
+  options: {
+    typeCheck: true,
+    typeAware: true,
+  },
+<%_ } _%>
+<%_ if (react || vue) { _%>
+  plugins: [
+    ...config.plugins,
+<%_ if (react) { _%>
+    'jsx-a11y',
+    'react',
+    'react-perf',
+<%_ } _%>
+<%_ if (vue) { _%>
+    'vue',
+<%_ } _%>
+  ],
+<%_ } _%>
+});

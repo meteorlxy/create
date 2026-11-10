@@ -115,7 +115,6 @@ export const prompt = async (
       message: 'Select development workflow you want to initialize',
       choices: [
         { title: 'CommitLint', value: 'commitlint', selected: true },
-        { title: 'ESLint', value: 'eslint', selected: true },
         { title: 'Filename lint (ls-lint)', value: 'ls-lint', selected: true },
         { title: 'Husky', value: 'husky', selected: true },
         { title: 'Lint staged', value: 'lint-staged', selected: true },
@@ -125,6 +124,16 @@ export const prompt = async (
           selected: false,
         },
         { title: 'Changelog', value: 'changelog', selected: true },
+      ],
+    },
+    {
+      type: 'select',
+      name: 'linter',
+      message: 'Select linter you want to initialize',
+      choices: [
+        { title: 'Oxlint', value: 'oxlint' },
+        { title: 'ESLint', value: 'eslint' },
+        { title: 'None', value: 'none' },
       ],
     },
     {
@@ -154,7 +163,6 @@ export const prompt = async (
       choices: [
         { title: 'None', value: 'none' },
         { title: 'Vitest', value: 'vitest' },
-        { title: 'Jest', value: 'jest' },
       ],
     },
   ]);

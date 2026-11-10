@@ -10,20 +10,21 @@ export type Template =
 
 export type MetaFile = 'editorconfig' | 'git' | 'github' | 'readme' | 'vscode';
 
-export type FormatterTool = 'oxfmt' | 'prettier';
+export type FormatterTool = 'none' | 'oxfmt' | 'prettier';
+
+export type LinterTool = 'eslint' | 'none' | 'oxlint';
 
 export type WorkflowTool =
   | 'changelog'
   | 'commitlint'
-  | 'eslint'
   | 'husky'
   | 'lint-staged'
   | 'ls-lint'
   | 'sort-package-json';
 
-export type BundlerTool = 'tsdown' | 'unbuild';
+export type BundlerTool = 'none' | 'tsdown' | 'unbuild';
 
-export type TestTool = 'jest' | 'vitest';
+export type TestTool = 'none' | 'vitest';
 
 export interface PromptPreAnswers {
   template: Template;
@@ -38,9 +39,10 @@ export interface PromptAnswers {
   lerna: boolean | undefined;
   meta: MetaFile[];
   workflow: WorkflowTool[];
-  formatter: FormatterTool[];
-  bundler: BundlerTool[];
-  test: TestTool[];
+  linter: LinterTool;
+  formatter: FormatterTool;
+  bundler: BundlerTool;
+  test: TestTool;
 }
 
 export type PromptAnswersPreset = Partial<PromptAnswers>;
@@ -68,6 +70,7 @@ export interface Options {
   lerna: boolean;
   commitlint: boolean;
   eslint: boolean;
+  oxlint: boolean;
   oxfmt: boolean;
   prettier: boolean;
   lsLint: boolean;
@@ -81,6 +84,5 @@ export interface Options {
   unbuild: boolean;
 
   // testing
-  jest: boolean;
   vitest: boolean;
 }

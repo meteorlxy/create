@@ -5,6 +5,10 @@ import { extendJson, getDependenciesVersion } from '../utils.mjs';
 export interface CreateReleaseOptions {
   changelog: boolean;
   eslint: boolean;
+  lsLint?: boolean;
+  oxfmt?: boolean;
+  oxlint?: boolean;
+  prettier?: boolean;
   lerna: boolean;
   monorepo: boolean;
   test: boolean;
@@ -16,6 +20,10 @@ export const createRelease = async (
   {
     changelog,
     eslint,
+    lsLint = false,
+    oxfmt = false,
+    oxlint = false,
+    prettier = false,
     lerna,
     monorepo,
     test,
@@ -29,7 +37,7 @@ export const createRelease = async (
   releaseScripts.push('pnpm release:publish');
 
   const releaseCheckScripts = ['pnpm clean', 'pnpm build'];
-  if (eslint) {
+  if (eslint || oxlint || oxfmt || prettier || lsLint) {
     releaseCheckScripts.push('pnpm lint');
   }
   if (typescript) {

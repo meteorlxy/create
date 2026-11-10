@@ -5,6 +5,7 @@ import fs from 'fs-extra';
 import { extendJson, getDependenciesVersion } from '../utils.mjs';
 
 export interface CreatePrettierOptions {
+  lint?: boolean;
   standalone: boolean;
 }
 
@@ -14,7 +15,7 @@ export const createPrettier = async (
 ): Promise<void> => {
   const config = '@meteorlxy/prettier-config';
   const devDependencies = ['prettier', config];
-  const ignorePaths: string[] = ['pnpm-lock.yaml'];
+  const ignorePaths = ['coverage/', 'dist/', 'node_modules/', 'pnpm-lock.yaml'];
 
   if (options.standalone) {
     await fs.writeFile(
@@ -35,6 +36,12 @@ export const createPrettier = async (
     extendJson(path.resolve(targetPath, 'package.json'), {
       scripts: {
         format: `prettier --write .`,
+        ...(options.lint
+          ? {
+              'lint': 'prettier --check .',
+              'lint:fix': 'prettier --write .',
+            }
+          : {}),
       },
       devDependencies: await getDependenciesVersion(devDependencies),
     }),
