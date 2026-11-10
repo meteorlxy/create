@@ -11,11 +11,11 @@ import { createEslint } from './create/eslint.mjs';
 import { createGit } from './create/git.mjs';
 import { createGithub } from './create/github.mjs';
 import { createHusky } from './create/husky.mjs';
-import { createJest } from './create/jest.mjs';
 import { createLerna } from './create/lerna.mjs';
 import { createLintStaged } from './create/lint-staged.mjs';
 import { createLsLint } from './create/ls-lint.mjs';
 import { createOxfmt } from './create/oxfmt.mjs';
+import { createOxlint } from './create/oxlint.mjs';
 import { createPackageJson } from './create/package-json.mjs';
 import { createPrettier } from './create/prettier.mjs';
 import { createReadme } from './create/readme.mjs';
@@ -44,6 +44,12 @@ export const create = async (targetPath: string): Promise<boolean> => {
   const preAnswers = await promptPre();
   const answers = await prompt(preAnswers);
   const options = getOptionsFromAnswers(preAnswers, answers);
+  const hasLintStagedTasks =
+    options.eslint ||
+    options.oxlint ||
+    options.oxfmt ||
+    options.prettier ||
+    options.sortPackageJson;
 
   // create package.json
   await withSpinner({ name: 'package.json' })(
@@ -69,7 +75,7 @@ export const create = async (targetPath: string): Promise<boolean> => {
     await withSpinner({ name: '.gitattributes & .gitignore' })(
       createGit(targetPath, {
         typescript: options.typescript,
-        coverage: options.jest || options.vitest,
+        coverage: options.vitest,
       }),
     );
   }
@@ -80,7 +86,13 @@ export const create = async (targetPath: string): Promise<boolean> => {
       createGithub(targetPath, {
         organization: options.organization,
         repository: options.repository,
-        test: options.jest || options.vitest,
+        lint:
+          options.eslint ||
+          options.oxlint ||
+          options.oxfmt ||
+          options.prettier ||
+          options.lsLint,
+        test: options.vitest,
       }),
     );
   }
@@ -101,8 +113,9 @@ export const create = async (targetPath: string): Promise<boolean> => {
   if (options.typescript) {
     await withSpinner({ name: 'typescript' })(
       createTypescript(targetPath, {
+        eslint: options.eslint,
         monorepo: options.monorepo,
-        test: options.jest || options.vitest,
+        test: options.vitest,
         vue: options.vue,
       }),
     );
@@ -113,6 +126,7 @@ export const create = async (targetPath: string): Promise<boolean> => {
     await withSpinner({ name: '.vscode' })(
       createVscode(targetPath, {
         eslint: options.eslint,
+        oxlint: options.oxlint,
         oxfmt: options.oxfmt,
         prettier: options.prettier,
         typescript: options.typescript,
@@ -140,8 +154,20 @@ export const create = async (targetPath: string): Promise<boolean> => {
     );
   }
 
-  // create eslint
-  if (options.eslint) {
+  // create oxlint
+  if (options.oxlint) {
+    await withSpinner({ name: 'oxlint' })(
+      createOxlint(targetPath, {
+        typescript: options.typescript,
+        vue: options.vue,
+        react: options.react,
+        oxfmt: options.oxfmt,
+        prettier: options.prettier,
+        lsLint: options.lsLint,
+      }),
+    );
+  } else if (options.eslint) {
+    // create eslint
     await withSpinner({ name: 'eslint' })(
       createEslint(targetPath, {
         vue: options.vue,
@@ -157,6 +183,7 @@ export const create = async (targetPath: string): Promise<boolean> => {
   if (options.prettier) {
     await withSpinner({ name: 'prettier' })(
       createPrettier(targetPath, {
+        lint: !options.eslint && !options.oxlint && !options.lsLint,
         standalone: false,
       }),
     );
@@ -164,17 +191,26 @@ export const create = async (targetPath: string): Promise<boolean> => {
 
   // create oxfmt
   if (options.oxfmt) {
-    await withSpinner({ name: 'oxfmt' })(createOxfmt(targetPath));
+    await withSpinner({ name: 'oxfmt' })(
+      createOxfmt(targetPath, {
+        lint: !options.eslint && !options.oxlint && !options.lsLint,
+      }),
+    );
   }
 
   // create ls-lint
   if (options.lsLint) {
     await withSpinner({ name: 'ls-lint' })(
       createLsLint(targetPath, {
+        eslint: options.eslint,
+        lint: !options.eslint && !options.oxlint,
         monorepo: options.monorepo,
+        oxfmt: options.oxfmt,
+        oxlint: options.oxlint,
+        prettier: options.prettier,
         typescript: options.typescript,
         vue: options.vue,
-        test: options.jest || options.vitest,
+        test: options.vitest,
       }),
     );
   }
@@ -184,20 +220,21 @@ export const create = async (targetPath: string): Promise<boolean> => {
     await withSpinner({ name: 'husky' })(
       createHusky(targetPath, {
         commitlint: options.commitlint,
-        lintStaged: options.lintStaged,
+        lintStaged: options.lintStaged && hasLintStagedTasks,
         lsLint: options.lsLint,
       }),
     );
   }
 
   // create lint-staged
-  if (options.lintStaged) {
+  if (options.lintStaged && hasLintStagedTasks) {
     await withSpinner({ name: 'lint-staged' })(
       createLintStaged(targetPath, {
         typescript: options.typescript,
         vue: options.vue,
         react: options.react,
         eslint: options.eslint,
+        oxlint: options.oxlint,
         oxfmt: options.oxfmt,
         prettier: options.prettier,
         sortPackageJson: options.sortPackageJson,
@@ -226,9 +263,13 @@ export const create = async (targetPath: string): Promise<boolean> => {
     createRelease(targetPath, {
       changelog: options.changelog,
       eslint: options.eslint,
+      lsLint: options.lsLint,
+      oxfmt: options.oxfmt,
+      oxlint: options.oxlint,
+      prettier: options.prettier,
       lerna: options.lerna,
       monorepo: options.monorepo,
-      test: options.jest || options.vitest,
+      test: options.vitest,
       typescript: options.typescript,
     }),
   );
@@ -247,16 +288,6 @@ export const create = async (targetPath: string): Promise<boolean> => {
     await withSpinner({ name: 'unbuild' })(
       createUnbuild(targetPath, {
         monorepo: options.monorepo,
-      }),
-    );
-  }
-
-  // create jest
-  if (options.jest) {
-    await withSpinner({ name: 'jest' })(
-      createJest(targetPath, {
-        typescript: options.typescript,
-        vue: options.vue,
       }),
     );
   }
@@ -320,17 +351,21 @@ export const create = async (targetPath: string): Promise<boolean> => {
     fail: 'failed to finish',
   })(
     (async () => {
-      if (options.eslint) {
-        await execa('npx', ['eslint', targetPath, '--fix'], {
+      if (options.oxlint) {
+        await execa('pnpm', ['exec', 'oxlint', targetPath, '--fix'], {
+          cwd: targetPath,
+        });
+      } else if (options.eslint) {
+        await execa('pnpm', ['exec', 'eslint', targetPath, '--fix'], {
           cwd: targetPath,
         });
       }
       if (options.oxfmt) {
-        await execa('npx', ['oxfmt', targetPath], {
+        await execa('pnpm', ['exec', 'oxfmt', targetPath], {
           cwd: targetPath,
         });
       } else if (options.prettier) {
-        await execa('npx', ['prettier', '--write', targetPath], {
+        await execa('pnpm', ['exec', 'prettier', '--write', targetPath], {
           cwd: targetPath,
         });
       }

@@ -4,7 +4,6 @@ export default defineConfig({
   test: {
     <%_ if (coverage) { _%>
     coverage: {
-      all: true,
       <%_ if (monorepo) { _%>
       include: ['packages/*/src/**'],
       <%_ } else { _%>
@@ -15,9 +14,11 @@ export default defineConfig({
     },
     <%_ } _%>
     <%_ if (monorepo) { _%>
-    include: ['packages/*/tests/**/*.spec.ts'],
+    include: [
+      'packages/*/tests/**/*.{spec,test}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}',
+    ],
     <%_ } else { _%>
-    include: ['tests/**/*.spec.ts'],
+    include: ['tests/**/*.{spec,test}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
     <%_ } _%>
   },
 });
