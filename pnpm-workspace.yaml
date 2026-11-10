@@ -1,2 +1,6 @@
 allowBuilds:
   unrs-resolver: true
+
+minimumReleaseAgeExclude:
+  - '@meteorlxy/oxfmt-config'
+  - '@meteorlxy/oxlint-config'
