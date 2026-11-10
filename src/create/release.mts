@@ -45,21 +45,19 @@ export const createRelease = async (
     ? null
     : `bumpp${monorepo ? ' -r' : ''}${changelog ? ` --execute="pnpm release:changelog"` : ''} --commit "build: publish v%s" --all`;
 
-  await Promise.all([
-    // add devDependencies
-    extendJson(path.resolve(targetPath, 'package.json'), {
-      scripts: {
-        'release': releaseScripts.join(' && '),
-        'release:check': releaseCheckScripts.join(' && '),
-        ...(releaseVersionScript
-          ? { 'release:version': releaseVersionScript }
-          : {}),
-        'release:publish': releasePublishScript,
-      },
-      devDependencies: await getDependenciesVersion([
-        '@lerna-lite/cli',
-        '@lerna-lite/publish',
-      ]),
-    }),
-  ]);
+  // add devDependencies
+  await extendJson(path.resolve(targetPath, 'package.json'), {
+    scripts: {
+      'release': releaseScripts.join(' && '),
+      'release:check': releaseCheckScripts.join(' && '),
+      ...(releaseVersionScript
+        ? { 'release:version': releaseVersionScript }
+        : {}),
+      'release:publish': releasePublishScript,
+    },
+    devDependencies: await getDependenciesVersion([
+      '@lerna-lite/cli',
+      '@lerna-lite/publish',
+    ]),
+  });
 };
